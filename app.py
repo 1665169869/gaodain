@@ -1,6 +1,9 @@
 import logging
+from yungao import App
 from flask import Flask, render_template, redirect
 app = Flask(__name__, static_url_path='')
+
+# 页面路由
 
 
 @app.route('/')
@@ -48,6 +51,10 @@ def page_not_found(error=None):
     logging.info(error)
     return redirect('/login', 302)
 
+# 到这结束
+
+# API接口路由
+
 
 @app.route('/api/send')
 def apiSendNote():
@@ -67,6 +74,8 @@ def apiSmsLogin():
 @app.route('/api/editUser')
 def apiEditUser():
     pass
+
+# 到这结束
 
 
 if __name__ == '__main__':
