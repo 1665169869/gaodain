@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, render_template, redirect
 app = Flask(__name__, static_url_path='')
 
@@ -44,7 +45,28 @@ def login_send():
 
 @app.errorhandler(404)
 def page_not_found(error=None):
+    logging.info(error)
     return redirect('/login', 302)
+
+
+@app.route('/api/send')
+def apiSendNote():
+    pass
+
+
+@app.route('/api/login')
+def apiLogin():
+    pass
+
+
+@app.route('/api/smsLogin')
+def apiSmsLogin():
+    pass
+
+
+@app.route('/api/editUser')
+def apiEditUser():
+    pass
 
 
 if __name__ == '__main__':
