@@ -25,7 +25,7 @@ def passwd():
 
 @app.route('/login')
 def login():
-    return redirect('/login/password', 302)
+    return redirect('/login/', 302)
 
 
 @app.route('/login/')
