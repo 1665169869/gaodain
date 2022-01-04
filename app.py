@@ -1,6 +1,7 @@
 import logging
 from API import App
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, url_for
+
 app = Flask(__name__)
 gao = App()
 
@@ -10,7 +11,8 @@ gao = App()
 
 @app.route('/test/password')
 def test_password():
-    return render_template('/test/password.html')
+    # return redirect(url_for("login"), 302)
+    return render_template('./test/password.html')
 
 
 #  页面路由
@@ -38,12 +40,14 @@ def passwd():
 
 @app.route('/login')
 def login():
-    return redirect('/login/', 302)
+    # return redirect(url_for("login"), 302)
+    # return redirect('/login/', 302)
+    return redirect('/login/password', 302)
 
 
 @app.route('/login/')
 def login_():
-    return redirect('/login/password', 302)
+    return redirect(url_for("login"), 302)
 
 
 @app.route('/login/password')
@@ -59,7 +63,9 @@ def login_send():
 @app.errorhandler(404)
 def page_not_found(error=None):
     logging.info(error)
-    return redirect('/login', 302)
+    # return render_template_string(str(error))
+    return render_template('404.html'), 404
+
 
 # 到这结束
 
@@ -68,7 +74,7 @@ def page_not_found(error=None):
 
 #  获取验证码 1|登录 2|重置密码 8|注销账号
 @app.route('/api/send', methods=['POST'])
-def apiSendNote():
+def api_send_note():
     mobile = None
     g_type = None
     if 'mobile' in request.form:
@@ -81,7 +87,7 @@ def apiSendNote():
 
 #  密码登录
 @app.route('/api/login', methods=["POST"])
-def apiLogin():
+def api_login():
     mobile = None
     password = None
     if 'mobile' in request.form:
@@ -94,7 +100,7 @@ def apiLogin():
 
 #  验证码登录
 @app.route('/api/smsLogin', methods=["POST"])
-def apiSmsLogin():
+def api_sms_login():
     mobile = None
     if 'mobile' in request.form:
         mobile = request.form['mobile']
@@ -107,7 +113,7 @@ def apiSmsLogin():
 
 #  退出登录
 @app.route('/api/logout', methods=['POST'])
-def apiLogout():
+def api_logout():
     token = None
     if 'token' in request.form:
         token = request.form['token']
@@ -117,7 +123,7 @@ def apiLogout():
 
 #  修改用户信息
 @app.route('/api/editUser', methods=['POST'])
-def apiEditUser():
+def api_edit_user():
     password = None
     sex = None
     avatar = None
@@ -147,8 +153,15 @@ def apiEditUser():
     return gao.html
 
 
+@app.route('/api/loginApp', methods=['POST'])
+def api_login_app():
+    token = gao.is_keys(request.form, "token")
+    ip = gao.is_keys(request.form, "ip")
+    gao.loginApp(ip, token)
+    return gao.html
 
-# 到这结束
+
+#  到这结束
 
 
 if __name__ == '__main__':
