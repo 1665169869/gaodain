@@ -57,7 +57,7 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     -khtml-user-select:none;
-    font-family: 微软雅黑;
+    font-family: 微软雅黑, sans-serif;
 }
 
 .btn_a {
