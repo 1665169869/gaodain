@@ -829,7 +829,7 @@ class App:
     def __init__(self):
         self.api = API
         self.token = None
-        self.html = None
+        self.text = None
         self.r = None
         self.code = None
         self.msg = None
@@ -872,7 +872,7 @@ class App:
             self.code = self.result['code']
             self.msg = self.result['msg']
         finally:
-            self.html = r.text
+            self.text = r.text
             self.status_code = r.status_code
 
         return self.status_code
