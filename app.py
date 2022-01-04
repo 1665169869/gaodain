@@ -1,7 +1,7 @@
 import logging
 from API import App
 from flask import Flask, render_template, redirect, request
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
 gao = App()
 
 
