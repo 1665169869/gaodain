@@ -57,27 +57,87 @@ def page_not_found(error=None):
 # API接口路由
 
 
-@app.route('/api/send')
+#  获取验证码 1|登录 2|重置密码 8|注销账号
+@app.route('/api/send', methods=['POST'])
 def apiSendNote():
-    pass
+    mobile = None
+    g_type = None
+    if 'mobile' in request.form:
+        mobile = request.form['mobile']
+    if 'type' in request.form:
+        g_type = request.form['type']
+    gao.smsSend(mobile, g_type)
+    return gao.html
 
 
+#  密码登录
 @app.route('/api/login', methods=["POST"])
 def apiLogin():
-    mobile = request.form['mobile']
-    password = request.form['password']
+    mobile = None
+    password = None
+    if 'mobile' in request.form:
+        mobile = request.form['mobile']
+    if 'password' in request.form:
+        password = request.form['password']
     gao.login(mobile=mobile, password=password)
     return gao.html
 
 
-@app.route('/api/smsLogin')
+#  验证码登录
+@app.route('/api/smsLogin', methods=["POST"])
 def apiSmsLogin():
-    pass
+    mobile = None
+    if 'mobile' in request.form:
+        mobile = request.form['mobile']
+    code = None
+    if 'code' in request.form:
+        code = request.form['code']
+    gao.smsLogin(mobile, code)
+    return gao.html
 
 
-@app.route('/api/editUser')
+#  退出登录
+@app.route('/api/logout', methods=['POST'])
+def apiLogout():
+    token = None
+    if 'token' in request.form:
+        token = request.form['token']
+    gao.logout(token)
+    return gao.html
+
+
+#  修改用户信息
+@app.route('/api/editUser', methods=['POST'])
 def apiEditUser():
-    pass
+    password = None
+    sex = None
+    avatar = None
+    nickname = None
+    desc = ""
+    token = None
+    if 'password' in request.form:
+        password = request.form['password']
+    if 'sex' in request.form:
+        sex = request.form['sex']
+    if 'avatar' in request.form:
+        avatar = request.form['sex']
+    if 'nickname' in request.form:
+        nickname = request.form['nickname']
+    if 'desc' in request.form:
+        desc = request.form['desc']
+    if 'token' in request.form:
+        token = request.form['token']
+    gao.editUser(
+        password,
+        sex,
+        avatar,
+        nickname,
+        desc,
+        token,
+    )
+    return gao.html
+
+
 
 # 到这结束
 

@@ -870,7 +870,53 @@ class App:
             }
         )
         return self.status_code
-
+    def smsSend(self, mobile:str, type = 1 | 2 | 8):
+        return self.request(
+            name="sendNote",
+            data={
+                "mobile": mobile,
+                "type": type,
+            }
+        )
+    def smsLogin(self, mobile:str, code:str):
+        return self.request(
+            name="smsLogin",
+            data={
+                "mobile": mobile,
+                "code": code,
+            }
+        )
+    def logout(self, token=None):
+        if type(token) != None:
+            self.token = token
+        
+        return self.request(
+            name="logout",
+            data={},
+        )
+    def loginApp(self, ip = None, token = None):
+        data = {}
+        if type(token) != None:
+            self.token = token
+        if type(ip) != None:
+            data['ip'] = ip
+        return self.request("loginApp", data)
+    def editUser(self, password = None, sex = None, avatar = None, nickname = None, desc = "",token = None,):
+        data = {}
+        if type(token) != None:
+            self.token = token
+        if type(password) != None:
+            data['password'] = password
+            data['pass'] = password
+        if type(sex) != None:
+            data['sex'] = sex
+        if type(avatar) != None:
+            data['avatar'] = avatar
+        if type(desc) != "":
+            data['desc'] = desc
+        
+        return self.request(name="editUser", data=data)
+        
 
 if __name__ == "__main__":
     gg = App()
