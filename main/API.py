@@ -1,5 +1,5 @@
 import json
-
+import logging
 import requests
 
 API = {
@@ -863,10 +863,11 @@ class App:
         try:
             self.result = json.loads(r.text)
 
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             self.result = None
             self.code = None
             self.msg = None
+            logging.warning(e)
         else:
             self.code = self.result['code']
             self.msg = self.result['msg']
