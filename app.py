@@ -1,6 +1,8 @@
 import logging
-from API import App
+
 from flask import Flask, render_template, redirect, request, url_for
+
+from API import App, is_keys
 
 app = Flask(__name__)
 gao = App()
@@ -153,10 +155,11 @@ def api_edit_user():
     return gao.html
 
 
+#  手机网络认证
 @app.route('/api/loginApp', methods=['POST'])
 def api_login_app():
-    token = gao.is_keys(request.form, "token")
-    ip = gao.is_keys(request.form, "ip")
+    token = is_keys(request.form, "token")
+    ip = is_keys(request.form, "ip")
     gao.loginApp(ip, token)
     return gao.html
 

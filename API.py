@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 API = {
@@ -810,6 +812,18 @@ API = {
 }
 
 
+def is_keys(request, keys):
+    """
+    判断字典是否存在某个键值
+    :param request:  dict字典
+    :param keys:  需判断的键值
+    :return: 返回bool 如果存在，返回True 否则False
+    """
+    if keys in request:
+        return request[keys]
+    return None
+
+
 class App:
 
     def __init__(self):
@@ -831,10 +845,9 @@ class App:
         headers = {}
         url = self.api['service'] + api['url']
 
-        if api['token'] == True:
-            headers['Authorization'] = "Bearer " + self.token
-        elif api['token'] == False:
-            pass
+        if type(api['token']) == bool:
+            if api['token']:
+                headers['Authorization'] = "Bearer " + self.token
         else:
             raise TypeError("类型错误")
 
@@ -848,9 +861,9 @@ class App:
         r = self.r
 
         try:
-            self.result = r.json()
+            self.result = json.loads(r.text)
 
-        except:
+        except json.JSONDecodeError:
             self.result = None
             self.code = None
             self.msg = None
@@ -892,7 +905,7 @@ class App:
         )
 
     def logout(self, token=None):
-        if type(token) != None:
+        if type(token) is not None:
             self.token = token
 
         return self.request(
@@ -902,32 +915,29 @@ class App:
 
     def loginApp(self, ip=None, token=None):
         data = {}
-        if type(token) != None:
+        if type(token) is not None:
             self.token = token
-        if type(ip) != None:
+        if type(ip) is not None:
             data['ip'] = ip
         return self.request("loginApp", data)
 
     def editUser(self, password=None, sex=None, avatar=None, nickname=None, desc="", token=None, ):
         data = {}
-        if type(token) != None:
+        if type(token) is not None:
             self.token = token
-        if type(password) != None:
+        if type(password) is not None:
             data['password'] = password
             data['pass'] = password
-        if type(sex) != None:
+        if type(sex) is not None:
             data['sex'] = sex
-        if type(avatar) != None:
+        if type(avatar) is not None:
             data['avatar'] = avatar
+        if type(nickname) is not None:
+            data['nickname'] = nickname
         if type(desc) != "":
             data['desc'] = desc
 
         return self.request(name="editUser", data=data)
-
-    def is_keys(self, request, keys):
-        if keys in request:
-            return request[keys]
-        return None
 
 
 if __name__ == "__main__":
