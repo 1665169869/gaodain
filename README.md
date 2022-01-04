@@ -1,18 +1,35 @@
 # 糕糕
 
 #### 介绍
-第三方糕糕客户端
+
+糕点 -- 第三方糕糕客户端
+
+在阅读该项目时你需要入门以下知识：
+
+Flask PyQt5 jQuery HTML CSS
 
 #### 软件架构
 软件架构说明
 
-Flask PyQt5
+```sh
+- gaogao            #  根目录 糕点
+-- main             #  主程序文件目录
+--- static          #  静态文件目录
+--- templates       #  模板文件目录
+--- API.py          #  api包
+--- app.py          #  flask服务
+--- main.py         #   主程序
+-- test             #  临时测试文件目录
+-- README.md        #  说明文档
+-- LICENSE          #  开源协议
+-- requirements.txt #  需要的pip包
 
+```
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  `pip install -r requirements.txt`
+2.  `python app.py`
+3.  `python main.py`
 
 #### 使用说明
 
@@ -22,11 +39,17 @@ Flask PyQt5
 
 #### 参与贡献
 
+
 1.  Fork 本仓库
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
 
+贡献者:
+
+感谢 <a href="https://gitee.com/baiyu16">白羽 </a>
+
+感谢 <a href="https://gitee.com/huang999">寂寞如斯</a> 
 
 #### 特技
 

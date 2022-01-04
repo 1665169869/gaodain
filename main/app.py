@@ -14,7 +14,7 @@ gao = App()
 @app.route('/test/password')
 def test_password():
     # return redirect(url_for("login"), 302)
-    return render_template('./test/password.html')
+    return render_template('/test/password.html')
 
 
 #  页面路由
@@ -131,7 +131,7 @@ def api_edit_user():
     sex = None
     avatar = None
     nickname = None
-    desc = ""
+    desc = None
     token = None
     if 'password' in request.form:
         password = request.form['password']

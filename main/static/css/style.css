@@ -64,7 +64,9 @@ body {
     color: cornflowerblue;
     text-decoration: none;
 }
-
+a {
+    text-decoration: none;
+}
 .btn {
     width: 15rem;
     height: 35px;

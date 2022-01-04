@@ -14,7 +14,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('糕糕')  # 窗口标题
         self.resize(415, 550)  # 窗口的大小和位置设置
         # self.setWindowFlags(Qt.FramelessWindowHint)  # 关闭标题栏
-        self.setWindowFlags(Qt.Drawer | Qt.WindowCloseButtonHint)  # 去掉左上角图标 | 只显示关闭按钮
+        self.setWindowFlags(Qt.WindowCloseButtonHint)  # 去掉左上角图标 | 只显示关闭按钮
         # 加载外部的web界面
         self.browser.load(QUrl(url))
         self.setCentralWidget(self.browser)

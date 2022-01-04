@@ -812,7 +812,7 @@ API = {
 }
 
 
-def is_keys(request, keys):
+def is_keys(request, keys) -> str | None:
     """
     判断字典是否存在某个键值
     :param request:  dict字典
@@ -836,7 +836,7 @@ class App:
         self.result = None
         self.status_code = None
 
-    def request(self, name: str, data: dict):
+    def request(self, name: str, data: dict) -> int:
         if name in self.api:
             api = self.api[name]
         else:
@@ -877,7 +877,7 @@ class App:
 
         return self.status_code
 
-    def login(self, mobile: str, password: str):
+    def login(self, mobile: str, password: str) -> int:
         self.request(
             name="login",
             data={
@@ -887,7 +887,7 @@ class App:
         )
         return self.status_code
 
-    def smsSend(self, mobile: str, g_type=1 | 2 | 8):
+    def smsSend(self, mobile: str, g_type=1 | 2 | 8) -> int:
         return self.request(
             name="sendNote",
             data={
@@ -896,7 +896,7 @@ class App:
             }
         )
 
-    def smsLogin(self, mobile: str, code: str):
+    def smsLogin(self, mobile: str, code: str) -> int:
         return self.request(
             name="smsLogin",
             data={
@@ -905,7 +905,7 @@ class App:
             }
         )
 
-    def logout(self, token=None):
+    def logout(self, token: None | str) -> int:
         if type(token) is not None:
             self.token = token
 
@@ -914,7 +914,7 @@ class App:
             data={},
         )
 
-    def loginApp(self, ip=None, token=None):
+    def loginApp(self, ip: None | str, token: None | str) -> int:
         data = {}
         if type(token) is not None:
             self.token = token
@@ -922,7 +922,13 @@ class App:
             data['ip'] = ip
         return self.request("loginApp", data)
 
-    def editUser(self, password=None, sex=None, avatar=None, nickname=None, desc="", token=None, ):
+    def editUser(self,
+                 password: None | str,
+                 sex: None | str,
+                 avatar: None | str,
+                 nickname: None | str,
+                 desc: None | str,
+                 token: None | str, ) -> int:
         data = {}
         if type(token) is not None:
             self.token = token
@@ -935,7 +941,7 @@ class App:
             data['avatar'] = avatar
         if type(nickname) is not None:
             data['nickname'] = nickname
-        if type(desc) != "":
+        if type(desc) is not None:
             data['desc'] = desc
 
         return self.request(name="editUser", data=data)
