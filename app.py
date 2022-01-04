@@ -4,7 +4,16 @@ from flask import Flask, render_template, redirect, request
 app = Flask(__name__, static_url_path='')
 gao = App()
 
-# 页面路由
+
+#  测试路由
+
+
+@app.route('/test/password')
+def test_password():
+    return render_template('/test/password.html')
+
+
+#  页面路由
 
 
 @app.route('/')
