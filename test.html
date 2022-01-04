@@ -5,22 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 </head>
 <body>
-    <script>
-         $(document).ready(function(){
-             $('button').click(function(){
-                $.post("https://v3.yungao-tech.com/api/login", 
-                    {
-                    mobile: "13232469869",
-                    password: "xiaoshuai666",
-                }, function(data, status){
-                    console.log(data, status)
-                })
-             })
-         })
-    </script>
+    <script src="./text.js"></script>
     <button>登录</button>
 </body>
 </html>
