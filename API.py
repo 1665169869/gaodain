@@ -1,7 +1,7 @@
+import requests
+from requests import api
 
-
-class App:
-    API = {
+API = {
         "service": "https://v3.yungao-tech.com/",
         "confessionService": "http://106.55.190.205:8099/",
         "websocketservice": "https://admin.v3.yungao-tech.com/",
@@ -809,3 +809,70 @@ class App:
             "name": "点赞/评论 ",
         }
     }
+
+class App:
+    
+    def __init__(self):
+        self.api = API
+        self.token = None
+        self.html = None
+        self.r = None
+        self.code = None
+        self.msg = None
+        self.result = None
+    def request(self, name:str, data:dict):
+        if name in self.api:
+            api = self.api[name]
+        else:
+            raise ValueError("没有找到该键值")
+        
+        headers = {}
+        url = self.api['service'] + api['url']
+
+        if api['token'] == True: 
+            headers['Authorization'] = "Bearer " + self.token
+        elif api['token'] == False: 
+            pass
+        else:
+            raise TypeError("类型错误")
+
+        self.r = requests.request(
+            method=api['method'], 
+            url=url,
+            headers=headers,
+            data=data,
+        )
+
+        r = self.r
+
+        try:
+            self.result = r.json()
+            
+        except:
+            self.result = None
+            self.code = None
+            self.msg = None
+        else:
+            self.code = self.result['code']
+            self.msg = self.result['msg']
+        finally:
+            self.html = r.text
+            self.status_code = r.status_code
+        
+        return self.status_code
+            
+    def login(self, mobile:str, password:str):
+        self.request(
+            name="login", 
+            data={
+                "mobile": mobile,
+                "password": password,
+            }
+        )
+        return self.status_code
+
+
+if __name__ == "__main__":
+    gg = App()
+    content = gg.login(13232469869, "xiaoshuai666")
+    pass

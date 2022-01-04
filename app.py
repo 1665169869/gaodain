@@ -1,7 +1,8 @@
 import logging
-from yungao import App
-from flask import Flask, render_template, redirect
+from API import App
+from flask import Flask, render_template, redirect, request
 app = Flask(__name__, static_url_path='')
+gao = App()
 
 # 页面路由
 
@@ -61,9 +62,12 @@ def apiSendNote():
     pass
 
 
-@app.route('/api/login')
+@app.route('/api/login', methods=["POST"])
 def apiLogin():
-    pass
+    mobile = request.form['mobile']
+    password = request.form['password']
+    gao.login(mobile=mobile, password=password)
+    return gao.html
 
 
 @app.route('/api/smsLogin')
