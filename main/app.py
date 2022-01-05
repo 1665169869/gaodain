@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, Response
 
 from API import App, is_keys
 
@@ -85,7 +85,7 @@ def api_send_note():
     if 'type' in request.form:
         g_type = request.form['type']
     gao.smsSend(mobile, g_type)
-    return gao.text
+    return Response(gao.text, mimetype="application/json")
 
 
 #  密码登录
@@ -98,7 +98,7 @@ def api_login():
     if 'password' in request.form:
         password = request.form['password']
     gao.login(mobile=mobile, password=password)
-    return gao.text
+    return Response(gao.text, mimetype="application/json")
 
 
 #  验证码登录
@@ -111,7 +111,7 @@ def api_sms_login():
     if 'code' in request.form:
         code = request.form['code']
     gao.smsLogin(mobile, code)
-    return gao.text
+    return Response(gao.text, mimetype="application/json")
 
 
 #  退出登录
@@ -121,7 +121,7 @@ def api_logout():
     if 'token' in request.form:
         token = request.form['token']
     gao.logout(token)
-    return gao.text
+    return Response(gao.text, mimetype="application/json")
 
 
 #  修改用户信息
@@ -153,7 +153,7 @@ def api_edit_user():
         desc,
         token,
     )
-    return gao.text
+    return Response(gao.text, mimetype="application/json")
 
 
 #  手机网络认证
@@ -162,7 +162,7 @@ def api_login_app():
     token = is_keys(request.form, "token")
     ip = is_keys(request.form, "ip")
     gao.loginApp(ip, token)
-    return gao.text
+    return Response(gao.text, mimetype="application/json")
 
 
 #  到这结束

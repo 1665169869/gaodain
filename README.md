@@ -11,7 +11,7 @@ Flask PyQt5 jQuery HTML CSS
 #### 软件架构
 软件架构说明
 
-```sh
+```yaml
 - gaogao            #  根目录 糕点
 -- main             #  主程序文件目录
 --- static          #  静态文件目录
@@ -26,6 +26,10 @@ Flask PyQt5 jQuery HTML CSS
 
 ```
 #### 安装教程
+
+由于项目使用了新特性联合类型
+
+Python环境必须>=3.10 
 
 1.  `pip install -r requirements.txt`
 2.  `python app.py`
