@@ -974,7 +974,7 @@ class App:
 
         return self.request(name="editUser", data=data)
 
-    def networkQuery(self, ip_32_md5: str | None, token: None | str):
+    def networkQuery(self, ip_32_md5: str | None, token: None | str) -> int:
         data = {}
         if token is not None:
             self.token = token
@@ -983,6 +983,14 @@ class App:
         
         return self.request("networkQuery", data)
     
+    def user(self, unique_number: int | str | None, token: None) -> int:
+        data = {}
+        if token is not None:
+            self.token = token
+        if unique_number is not None:
+            data['unique_number'] = unique_number
+        
+        return self.request("user", data)
 
 
 if __name__ == "__main__":

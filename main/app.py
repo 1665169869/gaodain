@@ -1,5 +1,5 @@
 import logging
-
+import json
 from flask import Flask, render_template, redirect, request, url_for, Response
 from requests.api import get
 
@@ -192,9 +192,21 @@ def api_network_query():
     return is_json(gao.text, gao.is_json)
 
 
+#  获取自身内网IP
 @app.route('/api/getIp', methods=['GET', 'POST'])
 def api_getIP():
-    return get_host_ip()
+    data = {
+        "ip": get_host_ip()
+    }
+    return is_json(json.dumps(data), True)
+
+
+#  用户信息
+@app.route('/api/Community/user', methods=['POST'])
+def api_user():
+    unique_number = is_keys(request.form, "unique_number")
+    gao.user(unique_number, gao.token)
+    return is_json(gao.text, gao.is_json)
 
 #  到这结束
 

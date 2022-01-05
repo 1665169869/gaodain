@@ -2,7 +2,7 @@ body {
     text-align: center;
     /* display: flex; */
     line-height: 15px;
-    background-color: #24252c;
+    background-color: #181a1b;
     margin: 20px auto auto;
     width: 410px;
     height: auto;
@@ -98,4 +98,9 @@ a {
 
 .btnkj li:hover {
     background-color: #24252c;
+}
+
+
+.bgdiv {
+    background-color: #1e2122;
 }
