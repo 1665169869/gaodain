@@ -8,6 +8,20 @@ app = Flask(__name__)
 gao = App()
 
 
+# 预先处理
+
+
+@app.before_request
+def before():
+    token = is_keys(request.form, "token")
+    authorization = request.authorization
+    if token is not None:
+        gao.token = token
+    elif authorization is not None:
+        gao.token = authorization
+
+
+
 #  测试路由
 
 
@@ -85,7 +99,7 @@ def api_send_note():
     if 'type' in request.form:
         g_type = request.form['type']
     gao.smsSend(mobile, g_type)
-    return Response(gao.text, mimetype="application/json")
+    return is_json(gao.text, gao.is_json)
 
 
 #  密码登录
@@ -98,7 +112,7 @@ def api_login():
     if 'password' in request.form:
         password = request.form['password']
     gao.login(mobile=mobile, password=password)
-    return Response(gao.text, mimetype="application/json")
+    return is_json(gao.text, gao.is_json)
 
 
 #  验证码登录
@@ -111,7 +125,7 @@ def api_sms_login():
     if 'code' in request.form:
         code = request.form['code']
     gao.smsLogin(mobile, code)
-    return Response(gao.text, mimetype="application/json")
+    return is_json(gao.text, gao.is_json)
 
 
 #  退出登录
@@ -121,7 +135,7 @@ def api_logout():
     if 'token' in request.form:
         token = request.form['token']
     gao.logout(token)
-    return Response(gao.text, mimetype="application/json")
+    return is_json(gao.text, gao.is_json)
 
 
 #  修改用户信息
@@ -153,7 +167,7 @@ def api_edit_user():
         desc,
         token,
     )
-    return Response(gao.text, mimetype="application/json")
+    return is_json(gao.text, gao.is_json)
 
 
 #  手机网络认证
@@ -162,11 +176,25 @@ def api_login_app():
     token = is_keys(request.form, "token")
     ip = is_keys(request.form, "ip")
     gao.loginApp(ip, token)
-    return Response(gao.text, mimetype="application/json")
+    return is_json(gao.text, gao.is_json)
 
+
+@app.route('/api/Internet/is_login', methods=['POST'])
+def api_network_query():
+    ip = is_keys(request.form, "ip")
+    if ip is not None:
+        ip = gao.ip_md5_32(ip)
+    gao.networkQuery(ip, gao.token)
+    return is_json(gao.text, gao.is_json)
 
 #  到这结束
 
+
+def is_json(text, result):
+    if result:
+        return Response(text, mimetype="application/json")
+    else:
+        return Response(text)
 
 if __name__ == '__main__':
     app.run()

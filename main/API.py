@@ -1,6 +1,7 @@
 import json
 import logging
 import requests
+from hashlib import md5
 
 API = {
     "service": "https://v3.yungao-tech.com/",
@@ -835,7 +836,7 @@ class App:
         self.msg = None
         self.result = None
         self.status_code = None
-
+        self.is_json = None
     def request(self, name: str, data: dict) -> int:
         if name in self.api:
             api = self.api[name]
@@ -865,11 +866,13 @@ class App:
             self.result = json.loads(r.text)
 
         except json.JSONDecodeError as e:
+            self.is_json = False
             self.result = None
             self.code = None
             self.msg = None
             logging.warning(e)
         else:
+            self.is_json = True
             self.code = self.result['code']
             self.msg = self.result['msg']
         finally:
@@ -956,7 +959,22 @@ class App:
 
         return self.request(name="editUser", data=data)
 
-
+    def networkQuery(self, ip_32_md5: str | None, token: None | str):
+        data = {}
+        if type(token) is not None:
+            self.token = token
+        if type(ip_32_md5) is not None:
+            data['str'] = ip_32_md5
+        
+        return self.request("networkQuery", data)
+    
+    def ip_md5_32(text):
+        """
+        将IP加密为32位md5小写并返回加密后结果
+        """
+        obj_md5 = md5(text)
+        result = obj_md5.hexdigest()
+        return result
 if __name__ == "__main__":
     gg = App()
     gg.logout(None)
