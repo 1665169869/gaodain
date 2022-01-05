@@ -889,7 +889,10 @@ class App:
         )
         return self.status_code
 
-    def smsSend(self, mobile: str | None, g_type=1 | 2 | 8 | None) -> int:
+    def smsSend(self, mobile: str | None, g_type=int | None) -> int:
+        """
+        #  parms g_type: 1|登录 2|重置密码 8|注销账号
+        """
         data = {}
         if mobile is not None:
             data['mobile'] = mobile
