@@ -178,7 +178,7 @@ def api_login_app():
     gao.loginApp(ip, token)
     return is_json(gao.text, gao.is_json)
 
-
+#  设备是否在线
 @app.route('/api/Internet/is_login', methods=['POST'])
 def api_network_query():
     ip = is_keys(request.form, "ip")
