@@ -9,4 +9,10 @@ $(document).ready(function(){
                $.cookie('name', 'value');
        })
     })
-})
+});
+
+$(document).ready(function(){
+    $(#login).click(function() {
+        $
+    });
+});
