@@ -824,7 +824,14 @@ def is_keys(request, keys) -> str | None:
         return request[keys]
     return None
 
-
+def ip_md5_32(text):
+    """
+    将IP加密为32位md5小写并返回加密后结果
+    """
+    obj_md5 = md5()
+    obj_md5.update(text.encode("utf-8"))
+    result = obj_md5.hexdigest()
+    return result
 class App:
 
     def __init__(self):
@@ -838,6 +845,7 @@ class App:
         self.status_code = None
         self.is_json = None
     def request(self, name: str, data: dict) -> int:
+        logging.debug(f"name: {name} | {data}")
         if name in self.api:
             api = self.api[name]
         else:
@@ -919,7 +927,7 @@ class App:
         )
 
     def logout(self, token: None | str) -> int:
-        if type(token) is not None:
+        if token is not None:
             self.token = token
 
         return self.request(
@@ -929,9 +937,9 @@ class App:
 
     def loginApp(self, ip: None | str, token: None | str) -> int:
         data = {}
-        if type(token) is not None:
+        if token is not None:
             self.token = token
-        if type(ip) is not None:
+        if ip is not None:
             data['ip'] = ip
         return self.request("loginApp", data)
 
@@ -943,38 +951,32 @@ class App:
                  desc: None | str,
                  token: None | str, ) -> int:
         data = {}
-        if type(token) is not None:
+        if token is not None:
             self.token = token
-        if type(password) is not None:
+        if password is not None:
             data['password'] = password
             data['pass'] = password
-        if type(sex) is not None:
+        if sex is not None:
             data['sex'] = sex
-        if type(avatar) is not None:
+        if avatar is not None:
             data['avatar'] = avatar
-        if type(nickname) is not None:
+        if nickname is not None:
             data['nickname'] = nickname
-        if type(desc) is not None:
+        if desc is not None:
             data['desc'] = desc
 
         return self.request(name="editUser", data=data)
 
     def networkQuery(self, ip_32_md5: str | None, token: None | str):
         data = {}
-        if type(token) is not None:
+        if token is not None:
             self.token = token
-        if type(ip_32_md5) is not None:
+        if ip_32_md5 is not None:
             data['str'] = ip_32_md5
         
         return self.request("networkQuery", data)
     
-    def ip_md5_32(text):
-        """
-        将IP加密为32位md5小写并返回加密后结果
-        """
-        obj_md5 = md5(text)
-        result = obj_md5.hexdigest()
-        return result
+
 if __name__ == "__main__":
     gg = App()
     gg.logout(None)

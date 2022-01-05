@@ -2,7 +2,7 @@ import logging
 
 from flask import Flask, render_template, redirect, request, url_for, Response
 
-from API import App, is_keys
+from API import App, is_keys, ip_md5_32
 
 app = Flask(__name__)
 gao = App()
@@ -19,6 +19,8 @@ def before():
         gao.token = token
     elif authorization is not None:
         gao.token = authorization
+    else:
+        gao.token = None
 
 
 
@@ -183,7 +185,7 @@ def api_login_app():
 def api_network_query():
     ip = is_keys(request.form, "ip")
     if ip is not None:
-        ip = gao.ip_md5_32(ip)
+        ip = ip_md5_32(ip)
     gao.networkQuery(ip, gao.token)
     return is_json(gao.text, gao.is_json)
 
