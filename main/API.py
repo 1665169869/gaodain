@@ -817,7 +817,7 @@ def is_keys(request, keys) -> str | None:
     判断字典是否存在某个键值
     :param request:  dict字典
     :param keys:  需判断的键值
-    :return: 返回bool 如果存在，返回True 否则False
+    :return: 返回str|None 如果存在，返回str 否则None
     """
     if keys in request:
         return request[keys]
@@ -877,32 +877,38 @@ class App:
 
         return self.status_code
 
-    def login(self, mobile: str, password: str) -> int:
+    def login(self, mobile: str | None, password: str | None) -> int:
+        data = {}
+        if mobile is not None:
+            data["mobile"] = mobile
+        if password is not None:
+            data["password"] = password
         self.request(
             name="login",
-            data={
-                "mobile": mobile,
-                "password": password,
-            }
+            data=data
         )
         return self.status_code
 
-    def smsSend(self, mobile: str, g_type=1 | 2 | 8) -> int:
+    def smsSend(self, mobile: str | None, g_type=1 | 2 | 8 | None) -> int:
+        data = {}
+        if mobile is not None:
+            data['mobile'] = mobile
+        if g_type is not None:
+            data['type'] = g_type
         return self.request(
             name="sendNote",
-            data={
-                "mobile": mobile,
-                "type": g_type,
-            }
+            data=data
         )
 
-    def smsLogin(self, mobile: str, code: str) -> int:
+    def smsLogin(self, mobile: str | None, code: str | None) -> int:
+        data = {}
+        if mobile is not None:
+            data['mobile'] = mobile
+        if code is not None:
+            data['code'] = code
         return self.request(
             name="smsLogin",
-            data={
-                "mobile": mobile,
-                "code": code,
-            }
+            data=code
         )
 
     def logout(self, token: None | str) -> int:
@@ -949,5 +955,5 @@ class App:
 
 if __name__ == "__main__":
     gg = App()
-    content = gg.login("13232469869", "xiaoshuai666")
+
     pass
