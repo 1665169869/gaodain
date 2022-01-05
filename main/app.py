@@ -1,12 +1,13 @@
 import logging
 
 from flask import Flask, render_template, redirect, request, url_for, Response
+from requests.api import get
 
-from API import App, is_keys, ip_md5_32
+from API import App, is_keys, ip_md5_32, get_host_ip
+
 
 app = Flask(__name__)
 gao = App()
-
 
 # 预先处理
 
@@ -180,6 +181,7 @@ def api_login_app():
     gao.loginApp(ip, token)
     return is_json(gao.text, gao.is_json)
 
+
 #  设备是否在线
 @app.route('/api/Internet/is_login', methods=['POST'])
 def api_network_query():
@@ -188,6 +190,11 @@ def api_network_query():
         ip = ip_md5_32(ip)
     gao.networkQuery(ip, gao.token)
     return is_json(gao.text, gao.is_json)
+
+
+@app.route('/api/getIp', methods=['GET', 'POST'])
+def api_getIP():
+    return get_host_ip()
 
 #  到这结束
 

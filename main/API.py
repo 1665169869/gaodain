@@ -1,6 +1,7 @@
 import json
 import logging
 import requests
+import socket
 from hashlib import md5
 
 API = {
@@ -813,6 +814,12 @@ API = {
 }
 
 
+def get_host_ip():
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        s.connect(('8.8.8.8', 80))
+        return s.getsockname()[0]
+
+
 def is_keys(request, keys) -> str | None:
     """
     判断字典是否存在某个键值
@@ -976,6 +983,7 @@ class App:
         
         return self.request("networkQuery", data)
     
+
 
 if __name__ == "__main__":
     gg = App()
