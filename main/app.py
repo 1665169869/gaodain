@@ -34,16 +34,6 @@ def test_password():
     return render_template('/test/password.html')
 
 
-@app.route('/api/debug', methods=['POST', 'GET'])
-def debug():
-    debug = is_keys(request.form, "debug")
-    if debug is not None:
-        if debug == "True" or debug == "true":
-            gao.debug = True
-        else:
-            gao.debug = False
-    return is_json(json.dumps({"code": 200, "msg": f"debug状态: {gao.debug}", "result": {}}), True)
-
 #  页面路由
 
 
