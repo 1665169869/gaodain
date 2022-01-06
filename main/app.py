@@ -12,6 +12,7 @@ _POST = None
 
 @app.before_request
 def before():
+    _GET = request.args
     _POST = request.form
     token = is_keys(request.form, "token")
     authorization = request.authorization
@@ -219,8 +220,7 @@ def api_retrieve():
     passwd = is_keys(_POST, "pass")
     password = is_keys(_POST, "password")
     g_type = is_keys(_POST, "type")
-    
-    return gao.retrieve(
+    gao.retrieve(
         mobile=mobile,
         password=password,
         passwd=passwd,
@@ -228,6 +228,7 @@ def api_retrieve():
         code=code,
         token=gao.token
     )
+    return is_json(gao.text, gao.is_json)
 
 #  到这结束
 
