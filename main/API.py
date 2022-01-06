@@ -930,7 +930,7 @@ class App:
             data['code'] = code
         return self.request(
             name="smsLogin",
-            data=code
+            data=data
         )
 
     def logout(self, token: None | str) -> int:
