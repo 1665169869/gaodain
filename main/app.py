@@ -1,8 +1,6 @@
 import logging
 import json
 from flask import Flask, render_template, redirect, request, url_for, Response
-from requests.api import get
-
 from API import App, is_keys, ip_md5_32, get_host_ip
 
 
@@ -10,10 +8,11 @@ app = Flask(__name__)
 gao = App()
 
 # 预先处理
-
+_POST = None
 
 @app.before_request
 def before():
+    _POST = request.form
     token = is_keys(request.form, "token")
     authorization = request.authorization
     if token is not None:
@@ -162,8 +161,11 @@ def api_edit_user():
         desc = request.form['desc']
     if 'token' in request.form:
         token = request.form['token']
+    passwd = is_keys(request.form, "pass")
+
     gao.editUser(
         password,
+        passwd,
         sex,
         avatar,
         nickname,
@@ -208,7 +210,28 @@ def api_user():
     gao.user(unique_number, gao.token)
     return is_json(gao.text, gao.is_json)
 
+
+#  修改密码
+@app.route('/api/retrieve', methods=["POST"])
+def api_retrieve():
+    mobile = is_keys(_POST, "mobile")
+    code = is_keys(_POST, "code")
+    passwd = is_keys(_POST, "pass")
+    password = is_keys(_POST, "password")
+    g_type = is_keys(_POST, "type")
+    
+    return gao.retrieve(
+        mobile=mobile,
+        password=password,
+        passwd=passwd,
+        g_type=g_type,
+        code=code,
+        token=gao.token
+    )
+
 #  到这结束
+
+
 
 
 def is_json(text, result):

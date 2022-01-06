@@ -950,6 +950,7 @@ class App:
 
     def editUser(self,
                  password: None | str,
+                 passwd: None | str,
                  sex: None | str,
                  avatar: None | str,
                  nickname: None | str,
@@ -960,6 +961,7 @@ class App:
             self.token = token
         if password is not None:
             data['password'] = password
+        if passwd is not None:
             data['pass'] = password
         if sex is not None:
             data['sex'] = sex
@@ -981,7 +983,7 @@ class App:
         
         return self.request("networkQuery", data)
     
-    def user(self, unique_number: int | str | None, token: None) -> int:
+    def user(self, unique_number: int | str | None, token: str | None) -> int:
         data = {}
         if token is not None:
             self.token = token
@@ -990,6 +992,31 @@ class App:
         
         return self.request("user", data)
 
+    def retrieve(self, 
+                mobile: str | None, 
+                password: str | None, 
+                passwd: str | None, 
+                g_type: int | None, 
+                code: str | None,
+                token: str | None):
+        
+        data = {}
+        if token is not None:
+            self.token = token
+        if mobile is not None:
+            data['mobile'] = mobile
+        if password is not None:
+            data['password'] = password
+        if passwd is not None:
+            data['pass'] = passwd
+        if g_type is not None:
+            data['type'] = g_type
+            # data['type'] = 2
+        if code is not None:
+            data['code'] = code
+        
+        return self.request("retrieve", data)
+            
 
 if __name__ == "__main__":
     gg = App()
