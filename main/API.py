@@ -2,6 +2,7 @@ import json
 import logging
 import requests
 import socket
+import os, sys, time
 from hashlib import md5
 
 API = {
@@ -842,6 +843,7 @@ def ip_md5_32(text):
 class App:
 
     def __init__(self):
+        self.debug = False
         self.api = API
         self.token = None
         self.text = None
@@ -851,8 +853,30 @@ class App:
         self.result = None
         self.status_code = None
         self.is_json = None
+        filedir = os.path.split(os.path.realpath(__file__))[0] + "\\logs\\"
+        filename = filedir + \
+             time.strftime("%Y-%m-%d", time.localtime()) + ".log"
+        if self.debug:
+            logging.basicConfig(
+                filename=filename,
+                filemode="a",
+                format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',
+                level=logging.DEBUG
+            )
+        else:
+            logging.basicConfig(
+                filename=filename,
+                filemode="a",
+                format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',
+                level=logging.INFO
+            )
+        try:
+            os.mkdir(filedir)
+        except FileExistsError as e:
+            logging.debug(e)
+
     def request(self, name: str, data: dict) -> int:
-        logging.debug(f"name: {name} | {data}")
+        logging.debug(f"request: {name} | {data}")
         if name in self.api:
             api = self.api[name]
         else:
@@ -893,6 +917,7 @@ class App:
         finally:
             self.text = r.text
             self.status_code = r.status_code
+            logging.debug([self.result, self.code, self.msg, self.text, self.status_code])
 
         return self.status_code
 
