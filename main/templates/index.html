@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>糕点 -- 首页</title>
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <script src="{{ url_for('static',filename='js/config.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/loginApp.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.cookie.min.js') }}"></script>
     <style>
-        footer{
+        footer {
             /* border-top:1px solid #000; */
-            padding:20px 0 30px 0; 
-            width:100%
-        } 
-        .btn {
-            /* margin-top: 20px; */
-            
+            padding: 20px 0 30px 0;
+            width: 100%
         }
+        
         svg {
             margin: 20px;
         }
-
     </style>
 </head>
+
 <body>
     <div class="bgdiv">
         <header>
             <!-- 头部 -->
-    
+
         </header>
         <section>
             <!-- 主体内容 -->
@@ -38,14 +40,15 @@
         <article>
             <!-- 其余补分 -->
         </article>
-        <footer>
-            <!-- 尾部 -->
-            <address>
+    </div>
+    <footer>
+        <!-- 尾部 -->
+        <address>
                 贡献者:
                 <a href="https://gitee.com/baiyu16">白羽 </a>
                 <a href="https://gitee.com/huang999">寂寞如斯</a> 
             </address>
-        </footer>
-    </div>
+    </footer>
 </body>
+
 </html>
