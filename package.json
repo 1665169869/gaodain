@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "axios": "^0.25.0",
+    "element-ui": "^2.15.6",
+    "jquery": "^3.6.0",
+    "vue": "^2.6.14"
+  },
+  "name": "gaogao",
+  "description": "糕点 -- 第三方糕糕客户端",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/baiyu16/gaogao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
+  }
+}
