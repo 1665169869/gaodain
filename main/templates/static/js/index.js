@@ -43,7 +43,7 @@ function request(settings) {
     return res;
 };
 
-function login(data) {
+function login(data) { // 密码登录
     let res = request({
         name: "login",
         data: data,
@@ -56,7 +56,7 @@ function login(data) {
     // console.log(res.status, res.responseJSON, res);
 };
 
-function smsLogin(data) {
+function smsLogin(data) { // 验证码登录
     let res = request({
         name: "smsLogin",
         data: data,
@@ -68,7 +68,7 @@ function smsLogin(data) {
     return res;
 };
 
-function sendNote(data) {
+function sendNote(data) { // 获取验证码
     let res = request({
         name: "sendNote",
         data: data,
