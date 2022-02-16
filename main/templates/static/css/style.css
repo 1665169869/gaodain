@@ -1,3 +1,6 @@
+.active {
+    display: none;
+}
 body {
     text-align: center;
     /* display: flex; */
