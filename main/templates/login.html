@@ -16,6 +16,17 @@
     <script src="./static/js/jquery.cookie.min.js"></script>
     <script src="./static/js/config.js"></script>
     <script src="./static/js/index.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#login').click(function(){
+                let data = {
+                    mobile: $("#mobile").val(),
+                    password: $("#password").val(),
+                };
+                login(data);
+            });
+        });
+    </script>
     <style>
         .p_ {
             margin-left: 16px;
@@ -40,7 +51,7 @@
                 </p>
                 <p>
                     密码:
-                    <input type="password" name="pass" id="pass" class="input">
+                    <input type="password" name="password" id="password" class="input">
                     <a href="../passwd" class="btn_a">忘记密码</a>
                 </p>
                 <p>
