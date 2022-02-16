@@ -1,1 +1,0 @@
-var dt = require('./index.js');

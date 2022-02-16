@@ -11,6 +11,8 @@ Flask PyQt5 jQuery HTML CSS
 #### 软件架构
 软件架构说明
 
+待修改：
+
 ```yaml
 - gaogao            #  根目录 糕点
 -- main             #  主程序文件目录

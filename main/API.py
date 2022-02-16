@@ -838,7 +838,7 @@ def ip_md5_32(text):
     obj_md5.update(text.encode("utf-8"))
     result = obj_md5.hexdigest()
     return result
-class App:
+class GaoDian:
 
     def __init__(self):
         self.api = API
@@ -1019,6 +1019,6 @@ class App:
             
 
 if __name__ == "__main__":
-    gg = App()
+    gg = GaoDian()
     gg.logout(None)
     pass

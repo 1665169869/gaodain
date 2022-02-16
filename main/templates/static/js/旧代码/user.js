@@ -14,7 +14,7 @@ $(document).ready(function() {
     $("#imgtop").attr('src', avatar);
     $("#imgtop").css({ 'width': '128px', 'border-radius': '50%' });
     $("#btn1").click(function() {
-        location.href = `http://${HOST}:${PORT}/passwd`
+        location.href = `http://127.0.0.1:${post}/passwd`
     })
     $("#name").html(nickname);
     $("#school").html(school_name);
@@ -23,7 +23,7 @@ $(document).ready(function() {
         alert("尚未开放")
     })
     $("#btn3").click(function() {
-        $.post(`http://${HOST}:${PORT}/api/logout`, {
+        $.post(`http://127.0.0.1:${post}/api/logout`, {
             token: token,
         }, function(data) {
             alert(data.msg);

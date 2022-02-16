@@ -1,11 +1,11 @@
 import logging
 import json
 from flask import Flask, render_template, redirect, request, url_for, Response
-from API import App, is_keys, ip_md5_32, get_host_ip
+from API import GaoDian, is_keys, ip_md5_32, get_host_ip
 
 
 app = Flask(__name__)
-gao = App()
+gao = GaoDian()
 
 # 预先处理
 _POST = None
