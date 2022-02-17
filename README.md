@@ -47,3 +47,5 @@ Python环境必须>=3.10
 感谢 <a href="https://gitee.com/baiyu16">白羽 </a>
 
 感谢 <a href="https://gitee.com/huang999">寂寞如斯</a> 
+
+感谢 [iGaoWei](https://github.com/iGaoWei)开源的Dream-Msg.js
