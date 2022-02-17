@@ -8,8 +8,10 @@
     <title>糕点 -- 密码登录</title>
     <link rel="stylesheet" href="./static/css/reset.css">
     <link rel="stylesheet" href="./static/css/style.css">
+    <!-- <script src="./static/js/jquery.js"></script>   
+    <script src="./static/js/jquery.cookie.js"></script> -->
     <script src="./static/js/jquery.min.js"></script>
-    <script src="./static/js/jquery.cookie.min.js"></script>
+    <script src="./static/js/jquery.cookie-1.4.1.min.js"></script>
     <script src="./static/js/config.js"></script>
     <script src="./static/js/index.js"></script>
     <script>
@@ -47,11 +49,6 @@
             });
         });
     </script>
-    <style>
-        .p_ {
-            margin-left: 16px;
-        }
-    </style>
 </head>
 
 <body>
@@ -90,7 +87,7 @@
         <section>
             <!-- 主体内容 -->
             <form action="">
-                <p class="p_">
+                <p>
                     手机号:
                     <input type="text" name="mobile" id="mobile" class="input">
                     <a href="javascript:void(0)" class="btn_a" id="active">验证码登录</a>
