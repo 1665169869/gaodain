@@ -57,7 +57,23 @@ function request(settings) {
             data: defaultSettings.data,
             async: defaultSettings.async
         }, function (data, status, xhr) {
-            defaultSettings.success(data, status, xhr);
+            switch (status) {
+                case "success":
+                    defaultSettings.success(data, status, xhr);
+                    break;
+                case "notmodified":
+                    defaultSettings.notmodified(data, status, xhr);
+                    break;
+                case "error":
+                    defaultSettings.error(data, status, xhr);
+                    break;
+                case "timeout":
+                    defaultSettings.timeout(data, status, xhr);
+                    break;
+                case "parsererror":
+                    defaultSettings.parsererror(data, status, xhr);
+                    break;
+            };
         });
     }
     return res;
