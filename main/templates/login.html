@@ -17,8 +17,31 @@
     <script src="./static/js/dream-msg.min.js"></script>
     <script src="./static/js/index.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#active').click(function() {
+        $(document).ready(function () {
+            $('#send').click(function () {
+                if ($('#send').text() == "获取验证码") {
+                    sendNote(
+                        mobile = $("#mobile").val(),
+                        _type = 1,
+                        success = function (code, msg) {
+                            Dreamer.success(msg, true, 2000);
+                            let time = 60;
+                                let s = setInterval(function () {
+                                    if (time == 1) {
+                                        $('#send').text('获取验证码');
+                                        $('#send').css('color', 'cornflowerblue');
+                                        clearInterval(s);
+                                        return;
+                                    };
+                                    time--;
+                                    $("#send").text(`剩余${time}秒`)
+                                    $("#send").css("color", "#5b5b5b")
+                                }, 1000);
+                        }
+                    );
+                }
+            });
+            $('#active').click(function () {
                 let active = $('#active').text();
                 if (active == "验证码登录") {
                     $(".sendLogin").removeClass("active"); // 删除active class,取消display:none效果
@@ -36,22 +59,21 @@
                 };
 
             });
-            $('#btnLogin').click(function() {
+            $('#btnLogin').click(function () {
                 $('btnLogin').attr("disabled", "disabled"); // 设置登录按钮为禁止点击
                 let active = $('#active').text();
-                let data = new Object();
                 if (!(active == "验证码登录")) {
                     smsLogin(
                         $("#mobile").val(),
                         $("#sendCode").val(),
-                        function(code, msg) {
+                        function (code, msg) {
                             $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
                             if (code == 200) {
-                                Dreamer.success(msg, true, 2000, function() {
+                                Dreamer.success(msg, true, 2000, function () {
                                     console.log(msg);
                                 });
                             } else {
-                                Dreamer.error(msg, true, 2000, function() {
+                                Dreamer.error(msg, true, 2000, function () {
                                     console.log(msg);
                                 });
                             }
@@ -61,14 +83,14 @@
                     login(
                         $("#mobile").val(),
                         $("#password").val(),
-                        function(code, msg) {
+                        function (code, msg) {
                             $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
                             if (code == 200) {
-                                Dreamer.success(msg, 2000, function() {
+                                Dreamer.success(msg, 2000, function () {
                                     console.log(msg);
                                 });
                             } else {
-                                Dreamer.error(msg, true, 2000, function() {
+                                Dreamer.error(msg, true, 2000, function () {
                                     console.log(msg);
                                 });
                             }
@@ -84,7 +106,8 @@
     <div class="bgdiv">
         <header>
             <!-- 头部 -->
-            <svg t="1641047654790" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2395" width="128" height="128">
+            <svg t="1641047654790" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="2395" width="128" height="128">
                 <path
                     d="M504.2 47.1c257.1 0.2 464.3 208.5 463.8 466.6-0.4 254.6-209.4 461.9-465.2 461.5C247.9 974.9 39.7 766.6 40 512.3 40.3 254.6 247.5 47 504.2 47.1z"
                     fill="#56ABC5" p-id="2396"></path>
@@ -123,12 +146,12 @@
                 <p class="login">
                     密码:
                     <input type="password" name="password" id="password" class="input">
-                    <a href="../passwd" class="btn_a">忘记密码</a>
+                    <a href="./passwd.html" class="btn_a">忘记密码</a>
                 </p>
                 <p class="sendLogin active">
                     验证码:
                     <input type="text" name="sendCode" , id="sendCode" class="input">
-                    <a href="javascript:void(0)" class="btn_a">获取验证码</a>
+                    <a href="javascript:void(0)" class="btn_a" id="send">获取验证码</a>
                 </p>
                 <p>
                     <input type="button" value="登录" id="btnLogin" class="btn">
