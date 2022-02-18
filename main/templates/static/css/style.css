@@ -7,8 +7,9 @@
     left: 8px;
 }
 
-.font-size {
+h1 {
     font-size: 24px;
+    font-weight: bold;
 }
 
 body {
