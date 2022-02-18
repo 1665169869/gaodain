@@ -30,23 +30,46 @@
                     $("#active").text("验证码登录");
                     $("h1").text("登录糕点 -- 密码登录");
                 };
-                
+
             });
             $('#btnLogin').click(function () {
+                $('btnLogin').attr("disabled", "disabled"); // 设置登录按钮为禁止点击
                 let active = $('#active').text();
                 let data = new Object();
-                if (active != "验证码登录") {
-                    data = {
-                        mobile: $("#mobile").val(),
-                        code: $("#sendCode").val()
-                    };
-                    smsLogin(data);
-                } else if (active != "密码登录") {
-                    data = {
-                        mobile: $("#mobile").val(),
-                        password: $("#password").val(),
-                    };
-                    login(data);
+                if (!(active == "验证码登录")) {
+                    smsLogin(
+                        $("#mobile").val(),
+                        $("#sendCode").val(),
+                        function (code, msg) {
+                            $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
+                            if (code == 200) {
+                                Dreamer.success(msg, true, 2000, function () {
+                                    console.log(msg);
+                                });
+                            } else {
+                                Dreamer.error(msg, true, 2000, function () {
+                                    console.log(msg);
+                                });
+                            }
+                        }
+                    );
+                } else if (!(active == "密码登录")) {
+                    login(
+                        $("#mobile").val(),
+                        $("#password").val(),
+                        function (code, msg) {
+                            $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
+                            if (code == 200) {
+                                Dreamer.success(msg, 2000, function () {
+                                    console.log(msg);
+                                });
+                            } else {
+                                Dreamer.error(msg, true, 2000, function () {
+                                    console.log(msg);
+                                });
+                            }
+                        }
+                    );
                 };
             });
         });

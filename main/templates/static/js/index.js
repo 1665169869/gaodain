@@ -23,38 +23,86 @@ function request(settings) {
         "Authorization": defaultSettings.Authorization,
     }
 
+    // res = $.ajax({
+    //     url: url,
+    //     data: defaultSettings.data,
+    //     type: method,
+    //     headers: headers,
+    //     async: defaultSettings.async
+    // }, function (data, status, xhr) {
+    //     switch (status) {
+    //         case "success":
+    //             defaultSettings.success(data, status, xhr);
+    //             break;
+    //         case "notmodified":
+    //             defaultSettings.notmodified(data, status, xhr);
+    //             break;
+    //         case "error":
+    //             defaultSettings.error(data, status, xhr);
+    //             break;
+    //         case "timeout":
+    //             defaultSettings.timeout(data, status, xhr);
+    //             break;
+    //         case "parsererror":
+    //             defaultSettings.parsererror(data, status, xhr);
+    //             break;
+    //     };
+    // });
     res = $.ajax({
         url: url,
         data: defaultSettings.data,
         type: method,
         headers: headers,
-        async: defaultSettings.async
-    }, function (data, status, xhr) {
-        switch (status) {
-            case "success":
-                defaultSettings.success(data, status, xhr);
-                break;
-            case "notmodified":
-                defaultSettings.notmodified(data, status, xhr);
-                break;
-            case "error":
-                defaultSettings.error(data, status, xhr);
-                break;
-            case "timeout":
-                defaultSettings.timeout(data, status, xhr);
-                break;
-            case "parsererror":
-                defaultSettings.parsererror(data, status, xhr);
-                break;
-        };
+        async: defaultSettings.async,
+        success: function (data, status, xhr) {
+            switch (status) {
+                case "success":
+                    defaultSettings.success(data, status, xhr);
+                    break;
+                case "notmodified":
+                    defaultSettings.notmodified(data, status, xhr);
+                    break;
+                case "error":
+                    defaultSettings.error(data, status, xhr);
+                    break;
+                case "timeout":
+                    defaultSettings.timeout(data, status, xhr);
+                    break;
+                case "parsererror":
+                    defaultSettings.parsererror(data, status, xhr);
+                    break;
+            }
+        },
+        error: function (data, status, xhr) {
+            switch (status) {
+                case "success":
+                    defaultSettings.success(data, status, xhr);
+                    break;
+                case "notmodified":
+                    defaultSettings.notmodified(data, status, xhr);
+                    break;
+                case "error":
+                    defaultSettings.error(data, status, xhr);
+                    break;
+                case "timeout":
+                    defaultSettings.timeout(data, status, xhr);
+                    break;
+                case "parsererror":
+                    defaultSettings.parsererror(data, status, xhr);
+                    break;
+            }
+        }
     });
     return res;
 };
 
-function login(data) { // 密码登录
+function login(mobile, password, success = function (code, msg) { }) { // 密码登录
     let res = request({
         name: "login",
-        data: data,
+        data: {
+            mobile: mobile,
+            password: password
+        },
         success: function (data, status, xhr) {
             // 这里写回调函数
             // console.log(data, status, xhr);
@@ -74,20 +122,23 @@ function login(data) { // 密码登录
             let status_code = data.code; // 登录接口被请求后的json.code响应码,不是ajax请求的status
             let msg = data.msg; // 提示信息
             if (status_code == 200) {
-
                 let token = "Bearer " + data.result.token; // Token
                 let info = data.result.info; // 参考上面的多行注释 
                 $.cookie('token', token, { expires: 365, path: '/' }); // 把token设置到cookie，并且存放365天
             };
+            success(status_code, msg);
         }
     });
     return res;
 };
 
-function smsLogin(data) { // 验证码登录
+function smsLogin(mobile, code, success = function (code, msg) { }) { // 验证码登录
     let res = request({
         name: "smsLogin",
-        data: data,
+        data: {
+            mobile: mobile,
+            code: code
+        },
         success: function (data, status, xhr) {
             // 这里写回调函数
             // console.log(data, status, xhr);
@@ -105,21 +156,25 @@ function smsLogin(data) { // 验证码登录
                 };
             */
             let status_code = data.code; // 登录接口被请求后的json.code响应码,不是ajax请求的status
+            let msg = data.msg; // 提示信息
             if (status_code == 200) {
-                let msg = data.msg; // 提示信息
                 let token = "Bearer " + data.result.token; // Token
                 let info = data.result.info; // 参考上面的多行注释 
                 $.cookie('token', token, { expires: 365, path: '/' }); // 把token设置到cookie，并且存放365天
             };
+            success(status_code, msg);
         }
     });
     return res;
 };
 
-function sendNote(data) { // 获取验证码
+function sendNote(mobile, _type, success = function (code, msg) { }) { // 获取验证码
     let res = request({
         name: "sendNote",
-        data: data,
+        data: {
+            mobile: mobile,
+            type: _type
+        },
         success: function (data, status, xhr) {
             // 这里写回调函数
             // console.log(data, status, xhr);
@@ -132,19 +187,71 @@ function sendNote(data) { // 获取验证码
                     }
                 } 
             */
-            let status_code = data.code // 状态码
-            let msg = data.msg // 提示信息
-            let limit = data.msg // 该号码请求次数
-
+            let status_code = data.code; // 状态码
+            let msg = data.msg; // 提示信息
+            if (status_code == 200) {
+                let limit = data.result.limit // 该号码请求次数
+            };
+            success(status_code, msg);
         }
     });
     return res;
 };
 
-function user(data) { // 用户信息
+function user(unique_number, success = function (code, msg) { }) { // 用户信息
     let res = request({
         name: "user",
-        data: data,
+        data: {
+            unique_number: unique_number
+        },
+        success: function (data, status, xhr) {
+            let status_code = data.code;
+            let msg = data.msg;
+            if (status_code == 200) {
+                let info = data.result // 具体请看接口文档
+            };
+            success(status_code, msg);
+        }
     });
     return res;
 };
+
+function loginQrCode(str, success = function (code, msg) { }) { // 电脑网络认证
+    let res = request({
+        name: "loginQrCode",
+        data: {
+            str: str
+        },
+        success: function (data, status, xhr) {
+            let status_code = data.code;
+            let msg = data.msg;
+            if (status_code == 200) {
+                // 认证成功
+            } else {
+                // 认证失败
+            };
+            success(status_code, msg);
+        }
+    });
+    return res;
+};
+
+function loginApp(ip, success = function (code, msg) { }) { // 手机网络认证
+    let res = request({
+        name: "loginApp",
+        data: {
+            ip: ip
+        },
+        success: function (data, status, xhr) {
+            let status_code = data.code;
+            let msg = data.msg;
+            if (status_code == 200) {
+                // 认证成功
+            } else {
+                // 认证失败
+            };
+            success(status_code, msg);
+        }
+    });
+    return res
+}
