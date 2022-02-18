@@ -25,7 +25,8 @@
                         _type = 1,
                         success = function (code, msg) {
                             Dreamer.success(msg, true, 2000);
-                            let time = 60;
+                            if (code == 200) {
+                                let time = 60;
                                 let s = setInterval(function () {
                                     if (time == 1) {
                                         $('#send').text('获取验证码');
@@ -37,6 +38,7 @@
                                     $("#send").text(`剩余${time}秒`)
                                     $("#send").css("color", "#5b5b5b")
                                 }, 1000);
+                            };
                         }
                     );
                 }
