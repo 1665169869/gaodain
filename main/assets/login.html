@@ -80,7 +80,8 @@
                             $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
                             if (code == 200) {
                                 Dreamer.success(msg, true, 2000, function() {
-                                    console.log(msg);
+                                    // console.log(msg);
+                                    window.location.href = "./index.html";
                                 });
                             } else {
                                 Dreamer.error(msg, true, 2000, function() {
@@ -97,7 +98,8 @@
                             $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
                             if (code == 200) {
                                 Dreamer.success(msg, 2000, function() {
-                                    console.log(msg);
+                                    // console.log(msg);
+                                    window.location.href = "./index.html";
                                 });
                             } else {
                                 Dreamer.error(msg, true, 2000, function() {

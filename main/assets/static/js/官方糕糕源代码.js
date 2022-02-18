@@ -38165,3 +38165,3054 @@
         ["4eef", "app-config"]
     ]
 ]);
+
+
+! function(e) {
+    var t = {};
+
+    function n(a) {
+        if (t[a]) return t[a].exports;
+        var o = t[a] = {
+            i: a,
+            l: !1,
+            exports: {}
+        };
+        return e[a].call(o.exports, o, o.exports, n), o.l = !0, o.exports
+    }
+    n.m = e, n.c = t, n.d = function(e, t, a) {
+        n.o(e, t) || Object.defineProperty(e, t, {
+            enumerable: !0,
+            get: a
+        })
+    }, n.r = function(e) {
+        "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+            value: "Module"
+        }), Object.defineProperty(e, "__esModule", {
+            value: !0
+        })
+    }, n.t = function(e, t) {
+        if (1 & t && (e = n(e)), 8 & t) return e;
+        if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+        var a = Object.create(null);
+        if (n.r(a), Object.defineProperty(a, "default", {
+            enumerable: !0,
+            value: e
+        }), 2 & t && "string" != typeof e)
+            for (var o in e) n.d(a, o, function(t) {
+                return e[t]
+            }.bind(null, o));
+        return a
+    }, n.n = function(e) {
+        var t = e && e.__esModule ? function() {
+            return e.default
+        } : function() {
+            return e
+        };
+        return n.d(t, "a", t), t
+    }, n.o = function(e, t) {
+        return Object.prototype.hasOwnProperty.call(e, t)
+    }, n.p = "", n(n.s = 19)
+}([
+    function(e, t, n) {
+        "use strict";
+
+        function a(e, t, n, a, o, i, s, r, l, d) {
+            var u, c = "function" == typeof e ? e.options : e;
+            if (l) {
+                c.components || (c.components = {});
+                var p = Object.prototype.hasOwnProperty;
+                for (var m in l) p.call(l, m) && !p.call(c.components, m) && (c.components[m] = l[m])
+            }
+            if (d && ((d.beforeCreate || (d.beforeCreate = [])).unshift((function() {
+                this[d.__module] = this
+            })), (c.mixins || (c.mixins = [])).push(d)), t && (c.render = t, c.staticRenderFns = n, c._compiled = !0), a && (c.functional = !0), i && (c._scopeId = "data-v-" + i), s ? (u = function(e) {
+                (e = e || this.$vnode && this.$vnode.ssrContext || this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) || "undefined" == typeof __VUE_SSR_CONTEXT__ || (e = __VUE_SSR_CONTEXT__), o && o.call(this, e), e && e._registeredComponents && e._registeredComponents.add(s)
+            }, c._ssrRegister = u) : o && (u = r ? function() {
+                o.call(this, this.$root.$options.shadowRoot)
+            } : o), u)
+                if (c.functional) {
+                    c._injectStyles = u;
+                    var h = c.render;
+                    c.render = function(e, t) {
+                        return u.call(t), h(e, t)
+                    }
+                } else {
+                    var f = c.beforeCreate;
+                    c.beforeCreate = f ? [].concat(f, u) : [u]
+                }
+            return {
+                exports: e,
+                options: c
+            }
+        }
+        n.d(t, "a", (function() {
+            return a
+        }))
+    },
+    function(e, t, n) {
+        "use strict";
+        var a = n(12),
+            o = n(3),
+            i = n(0);
+        var s = Object(i.a)(o.default, a.b, a.c, !1, null, null, "3755d73a", !1, a.a, void 0);
+        (function(e) {
+            this.options.style || (this.options.style = {}), Vue.prototype.__merge_style && Vue.prototype.__$appStyle__ && Vue.prototype.__merge_style(Vue.prototype.__$appStyle__, this.options.style), Vue.prototype.__merge_style ? Vue.prototype.__merge_style(n(18).default, this.options.style) : Object.assign(this.options.style, n(18).default)
+        }).call(s), t.default = s.exports
+    },
+    function(e, t) {
+        e.exports = {
+            "@VERSION": 2
+        }
+    },
+    function(e, t, n) {
+        "use strict";
+        var a = n(4),
+            o = n.n(a);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        (function(e, a) {
+            Object.defineProperty(t, "__esModule", {
+                value: !0
+            }), t.default = void 0;
+            var o = l(n(23)),
+                i = l(n(24)),
+                s = l(n(25)),
+                r = n(26);
+
+            function l(e) {
+                return e && e.__esModule ? e : {
+                    default: e
+                }
+            }
+            var d = {
+                components: {
+                    ygHeader: o.default,
+                    ygTabbar: i.default,
+                    w_md5: s.default
+                },
+                data: function() {
+                    return {
+                        system: "ios",
+                        apSsid: "",
+                        version: "1.0.0",
+                        update_type: 0,
+                        update_url: "http://111.231.91.166:1111/demi.wgt",
+                        update_title: "发现新的版本，请点击升级",
+                        update_des: ["1.发现新的版本，请点击升级"],
+                        is_update_app: !1,
+                        is_forced_update: !1,
+                        connect: "立即连接",
+                        ip: "",
+                        link: 0,
+                        flag: !0,
+                        active: !1,
+                        wifiStatus: !0,
+                        netStatus: !1,
+                        swipers: [{
+                            type: 0,
+                            image: "../../../static/img/40fb9450706f5a4b287ba6ee75a9172.png",
+                            link: "/pages/certification/certification"
+                        }],
+                        tabbar: {
+                            color: "#66686C",
+                            selectcolor: "#2C81FF",
+                            selectindex: 0,
+                            tabbarList: [{
+                                page: "/pages/tabbar/tabbar-1/newIndex",
+                                text: "主页"
+                            }, {
+                                page: "/pages/management/management",
+                                text: "管理"
+                            }, {
+                                page: "/pages/expenses/expenses?type=0",
+                                text: "帮助"
+                            }, {
+                                page: "/pages/mycombo/mycombo",
+                                text: "我的"
+                            }]
+                        }
+                    }
+                },
+                onShow: function() {
+                    uni.unPreloadPage({
+                        url: "/pages/tabbar/tabbar-1/newIndex"
+                    });
+                    var t = this;
+                    if ("Android" == plus.os.name) var n = e("Fvv-UniWifiHelper"),
+                        o = e("HKing-SmartConfig");
+                    else var i = e("JHF-DeviceInfoPlugin");
+                    var l = uni.getStorageSync("system");
+                    this.system = l, uni.getNetworkType({
+                        success: function(e) {
+                            if ("wifi" == e.networkType)
+                                if ("Android" == plus.os.name) o.getWifiSsid((function(e) {
+                                    if ("" == e.apSsid) return a("log", "当前手机未连接wifi", " at pages/tabbar/tabbar-1/newIndex.nvue:141"), void(t.wifiStatus = !1);
+                                    var o = e.apSsid;
+                                    t.apSsid = o, a("log", "apSsid：" + o, e, " at pages/tabbar/tabbar-1/newIndex.nvue:147"), "GaoGao" == o || "GaoGao_Plus" == o ? (t.wifiStatus = !0, n.init((function(e) {
+                                        a("log", e, " at pages/tabbar/tabbar-1/newIndex.nvue:151")
+                                    })), n.getDHCPInfo((function(e) {
+                                        t.ip = e.ip, a("log", e, " at pages/tabbar/tabbar-1/newIndex.nvue:155");
+                                        var n = {
+                                            str: s.default.hex_md5_32(t.ip)
+                                        };
+                                        (0, r.myAjax)("networkQuery", n).then((function(e) {
+                                            200 == e.msg ? (t.wifiStatus = !0, t.netStatus = !0, t.connect = "断开连接") : (t.wifiStatus = !0, t.netStatus = !1, t.connect = "立即连接")
+                                        }))
+                                    }))) : (t.ip = "", t.wifiStatus = !1, t.connect = "立即连接")
+                                }));
+                                else {
+                                    var l = JSON.parse(i.macAddress());
+                                    if (a("log", JSON.parse(i.macAddress()), " at pages/tabbar/tabbar-1/newIndex.nvue:181"), a("log", i.ipAddress(), " at pages/tabbar/tabbar-1/newIndex.nvue:182"), t.apSsid = l.SSID, 1 == l.status && "GaoGao" == l.SSID || "GaoGao_Plus" == l.SSID) {
+                                        t.ip = i.ipAddress();
+                                        var d = {
+                                            str: s.default.hex_md5_32(t.ip)
+                                        };
+                                        (0, r.myAjax)("networkQuery", d).then((function(e) {
+                                            200 == e.msg ? (t.wifiStatus = !0, t.netStatus = !0, t.connect = "断开连接") : (t.wifiStatus = !0, t.netStatus = !1, t.connect = "立即连接")
+                                        }))
+                                    } else t.ip = "", t.wifiStatus = !1, t.connect = "立即连接"
+                                } else t.connect = "无法连接", t.wifiStatus = !1, t.ip = "", a("log", "网络状态==>", e, " at pages/tabbar/tabbar-1/newIndex.nvue:210")
+                        }
+                    }), uni.onNetworkStatusChange((function(e) {
+                        if (a("log", e.isConnected, " at pages/tabbar/tabbar-1/newIndex.nvue:215"), "wifi" == e.networkType)
+                            if ("Android" == plus.os.name) o.getWifiSsid((function(e) {
+                                if ("" != e.apSsid) {
+                                    var o = e.apSsid;
+                                    t.apSsid = o, a("log", "apSsid：" + o, " at pages/tabbar/tabbar-1/newIndex.nvue:225"), "GaoGao" == o || "GaoGao_Plus" == o ? (t.wifiStatus = !0, n.init((function(e) {
+                                        a("log", e, " at pages/tabbar/tabbar-1/newIndex.nvue:229")
+                                    })), n.getDHCPInfo((function(e) {
+                                        t.ip = e.ip;
+                                        var n = {
+                                            str: s.default.hex_md5_32(t.ip)
+                                        };
+                                        (0, r.myAjax)("networkQuery", n).then((function(e) {
+                                            200 == e.msg ? (t.wifiStatus = !0, t.netStatus = !0, t.connect = "断开连接") : (t.wifiStatus = !0, t.netStatus = !1, t.connect = "立即连接")
+                                        }))
+                                    }))) : (t.ip = "", t.wifiStatus = !1, t.connect = "立即连接")
+                                } else a("log", "当前手机未连接wifi", " at pages/tabbar/tabbar-1/newIndex.nvue:220")
+                            }));
+                            else {
+                                var l = JSON.parse(i.macAddress());
+                                if (a("log", JSON.parse(i.macAddress()), " at pages/tabbar/tabbar-1/newIndex.nvue:258"), a("log", i.ipAddress(), " at pages/tabbar/tabbar-1/newIndex.nvue:259"), t.apSsid = l.SSID, 1 == l.status && "GaoGao" == l.SSID || "GaoGao_Plus" == l.SSID) {
+                                    t.ip = i.ipAddress();
+                                    var d = {
+                                        str: s.default.hex_md5_32(t.ip)
+                                    };
+                                    (0, r.myAjax)("networkQuery", d).then((function(e) {
+                                        200 == e.msg ? (t.wifiStatus = !0, t.netStatus = !0, t.connect = "断开连接") : (t.wifiStatus = !0, t.netStatus = !1, t.connect = "立即连接")
+                                    }))
+                                } else t.ip = "", t.wifiStatus = !1, t.connect = "立即连接"
+                            } else t.ip = "", t.connect = "无法连接", t.wifiStatus = !1, a("log", "网络状态==>", e.networkType, " at pages/tabbar/tabbar-1/newIndex.nvue:287")
+                    }))
+                },
+                onLoad: function() {
+                    var t = plus.navigator.getStatusbarHeight();
+                    if (this.barHeight = t, "iOS" == plus.os.name) {
+                        var n = plus.ios.import("CLLocationManager"),
+                            o = n.locationServicesEnabled(),
+                            i = n.authorizationStatus();
+                        a("log", "enable:" + o, " at pages/tabbar/tabbar-1/newIndex.nvue:310"), a("log", "status:" + i, " at pages/tabbar/tabbar-1/newIndex.nvue:311"), o && 2 != i ? a("log", "手机系统的定位已经打开", " at pages/tabbar/tabbar-1/newIndex.nvue:313") : (a("log", "手机系统的定位没有打开", " at pages/tabbar/tabbar-1/newIndex.nvue:315"), plus.nativeUI.confirm("位置权限未开启，请开启位置权限!", (function(e) {
+                            if (1 == e.index) {
+                                var t = plus.ios.import("UIApplication").sharedApplication(),
+                                    n = plus.ios.import("NSURL").URLWithString("app-settings:");
+                                t.openURL(n)
+                            }
+                        }), {
+                            buttons: ["取消", "开启"],
+                            verticalAlign: "center"
+                        }))
+                    } else {
+                        var l = plus.android.importClass("android.content.Context"),
+                            d = plus.android.importClass("android.location.LocationManager"),
+                            u = plus.android.runtimeMainActivity(),
+                            c = u.getSystemService(l.LOCATION_SERVICE);
+                        if (!c.isProviderEnabled(d.GPS_PROVIDER)) return void uni.showModal({
+                            title: "提示",
+                            content: "获取定位服务功能被拒绝，可能会导致APP上网功能无法正常使用，是否开启定位服务功能!",
+                            success: function() {
+                                if (c.isProviderEnabled(d.GPS_PROVIDER)) a("log", "GPS功能已开启", " at pages/tabbar/tabbar-1/newIndex.nvue:348");
+                                else {
+                                    var e = new(plus.android.importClass("android.content.Intent"))(plus.android.importClass("android.provider.Settings").ACTION_LOCATION_SOURCE_SETTINGS);
+                                    u.startActivity(e)
+                                }
+                            }
+                        });
+                        plus.android.requestPermissions(["android.permission.ACCESS_FINE_LOCATION"], (function(e) {
+                            e.deniedAlways.length > 0 && (a("log", "Always Denied!!! " + e.deniedAlways.toString(), " at pages/tabbar/tabbar-1/newIndex.nvue:357"), plus.nativeUI.confirm("位置权限被拒绝，可能会导致APP上网功能无法正常使用，是否开启!", (function(e) {
+                                if (1 == e.index) {
+                                    var t = plus.android.importClass("android.content.Intent"),
+                                        n = plus.android.importClass("android.provider.Settings"),
+                                        a = plus.android.importClass("android.net.Uri"),
+                                        o = plus.android.runtimeMainActivity(),
+                                        i = new t;
+                                    i.setAction(n.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    var s = a.fromParts("package", o.getPackageName(), null);
+                                    i.setData(s), o.startActivity(i)
+                                }
+                            }), {
+                                buttons: ["取消", "开启"],
+                                verticalAlign: "center"
+                            })), e.deniedPresent.length > 0 && (a("log", "Present Denied!!! " + e.deniedPresent.toString(), " at pages/tabbar/tabbar-1/newIndex.nvue:382"), plus.nativeUI.confirm("获取位置权限被拒绝，可能会导致APP上网功能无法正常使用，是否开启位置权限!", (function(e) {
+                                1 == e.index && plus.android.requestPermissions(["android.permission.ACCESS_FINE_LOCATION"])
+                            }), {
+                                buttons: ["取消", "开启"],
+                                verticalAlign: "center"
+                            })), e.granted.length > 0 && a("log", "Granted!!! " + e.granted.toString(), " at pages/tabbar/tabbar-1/newIndex.nvue:399")
+                        }), (function(e) {
+                            a("log", "Request Permissions error:" + JSON.stringify(e), " at pages/tabbar/tabbar-1/newIndex.nvue:402")
+                        }))
+                    }
+                    var p = this,
+                        m = uni.getStorageSync("system");
+                    if (this.system = m, "Android" == plus.os.name) var h = e("Fvv-UniWifiHelper"),
+                        f = e("HKing-SmartConfig");
+                    else var g = e("JHF-DeviceInfoPlugin");
+                    m = uni.getStorageSync("system");
+                    this.system = m, uni.getNetworkType({
+                        success: function(e) {
+                            if ("wifi" == e.networkType)
+                                if ("Android" == plus.os.name) f.getWifiSsid((function(e) {
+                                    if ("" == e.apSsid) return a("log", "当前手机未连接wifi", " at pages/tabbar/tabbar-1/newIndex.nvue:432"), void(p.wifiStatus = !1);
+                                    var t = e.apSsid;
+                                    p.apSsid = t, a("log", "apSsid：" + t, e, " at pages/tabbar/tabbar-1/newIndex.nvue:438"), "GaoGao" == t || "GaoGao_Plus" == t ? (p.wifiStatus = !0, h.init((function(e) {
+                                        a("log", e, " at pages/tabbar/tabbar-1/newIndex.nvue:442")
+                                    })), h.getDHCPInfo((function(e) {
+                                        p.ip = e.ip, a("log", e, " at pages/tabbar/tabbar-1/newIndex.nvue:446");
+                                        var t = {
+                                            str: s.default.hex_md5_32(p.ip)
+                                        };
+                                        (0, r.myAjax)("networkQuery", t).then((function(e) {
+                                            200 == e.msg ? (p.wifiStatus = !0, p.netStatus = !0, p.connect = "断开连接") : (p.wifiStatus = !0, p.netStatus = !1, p.connect = "立即连接")
+                                        }))
+                                    }))) : (p.ip = "", p.wifiStatus = !1, p.connect = "立即连接")
+                                }));
+                                else {
+                                    var t = JSON.parse(g.macAddress());
+                                    if (a("log", JSON.parse(g.macAddress()), " at pages/tabbar/tabbar-1/newIndex.nvue:472"), a("log", g.ipAddress(), " at pages/tabbar/tabbar-1/newIndex.nvue:473"), p.apSsid = t.SSID, 1 == t.status && "GaoGao" == t.SSID || "GaoGao_Plus" == t.SSID) {
+                                        p.ip = g.ipAddress();
+                                        var n = {
+                                            str: s.default.hex_md5_32(p.ip)
+                                        };
+                                        (0, r.myAjax)("networkQuery", n).then((function(e) {
+                                            200 == e.msg ? (p.wifiStatus = !0, p.netStatus = !0, p.connect = "断开连接") : (p.wifiStatus = !0, p.netStatus = !1, p.connect = "立即连接")
+                                        }))
+                                    } else p.ip = "", p.wifiStatus = !1, p.connect = "立即连接"
+                                } else p.connect = "无法连接", p.wifiStatus = !1, p.ip = "", a("log", "网络状态==>", e, " at pages/tabbar/tabbar-1/newIndex.nvue:501")
+                        }
+                    }), uni.onNetworkStatusChange((function(e) {
+                        if (a("log", e.isConnected, " at pages/tabbar/tabbar-1/newIndex.nvue:506"), "wifi" == e.networkType)
+                            if ("Android" == plus.os.name) f.getWifiSsid((function(e) {
+                                if ("" != e.apSsid) {
+                                    var t = e.apSsid;
+                                    p.apSsid = t, a("log", "apSsid：" + t, " at pages/tabbar/tabbar-1/newIndex.nvue:516"), "GaoGao" == t || "GaoGao_Plus" == t ? (p.wifiStatus = !0, h.init((function(e) {
+                                        a("log", e, " at pages/tabbar/tabbar-1/newIndex.nvue:520")
+                                    })), h.getDHCPInfo((function(e) {
+                                        p.ip = e.ip;
+                                        var t = {
+                                            str: s.default.hex_md5_32(p.ip)
+                                        };
+                                        (0, r.myAjax)("networkQuery", t).then((function(e) {
+                                            200 == e.msg ? (p.wifiStatus = !0, p.netStatus = !0, p.connect = "断开连接") : (p.wifiStatus = !0, p.netStatus = !1, p.connect = "立即连接")
+                                        }))
+                                    }))) : (p.ip = "", p.wifiStatus = !1, p.connect = "立即连接")
+                                } else a("log", "当前手机未连接wifi", " at pages/tabbar/tabbar-1/newIndex.nvue:511")
+                            }));
+                            else {
+                                var t = JSON.parse(g.macAddress());
+                                if (a("log", JSON.parse(g.macAddress()), " at pages/tabbar/tabbar-1/newIndex.nvue:549"), a("log", g.ipAddress(), " at pages/tabbar/tabbar-1/newIndex.nvue:550"), p.apSsid = t.SSID, 1 == t.status && "GaoGao" == t.SSID || "GaoGao_Plus" == t.SSID) {
+                                    p.ip = g.ipAddress();
+                                    var n = {
+                                        str: s.default.hex_md5_32(p.ip)
+                                    };
+                                    (0, r.myAjax)("networkQuery", n).then((function(e) {
+                                        200 == e.msg ? (p.wifiStatus = !0, p.netStatus = !0, p.connect = "断开连接") : (p.wifiStatus = !0, p.netStatus = !1, p.connect = "立即连接")
+                                    }))
+                                } else p.ip = "", p.wifiStatus = !1, p.connect = "立即连接"
+                            } else p.ip = "", p.connect = "无法连接", p.wifiStatus = !1, a("log", "网络状态==>", e.networkType, " at pages/tabbar/tabbar-1/newIndex.nvue:578")
+                    }))
+                },
+                methods: {
+                    skip: function(e) {
+                        var t = e.currentTarget.dataset.url;
+                        uni.navigateTo({
+                            url: t
+                        })
+                    },
+                    DisNetwork: function() {
+                        var e = this,
+                            t = {
+                                str: s.default.hex_md5_32(this.ip)
+                            };
+                        (0, r.myAjax)("networkBreak", t).then((function(t) {
+                            200 == t.code && (e.wifiStatus = !0, e.netStatus = !1, e.connect = "立即连接")
+                        }))
+                    },
+                    ConnectNetwork: function() {
+                        var e = this;
+                        a("log", "认证网络", " at pages/tabbar/tabbar-1/newIndex.nvue:604");
+                        var t = {
+                            ip: this.ip
+                        };
+                        (0, r.myAjax)("loginApp", t).then((function(t) {
+                            200 == t.code && (e.wifiStatus = !0, e.netStatus = !0, e.connect = "断开连接")
+                        }))
+                    },
+                    UnConnect: function() {
+                        if (a("log", "无法连接", " at pages/tabbar/tabbar-1/newIndex.nvue:618"), "iOS" == plus.os.name) {
+                            var t = plus.ios.import("CLLocationManager"),
+                                n = t.locationServicesEnabled(),
+                                o = t.authorizationStatus();
+                            if (a("log", "enable:" + n, " at pages/tabbar/tabbar-1/newIndex.nvue:625"), a("log", "status:" + o, " at pages/tabbar/tabbar-1/newIndex.nvue:626"), !n || 2 == o) return a("log", "手机系统的定位没有打开", " at pages/tabbar/tabbar-1/newIndex.nvue:656"), void plus.nativeUI.confirm("位置权限未开启，请开启位置权限!", (function(e) {
+                                if (1 == e.index) {
+                                    var t = plus.ios.import("UIApplication").sharedApplication(),
+                                        n = plus.ios.import("NSURL").URLWithString("app-settings:");
+                                    t.openURL(n)
+                                }
+                            }), {
+                                buttons: ["取消", "开启"],
+                                verticalAlign: "center"
+                            });
+                            a("log", "手机系统的定位已经打开", " at pages/tabbar/tabbar-1/newIndex.nvue:628"), uni.showModal({
+                                title: "未连接校园网！",
+                                content: "请您连接 “GaoGao” 校园网WiFi 后再连接网络",
+                                success: function(e) {
+                                    if (e.confirm)
+                                        if ("Android" == plus.os.name) {
+                                            var t = plus.android.runtimeMainActivity(),
+                                                n = new(plus.android.importClass("android.content.Intent"))(plus.android.importClass("android.provider.Settings").ACTION_WIFI_SETTINGS);
+                                            t.startActivity(n)
+                                        } else plus.runtime.launchApplication({
+                                            action: "App-Prefs:WIFI"
+                                        }, (function(e) {
+                                            a("log", JSON.stringify(e), " at pages/tabbar/tabbar-1/newIndex.nvue:647")
+                                        }));
+                                    else e.cancel && a("log", "点击了取消", " at pages/tabbar/tabbar-1/newIndex.nvue:651")
+                                }
+                            })
+                        } else {
+                            var i = plus.android.importClass("android.content.Context"),
+                                s = plus.android.importClass("android.location.LocationManager"),
+                                r = plus.android.runtimeMainActivity(),
+                                l = r.getSystemService(i.LOCATION_SERVICE);
+                            if (!l.isProviderEnabled(s.GPS_PROVIDER)) return void uni.showModal({
+                                title: "提示",
+                                content: "获取定位服务功能被拒绝，可能会导致APP上网功能无法正常使用，是否开启定位服务功能!",
+                                success: function() {
+                                    if (l.isProviderEnabled(s.GPS_PROVIDER)) a("log", "GPS功能已开启", " at pages/tabbar/tabbar-1/newIndex.nvue:690");
+                                    else {
+                                        var e = new(plus.android.importClass("android.content.Intent"))(plus.android.importClass("android.provider.Settings").ACTION_LOCATION_SOURCE_SETTINGS);
+                                        r.startActivity(e)
+                                    }
+                                }
+                            });
+                            plus.android.requestPermissions(["android.permission.ACCESS_FINE_LOCATION"], (function(t) {
+                                return t.deniedAlways.length > 0 ? (a("log", "Always Denied!!! " + t.deniedAlways.toString(), " at pages/tabbar/tabbar-1/newIndex.nvue:699"), void plus.nativeUI.confirm("位置权限被拒绝，可能会导致APP上网功能无法正常使用，是否开启!", (function(e) {
+                                    if (1 == e.index) {
+                                        var t = plus.android.importClass("android.content.Intent"),
+                                            n = plus.android.importClass("android.provider.Settings"),
+                                            a = plus.android.importClass("android.net.Uri"),
+                                            o = plus.android.runtimeMainActivity(),
+                                            i = new t;
+                                        i.setAction(n.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                        var s = a.fromParts("package", o.getPackageName(), null);
+                                        i.setData(s), o.startActivity(i)
+                                    }
+                                }), {
+                                    buttons: ["取消", "开启"],
+                                    verticalAlign: "center"
+                                })) : t.deniedPresent.length > 0 ? (a("log", "Present Denied!!! " + t.deniedPresent.toString(), " at pages/tabbar/tabbar-1/newIndex.nvue:726"), void plus.nativeUI.confirm("获取位置权限被拒绝，可能会导致APP上网功能无法正常使用，是否开启位置权限!", (function(e) {
+                                    1 == e.index && plus.android.requestPermissions(["android.permission.ACCESS_FINE_LOCATION"])
+                                }), {
+                                    buttons: ["取消", "开启"],
+                                    verticalAlign: "center"
+                                })) : (t.granted.length > 0 && a("log", "Granted!!! " + t.granted.toString(), " at pages/tabbar/tabbar-1/newIndex.nvue:744"), void e("HKing-SmartConfig").getWifiSsid((function(e) {
+                                    if ("" != e.apSsid) {
+                                        var t = e.apSsid;
+                                        a("log", "apSsid：" + t, e, " at pages/tabbar/tabbar-1/newIndex.nvue:782"), "GaoGao" != t && uni.showModal({
+                                            title: "未连接校园网！",
+                                            content: "请您连接 “GaoGao” 校园网WiFi 后再连接网络",
+                                            showCancel: !1,
+                                            success: function(e) {
+                                                if (e.confirm)
+                                                    if ("Android" == plus.os.name) {
+                                                        var t = plus.android.runtimeMainActivity(),
+                                                            n = new(plus.android.importClass("android.content.Intent"))(plus.android.importClass("android.provider.Settings").ACTION_WIFI_SETTINGS);
+                                                        t.startActivity(n)
+                                                    } else plus.runtime.launchApplication({
+                                                        action: "App-Prefs:WIFI"
+                                                    }, (function(e) {
+                                                        a("log", JSON.stringify(e), " at pages/tabbar/tabbar-1/newIndex.nvue:806")
+                                                    }));
+                                                else e.cancel && a("log", "点击了取消", " at pages/tabbar/tabbar-1/newIndex.nvue:810")
+                                            }
+                                        })
+                                    } else uni.showModal({
+                                        title: "未连接校园网！",
+                                        content: "请您连接 “GaoGao” 校园网WiFi 后再连接网络",
+                                        showCancel: !1,
+                                        success: function(e) {
+                                            if (e.confirm)
+                                                if ("Android" == plus.os.name) {
+                                                    var t = plus.android.runtimeMainActivity(),
+                                                        n = new(plus.android.importClass("android.content.Intent"))(plus.android.importClass("android.provider.Settings").ACTION_WIFI_SETTINGS);
+                                                    t.startActivity(n)
+                                                } else plus.runtime.launchApplication({
+                                                    action: "App-Prefs:WIFI"
+                                                }, (function(e) {
+                                                    a("log", JSON.stringify(e), " at pages/tabbar/tabbar-1/newIndex.nvue:771")
+                                                }));
+                                            else e.cancel && a("log", "点击了取消", " at pages/tabbar/tabbar-1/newIndex.nvue:775")
+                                        }
+                                    })
+                                })))
+                            }), (function(e) {
+                                a("log", "Request Permissions error:" + JSON.stringify(e), " at pages/tabbar/tabbar-1/newIndex.nvue:817")
+                            }))
+                        }
+                    },
+                    goMy: function() {
+                        uni.navigateTo({
+                            url: "/pages/tabbar/tabbar-5/newMy",
+                            animationType: "slide-in-left"
+                        })
+                    },
+                    scanCode: function() {
+                        uni.scanCode({
+                            onlyFromCamera: !0,
+                            success: function(e) {
+                                var t = e.result;
+                                a("log", t, " at pages/tabbar/tabbar-1/newIndex.nvue:834"), "abf92ccaf1c5563a1f6055975f17276d" == t ? uni.navigateTo({
+                                    url: "/pages/twoHour/twoHour"
+                                }) : uni.navigateTo({
+                                    url: "/pages/scan/scan?data=" + e.result
+                                })
+                            }
+                        })
+                    }
+                }
+            };
+            t.default = d
+        }).call(this, n(22).default, n(15).default)
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(6),
+            o = n.n(a);
+        for (var i in a) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return a[e]
+            }))
+        }(i);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = void 0;
+        var a = {
+            name: "yg-header",
+            props: {
+                background: {
+                    type: [String],
+                    default: "#FFFFFF"
+                },
+                color: {
+                    type: [String],
+                    default: "#FFFFFF"
+                },
+                title: {
+                    type: [String, Number],
+                    default: "0"
+                },
+                status: {
+                    type: [String, Number],
+                    default: "0"
+                }
+            },
+            data: function() {
+                return {
+                    statusBarHeight: "0"
+                }
+            },
+            created: function() {
+                this.statusBarHeight = uni.getStorageSync("statusBarHeight")
+            },
+            methods: {
+                out: function() {
+                    var e = getCurrentPages();
+                    uni.navigateBack({
+                        delta: e.length - 1,
+                        animationType: "slide-out-bottom"
+                    })
+                },
+                back: function() {
+                    uni.navigateBack()
+                }
+            }
+        };
+        t.default = a
+    },
+    function(e, t) {
+        e.exports = {
+            ".yg-header-status_bar": {
+                "": {
+                    width: ["750upx", 0, 0, 0],
+                    position: ["fixed", 0, 0, 0],
+                    top: [0, 0, 0, 0],
+                    left: [0, 0, 0, 0],
+                    zIndex: [999, 0, 0, 0]
+                }
+            },
+            ".yg-header-placeholder_bar": {
+                "": {
+                    width: ["750upx", 0, 0, 1]
+                }
+            },
+            ".yg-header-nav": {
+                "": {
+                    width: ["750upx", 0, 0, 2],
+                    height: ["120upx", 0, 0, 2],
+                    display: ["flex", 0, 0, 2],
+                    justifyContent: ["center", 0, 0, 2],
+                    alignItems: ["center", 0, 0, 2],
+                    position: ["fixed", 0, 0, 2],
+                    left: [0, 0, 0, 2],
+                    zIndex: [888, 0, 0, 2]
+                }
+            },
+            ".wihuclass": {
+                "": {
+                    width: ["700upx", 0, 0, 3],
+                    display: ["flex", 0, 0, 3],
+                    flexDirection: ["row", 0, 0, 3],
+                    justifyContent: ["space-between", 0, 0, 3],
+                    alignItems: ["center", 0, 0, 3]
+                }
+            },
+            ".yg-header-placeholder_nav": {
+                "": {
+                    width: ["750upx", 0, 0, 4],
+                    height: ["120upx", 0, 0, 4]
+                }
+            },
+            ".yg-header-title": {
+                "": {
+                    fontWeight: ["bold", 0, 0, 5],
+                    fontSize: ["36upx", 0, 0, 5]
+                }
+            },
+            ".yg-header-box": {
+                "": {
+                    borderWidth: ["1upx", 0, 0, 6],
+                    borderStyle: ["solid", 0, 0, 6],
+                    borderColor: ["#D0D3D8", 0, 0, 6],
+                    display: ["flex", 0, 0, 6],
+                    flexDirection: ["row", 0, 0, 6],
+                    justifyContent: ["space-between", 0, 0, 6],
+                    borderRadius: ["40upx", 0, 0, 6],
+                    overflow: ["hidden", 0, 0, 6],
+                    backgroundColor: ["#FF0000", 0, 0, 6]
+                }
+            },
+            ".yg-header-box-item": {
+                ".yg-header-box ": {
+                    width: ["84upx", 0, 1, 7],
+                    height: ["64upx", 0, 1, 7],
+                    display: ["flex", 0, 1, 7],
+                    alignItems: ["center", 0, 1, 7],
+                    justifyContent: ["center", 0, 1, 7]
+                }
+            },
+            ".image": {
+                ".yg-header-box-item ": {
+                    width: ["32upx", 0, 1, 8],
+                    height: ["32upx", 0, 1, 8]
+                }
+            },
+            ".yg-header-navTitle": {
+                "": {
+                    width: ["200upx", 0, 0, 9],
+                    lineHeight: ["120upx", 0, 0, 9],
+                    textAlign: ["center", 0, 0, 9],
+                    position: ["absolute", 0, 0, 9],
+                    left: [35, 0, 0, 9],
+                    top: [0, 0, 0, 9],
+                    fontWeight: ["bold", 0, 0, 9],
+                    fontSize: ["36upx", 0, 0, 9]
+                }
+            },
+            "@VERSION": 2
+        }
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(9),
+            o = n.n(a);
+        for (var i in a) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return a[e]
+            }))
+        }(i);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = void 0;
+        var a = {
+            name: "yg-tabbar",
+            props: {
+                tabbar: {
+                    type: [Object]
+                },
+                background: {
+                    type: String,
+                    default: "transparent"
+                }
+            },
+            data: function() {
+                return {}
+            },
+            computed: {},
+            methods: {
+                selectTap: function(e) {
+                    this.tabbar.selectindex != e && uni.redirectTo({
+                        url: this.tabbar.tabbarList[e].page,
+                        animationType: "fade-in"
+                    })
+                }
+            }
+        };
+        t.default = a
+    },
+    function(e, t) {
+        e.exports = {
+            ".yg-tabbar-bottom": {
+                "": {
+                    width: ["750rpx", 0, 0, 0],
+                    height: ["200rpx", 0, 0, 0],
+                    position: ["fixed", 0, 0, 0],
+                    bottom: [0, 0, 0, 0],
+                    left: [0, 0, 0, 0]
+                }
+            },
+            ".yg-tabbar-nav": {
+                "": {
+                    width: ["700rpx", 0, 0, 1],
+                    height: ["140rpx", 0, 0, 1],
+                    backgroundColor: ["#FFFFFF", 0, 0, 1],
+                    boxShadow: ["0 2px 10px 6px rgba(69, 69, 69, 0.05)", 0, 0, 1],
+                    borderRadius: ["34", 0, 0, 1],
+                    marginLeft: ["25rpx", 0, 0, 1],
+                    display: ["flex", 0, 0, 1],
+                    flexDirection: ["row", 0, 0, 1],
+                    justifyContent: ["space-around", 0, 0, 1],
+                    alignItems: ["center", 0, 0, 1]
+                }
+            },
+            ".yg-tabbar-item": {
+                "": {
+                    width: ["68rpx", 0, 0, 2],
+                    fontSize: ["20rpx", 0, 0, 2],
+                    display: ["flex", 0, 0, 2],
+                    flexDirection: ["column", 0, 0, 2],
+                    justifyContent: ["center", 0, 0, 2],
+                    alignItems: ["center", 0, 0, 2]
+                }
+            },
+            ".yg-tabbar-nav-placeholder": {
+                "": {
+                    width: ["750rpx", 0, 0, 3],
+                    height: ["250rpx", 0, 0, 3]
+                }
+            },
+            "@VERSION": 2
+        }
+    },
+    function(e, t) {
+        e.exports = {
+            ".wifiBox": {
+                "": {
+                    width: ["700rpx", 0, 0, 0],
+                    backgroundColor: ["#FFFFFF", 0, 0, 0],
+                    marginTop: ["30rpx", 0, 0, 0],
+                    marginLeft: ["25rpx", 0, 0, 0],
+                    borderRadius: ["32rpx", 0, 0, 0],
+                    paddingBottom: ["100rpx", 0, 0, 0]
+                }
+            },
+            ".wifiCase": {
+                "": {
+                    paddingTop: ["56rpx", 0, 0, 1],
+                    paddingRight: [0, 0, 0, 1],
+                    paddingBottom: ["56rpx", 0, 0, 1],
+                    paddingLeft: [0, 0, 0, 1],
+                    display: ["flex", 0, 0, 1],
+                    justifyContent: ["center", 0, 0, 1],
+                    alignItems: ["center", 0, 0, 1]
+                }
+            },
+            ".image": {
+                ".wifiCase ": {
+                    width: ["220rpx", 0, 1, 2],
+                    height: ["220rpx", 0, 1, 2]
+                },
+                ".title ": {
+                    width: ["36rpx", 0, 1, 5],
+                    height: ["36rpx", 0, 1, 5],
+                    marginRight: ["10rpx", 0, 1, 5]
+                },
+                ".navImg ": {
+                    width: ["68rpx", 0, 1, 12],
+                    height: ["68rpx", 0, 1, 12]
+                }
+            },
+            ".text": {
+                "": {
+                    width: ["700rpx", 0, 0, 3],
+                    fontSize: ["48rpx", 0, 0, 3],
+                    color: ["#121212", 0, 0, 3],
+                    fontWeight: ["600", 0, 0, 3],
+                    paddingBottom: ["20rpx", 0, 0, 3],
+                    display: ["flex", 0, 0, 3],
+                    justifyContent: ["center", 0, 0, 3],
+                    alignItems: ["center", 0, 0, 3]
+                }
+            },
+            ".title": {
+                "": {
+                    display: ["flex", 0, 0, 4],
+                    flexDirection: ["row", 0, 0, 4],
+                    justifyContent: ["center", 0, 0, 4],
+                    alignItems: ["center", 0, 0, 4],
+                    fontSize: ["32rpx", 0, 0, 4],
+                    color: ["#999999", 0, 0, 4]
+                }
+            },
+            ".btn": {
+                "": {
+                    width: ["490rpx", 0, 0, 6],
+                    height: ["90rpx", 0, 0, 6],
+                    fontSize: ["32rpx", 0, 0, 6],
+                    borderRadius: ["40rpx", 0, 0, 6],
+                    fontWeight: ["600", 0, 0, 6],
+                    color: ["#FFFFFF", 0, 0, 6],
+                    marginTop: ["120rpx", 0, 0, 6],
+                    display: ["flex", 0, 0, 6],
+                    justifyContent: ["center", 0, 0, 6],
+                    alignItems: ["center", 0, 0, 6]
+                }
+            },
+            ".nav": {
+                "": {
+                    width: ["700rpx", 0, 0, 7],
+                    display: ["flex", 0, 0, 7],
+                    flexDirection: ["row", 0, 0, 7],
+                    justifyContent: ["space-between", 0, 0, 7],
+                    marginTop: ["46rpx", 0, 0, 7],
+                    marginLeft: ["25rpx", 0, 0, 7]
+                }
+            },
+            ".item": {
+                "": {
+                    width: ["328rpx", 0, 0, 8],
+                    backgroundColor: ["#FFFFFF", 0, 0, 8],
+                    borderRadius: ["28rpx", 0, 0, 8],
+                    paddingTop: ["40rpx", 0, 0, 8],
+                    paddingRight: [0, 0, 0, 8],
+                    paddingBottom: ["40rpx", 0, 0, 8],
+                    paddingLeft: [0, 0, 0, 8],
+                    display: ["flex", 0, 0, 8],
+                    flexDirection: ["row", 0, 0, 8],
+                    justifyContent: ["center", 0, 0, 8],
+                    alignItems: ["center", 0, 0, 8],
+                    "backgroundColor:active": ["rgba(0,0,0,0.05)", 0, 0, 10]
+                }
+            },
+            ".itemtext": {
+                ".item ": {
+                    fontSize: ["28rpx", 0, 1, 9],
+                    fontWeight: ["bold", 0, 1, 9],
+                    color: ["#959595", 0, 1, 9]
+                }
+            },
+            ".navImg": {
+                "": {
+                    marginRight: ["30rpx", 0, 0, 11]
+                }
+            },
+            "@VERSION": 2
+        }
+    },
+    function(e, t, n) {
+        "use strict";
+        n.d(t, "b", (function() {
+            return a
+        })), n.d(t, "c", (function() {
+            return o
+        })), n.d(t, "a", (function() {}));
+        var a = function() {
+                var e = this,
+                    t = e.$createElement,
+                    n = e._self._c || t;
+                return n("scroll-view", {
+                    staticStyle: {
+                        flexDirection: "column"
+                    },
+                    attrs: {
+                        scrollY: !0,
+                        showScrollbar: !0,
+                        enableBackToTop: !0,
+                        bubble: "true"
+                    }
+                }, [n("view", {
+                    staticClass: ["content"],
+                    staticStyle: {
+                        width: "750rpx"
+                    }
+                }, [n("ygHeader", {
+                    attrs: {
+                        status: "校园网",
+                        background: "#fff",
+                        color: "#16181B"
+                    }
+                }), n("view", {
+                    staticClass: ["wifiBox"]
+                }, [n("view", {
+                    staticClass: ["wifiCase"]
+                }, [e.wifiStatus && e.netStatus || e.wifiStatus && !e.netStatus ? n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/91fc7c562102d65b627ec30b066273e.png",
+                        mode: "widthFix"
+                    }
+                }) : n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/559eb2fa634ea3b36caecc8cc8c7a41.png",
+                        mode: "widthFix"
+                    }
+                })], 1), e.wifiStatus && e.netStatus || e.wifiStatus && !e.netStatus ? n("view", {
+                    staticClass: ["text"]
+                }, [n("u-text", {
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v("已连接校园网")])]) : n("view", {
+                    staticClass: ["text"]
+                }, [n("u-text", {
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v("未连接校园网")])]), e.wifiStatus && e.netStatus ? n("view", {
+                    staticClass: ["title"]
+                }, [n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/249989a46275c710c7b34764dc65d69.png",
+                        mode: "widthFix"
+                    }
+                }), n("u-text", {
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v(e._s(e.apSsid))])], 1) : e.wifiStatus && !e.netStatus ? n("view", {
+                    staticClass: ["title"]
+                }, [n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/e5276e28f36c9cac33ec3c8e25c69c5.png",
+                        mode: "widthFix"
+                    }
+                }), n("u-text", {
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v("未认证" + e._s(e.apSsid))])], 1) : n("view", {
+                    staticClass: ["title"]
+                }, [n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/ba75ce94fb5c6f1f7089afe1c4c6b40.png",
+                        mode: "widthFix"
+                    }
+                }), n("u-text", {
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v("请检查定位权限或者连接wifi网络")])], 1), n("view", {
+                    staticStyle: {
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }
+                }, [e.wifiStatus && e.netStatus ? n("view", {
+                    staticClass: ["btn"],
+                    staticStyle: {
+                        background: "#0082FF"
+                    },
+                    on: {
+                        click: e.DisNetwork
+                    }
+                }, [n("u-text", {
+                    staticStyle: {
+                        color: "#ffffff"
+                    },
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v(e._s(e.connect))])]) : e.wifiStatus && !e.netStatus ? n("view", {
+                    staticClass: ["btn"],
+                    staticStyle: {
+                        background: "#0082FF"
+                    },
+                    on: {
+                        click: e.ConnectNetwork
+                    }
+                }, [n("u-text", {
+                    staticStyle: {
+                        color: "#ffffff"
+                    },
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v(e._s(e.connect))])]) : n("view", {
+                    staticClass: ["btn"],
+                    staticStyle: {
+                        background: "#CCCCCC"
+                    },
+                    on: {
+                        click: e.UnConnect
+                    }
+                }, [n("u-text", {
+                    staticStyle: {
+                        color: "#ffffff"
+                    },
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v(e._s(e.connect))])])])]), n("view", {
+                    staticClass: ["nav"]
+                }, [n("view", {
+                    staticClass: ["item"],
+                    style: "ios" == e.system ? "width: 700rpx;" : "",
+                    on: {
+                        click: e.scanCode
+                    }
+                }, [n("view", {
+                    staticClass: ["navImg"]
+                }, [n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/saomalianwang.png",
+                        mode: "heightFix"
+                    }
+                })], 1), n("u-text", {
+                    staticClass: ["itemtext"],
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v("扫一扫")])]), "ios" != e.system ? n("view", {
+                    staticClass: ["item"],
+                    attrs: {
+                        dataUrl: "/pages/combo/meal"
+                    },
+                    on: {
+                        click: e.skip
+                    }
+                }, [n("view", {
+                    staticClass: ["navImg"]
+                }, [n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/newPage/taocangoumai.png",
+                        mode: "heightFix"
+                    }
+                })], 1), n("u-text", {
+                    staticClass: ["itemtext"],
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v("套餐购买")])]) : e._e()]), n("ygTabbar", {
+                    attrs: {
+                        tabbar: e.tabbar
+                    }
+                })], 1)])
+            },
+            o = []
+    },
+    function(e, t, n) {
+        "use strict";
+        n.d(t, "b", (function() {
+            return a
+        })), n.d(t, "c", (function() {
+            return o
+        })), n.d(t, "a", (function() {}));
+        var a = function() {
+                var e = this,
+                    t = e.$createElement,
+                    n = e._self._c || t;
+                return n("view", [n("view", {
+                    staticClass: ["yg-header-status_bar"],
+                    style: "background: " + e.background + ";height:" + e.statusBarHeight + "px;"
+                }), n("view", {
+                    staticClass: ["yg-header-placeholder_bar"],
+                    style: "height:" + e.statusBarHeight + "px;"
+                }), n("view", {
+                    staticClass: ["yg-header-placeholder_nav"]
+                }), n("view", {
+                    staticClass: ["yg-header-nav"],
+                    style: "background: " + e.background + ";color:" + e.color + ";top:" + e.statusBarHeight + "px;"
+                }, [n("view", {
+                    staticClass: ["wihuclass"]
+                }, [0 == e.status ? n("u-text", {
+                    staticClass: ["iconfont", "icon-fanhui"],
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    },
+                    on: {
+                        click: e.back
+                    }
+                }) : n("u-text", {
+                    staticClass: ["yg-header-title"],
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                }, [e._v(e._s(e.status))]), n("view", {
+                    staticClass: ["yg-header-box"],
+                    style: "background: " + e.background + ";"
+                }, [n("view", {
+                    staticClass: ["yg-header-box-item"]
+                }, ["校园网" == e.status ? n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/Campus/1c19aa7b136df353dbd433d484d3631.png",
+                        mode: "widthFix"
+                    }
+                }) : n("u-text", {
+                    staticClass: ["iconfont", "icon-gengduo3"],
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                })], 1), n("view", {
+                    staticClass: ["yg-header-box-item"],
+                    on: {
+                        click: e.out
+                    }
+                }, ["校园网" == e.status ? n("u-image", {
+                    staticClass: ["image"],
+                    attrs: {
+                        src: "/static/Campus/d76ca45b0af9b7046992c9642595d29.png",
+                        mode: "widthFix"
+                    }
+                }) : n("u-text", {
+                    staticClass: ["iconfont", "icon-tuichu3"],
+                    appendAsTree: !0,
+                    attrs: {
+                        append: "tree"
+                    }
+                })], 1)]), 0 != e.title ? n("view", {
+                    staticClass: ["yg-header-navTitle"]
+                }, [n("u-text", [e._v(e._s(e.title))])]) : e._e()])])])
+            },
+            o = []
+    },
+    function(e, t, n) {
+        "use strict";
+        n.d(t, "b", (function() {
+            return a
+        })), n.d(t, "c", (function() {
+            return o
+        })), n.d(t, "a", (function() {}));
+        var a = function() {
+                var e = this,
+                    t = e.$createElement,
+                    n = e._self._c || t;
+                return n("view", [n("view", {
+                    staticClass: ["yg-tabbar-nav-placeholder"]
+                }), n("view", {
+                    staticClass: ["yg-tabbar-bottom"],
+                    style: "background:" + e.background + ";"
+                }, [n("view", {
+                    staticClass: ["yg-tabbar-nav"]
+                }, e._l(e.tabbar.tabbarList, (function(t, a) {
+                    return n("block", {
+                        key: a
+                    }, [n("view", {
+                        staticClass: ["yg-tabbar-item"],
+                        on: {
+                            click: function(t) {
+                                e.selectTap(a)
+                            }
+                        }
+                    }, [0 == a ? n("block", [a == e.tabbar.selectindex ? n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/5972e7534d39e3a5e730451ace16624.png",
+                            mode: "widthFix"
+                        }
+                    }) : n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/d970c990925863dcca27872e800f42b.png",
+                            mode: "widthFix"
+                        }
+                    })], 1) : e._e(), 1 == a ? n("block", [a == e.tabbar.selectindex ? n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/5e85e5d4959f961d21c160f743c8af8.png",
+                            mode: "widthFix"
+                        }
+                    }) : n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/330b9cb286cb3b996cfa1bdcac3c470.png",
+                            mode: "widthFix"
+                        }
+                    })], 1) : e._e(), 2 == a ? n("block", [a == e.tabbar.selectindex ? n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/e004a82f4593e277a1a00e55b6bcbd0.png",
+                            mode: "widthFix"
+                        }
+                    }) : n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/36203ac6ef42a9022c0bc322c3e2857.png",
+                            mode: "widthFix"
+                        }
+                    })], 1) : e._e(), 3 == a ? n("block", [a == e.tabbar.selectindex ? n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/d0b737c82371343eeb479e5a115cb36.png",
+                            mode: "widthFix"
+                        }
+                    }) : n("u-image", {
+                        staticStyle: {
+                            width: "68rpx",
+                            height: "68rpx"
+                        },
+                        attrs: {
+                            src: "/static/Campus/79a4f17e5017fb39d4f7d6570a6364e.png",
+                            mode: "widthFix"
+                        }
+                    })], 1) : e._e(), n("u-text", {
+                        staticStyle: {
+                            fontSize: "20rpx"
+                        },
+                        style: e.tabbar.selectindex == a ? "color:" + e.tabbar.selectcolor + ";" : "color:" + e.tabbar.color + ";",
+                        appendAsTree: !0,
+                        attrs: {
+                            append: "tree"
+                        }
+                    }, [e._v(e._s(t.text))])], 1)])
+                })), 1)])])
+            },
+            o = []
+    },
+    function(e, t, n) {
+        "use strict";
+
+        function a(e) {
+            var t = Object.prototype.toString.call(e);
+            return t.substring(8, t.length - 1)
+        }
+
+        function o() {
+            return "string" == typeof __channelId__ && __channelId__
+        }
+
+        function i(e, t) {
+            switch (a(t)) {
+                case "Function":
+                    return "function() { [native code] }";
+                default:
+                    return t
+            }
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.log = function(e) {
+            for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), a = 1; a < t; a++) n[a - 1] = arguments[a];
+            console[e].apply(console, n)
+        }, t.default = function() {
+            for (var e = arguments.length, t = new Array(e), n = 0; n < e; n++) t[n] = arguments[n];
+            var s = t.shift();
+            if (o()) return t.push(t.pop().replace("at ", "uni-app:///")), console[s].apply(console, t);
+            var r = t.map((function(e) {
+                    var t = Object.prototype.toString.call(e).toLowerCase();
+                    if ("[object object]" === t || "[object array]" === t) try {
+                            e = "---BEGIN:JSON---" + JSON.stringify(e, i) + "---END:JSON---"
+                        } catch (n) {
+                            e = t
+                        } else if (null === e) e = "---NULL---";
+                        else if (void 0 === e) e = "---UNDEFINED---";
+                    else {
+                        var n = a(e).toUpperCase();
+                        e = "NUMBER" === n || "BOOLEAN" === n ? "---BEGIN:" + n + "---" + e + "---END:" + n + "---" : String(e)
+                    }
+                    return e
+                })),
+                l = "";
+            if (r.length > 1) {
+                var d = r.pop();
+                l = r.join("---COMMA---"), 0 === d.indexOf(" at ") ? l += d : l += "---COMMA---" + d
+            } else l = r[0];
+            console[s](l)
+        }
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(7),
+            o = n.n(a);
+        for (var i in a) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return a[e]
+            }))
+        }(i);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(10),
+            o = n.n(a);
+        for (var i in a) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return a[e]
+            }))
+        }(i);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(11),
+            o = n.n(a);
+        for (var i in a) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return a[e]
+            }))
+        }(i);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        n(20);
+        var a = n(1);
+        "undefined" == typeof Promise || Promise.prototype.finally || (Promise.prototype.finally = function(e) {
+            var t = this.constructor;
+            return this.then((function(n) {
+                return t.resolve(e()).then((function() {
+                    return n
+                }))
+            }), (function(n) {
+                return t.resolve(e()).then((function() {
+                    throw n
+                }))
+            }))
+        }), a.default.mpType = "page", a.default.route = "pages/tabbar/tabbar-1/newIndex", a.default.el = "#root", new Vue(a.default)
+    },
+    function(e, t, n) {
+        Vue.prototype.__$appStyle__ = {}, Vue.prototype.__merge_style && Vue.prototype.__merge_style(n(21).default, Vue.prototype.__$appStyle__)
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(2),
+            o = n.n(a);
+        for (var i in a) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return a[e]
+            }))
+        }(i);
+        t.default = o.a
+    },
+    function(e, t, n) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = function(e) {
+            return weex.requireModule(e)
+        }
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(13),
+            o = n(5);
+        for (var i in o) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return o[e]
+            }))
+        }(i);
+        var s = n(0);
+        var r = Object(s.a)(o.default, a.b, a.c, !1, null, null, "38b42724", !1, a.a, void 0);
+        (function(e) {
+            this.options.style || (this.options.style = {}), Vue.prototype.__merge_style && Vue.prototype.__$appStyle__ && Vue.prototype.__merge_style(Vue.prototype.__$appStyle__, this.options.style), Vue.prototype.__merge_style ? Vue.prototype.__merge_style(n(16).default, this.options.style) : Object.assign(this.options.style, n(16).default)
+        }).call(r), t.default = r.exports
+    },
+    function(e, t, n) {
+        "use strict";
+        n.r(t);
+        var a = n(14),
+            o = n(8);
+        for (var i in o) "default" !== i && function(e) {
+            n.d(t, e, (function() {
+                return o[e]
+            }))
+        }(i);
+        var s = n(0);
+        var r = Object(s.a)(o.default, a.b, a.c, !1, null, null, "d78f7ef4", !1, a.a, void 0);
+        (function(e) {
+            this.options.style || (this.options.style = {}), Vue.prototype.__merge_style && Vue.prototype.__$appStyle__ && Vue.prototype.__merge_style(Vue.prototype.__$appStyle__, this.options.style), Vue.prototype.__merge_style ? Vue.prototype.__merge_style(n(17).default, this.options.style) : Object.assign(this.options.style, n(17).default)
+        }).call(r), t.default = r.exports
+    },
+    function(e, t, n) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = void 0;
+        var a = {};
+
+        function o(e, t) {
+            function n(e, t) {
+                return e << t | e >>> 32 - t
+            }
+
+            function a(e, t) {
+                var n, a, o, i, s;
+                return o = 2147483648 & e, i = 2147483648 & t, s = (1073741823 & e) + (1073741823 & t), (n = 1073741824 & e) & (a = 1073741824 & t) ? 2147483648 ^ s ^ o ^ i : n | a ? 1073741824 & s ? 3221225472 ^ s ^ o ^ i : 1073741824 ^ s ^ o ^ i : s ^ o ^ i
+            }
+
+            function o(e, t, o, i, s, r, l) {
+                return e = a(e, a(a(function(e, t, n) {
+                    return e & t | ~e & n
+                }(t, o, i), s), l)), a(n(e, r), t)
+            }
+
+            function i(e, t, o, i, s, r, l) {
+                return e = a(e, a(a(function(e, t, n) {
+                    return e & n | t & ~n
+                }(t, o, i), s), l)), a(n(e, r), t)
+            }
+
+            function s(e, t, o, i, s, r, l) {
+                return e = a(e, a(a(function(e, t, n) {
+                    return e ^ t ^ n
+                }(t, o, i), s), l)), a(n(e, r), t)
+            }
+
+            function r(e, t, o, i, s, r, l) {
+                return e = a(e, a(a(function(e, t, n) {
+                    return t ^ (e | ~n)
+                }(t, o, i), s), l)), a(n(e, r), t)
+            }
+
+            function l(e) {
+                var t, n = "",
+                    a = "";
+                for (t = 0; t <= 3; t++) n += (a = "0" + (e >>> 8 * t & 255).toString(16)).substr(a.length - 2, 2);
+                return n
+            }
+            var d, u, c, p, m, h, f, g, w, b = Array();
+            for (b = function(e) {
+                for (var t, n = e.length, a = n + 8, o = 16 * ((a - a % 64) / 64 + 1), i = Array(o - 1), s = 0, r = 0; r < n;) s = r % 4 * 8, i[t = (r - r % 4) / 4] = i[t] | e.charCodeAt(r) << s, r++;
+                return s = r % 4 * 8, i[t = (r - r % 4) / 4] = i[t] | 128 << s, i[o - 2] = n << 3, i[o - 1] = n >>> 29, i
+            }(e = function(e) {
+                e = e.replace(/\r\n/g, "\n");
+                for (var t = "", n = 0; n < e.length; n++) {
+                    var a = e.charCodeAt(n);
+                    a < 128 ? t += String.fromCharCode(a) : a > 127 && a < 2048 ? (t += String.fromCharCode(a >> 6 | 192), t += String.fromCharCode(63 & a | 128)) : (t += String.fromCharCode(a >> 12 | 224), t += String.fromCharCode(a >> 6 & 63 | 128), t += String.fromCharCode(63 & a | 128))
+                }
+                return t
+            }(e)), h = 1732584193, f = 4023233417, g = 2562383102, w = 271733878, d = 0; d < b.length; d += 16) u = h, c = f, p = g, m = w, h = o(h, f, g, w, b[d + 0], 7, 3614090360), w = o(w, h, f, g, b[d + 1], 12, 3905402710), g = o(g, w, h, f, b[d + 2], 17, 606105819), f = o(f, g, w, h, b[d + 3], 22, 3250441966), h = o(h, f, g, w, b[d + 4], 7, 4118548399), w = o(w, h, f, g, b[d + 5], 12, 1200080426), g = o(g, w, h, f, b[d + 6], 17, 2821735955), f = o(f, g, w, h, b[d + 7], 22, 4249261313), h = o(h, f, g, w, b[d + 8], 7, 1770035416), w = o(w, h, f, g, b[d + 9], 12, 2336552879), g = o(g, w, h, f, b[d + 10], 17, 4294925233), f = o(f, g, w, h, b[d + 11], 22, 2304563134), h = o(h, f, g, w, b[d + 12], 7, 1804603682), w = o(w, h, f, g, b[d + 13], 12, 4254626195), g = o(g, w, h, f, b[d + 14], 17, 2792965006), h = i(h, f = o(f, g, w, h, b[d + 15], 22, 1236535329), g, w, b[d + 1], 5, 4129170786), w = i(w, h, f, g, b[d + 6], 9, 3225465664), g = i(g, w, h, f, b[d + 11], 14, 643717713), f = i(f, g, w, h, b[d + 0], 20, 3921069994), h = i(h, f, g, w, b[d + 5], 5, 3593408605), w = i(w, h, f, g, b[d + 10], 9, 38016083), g = i(g, w, h, f, b[d + 15], 14, 3634488961), f = i(f, g, w, h, b[d + 4], 20, 3889429448), h = i(h, f, g, w, b[d + 9], 5, 568446438), w = i(w, h, f, g, b[d + 14], 9, 3275163606), g = i(g, w, h, f, b[d + 3], 14, 4107603335), f = i(f, g, w, h, b[d + 8], 20, 1163531501), h = i(h, f, g, w, b[d + 13], 5, 2850285829), w = i(w, h, f, g, b[d + 2], 9, 4243563512), g = i(g, w, h, f, b[d + 7], 14, 1735328473), h = s(h, f = i(f, g, w, h, b[d + 12], 20, 2368359562), g, w, b[d + 5], 4, 4294588738), w = s(w, h, f, g, b[d + 8], 11, 2272392833), g = s(g, w, h, f, b[d + 11], 16, 1839030562), f = s(f, g, w, h, b[d + 14], 23, 4259657740), h = s(h, f, g, w, b[d + 1], 4, 2763975236), w = s(w, h, f, g, b[d + 4], 11, 1272893353), g = s(g, w, h, f, b[d + 7], 16, 4139469664), f = s(f, g, w, h, b[d + 10], 23, 3200236656), h = s(h, f, g, w, b[d + 13], 4, 681279174), w = s(w, h, f, g, b[d + 0], 11, 3936430074), g = s(g, w, h, f, b[d + 3], 16, 3572445317), f = s(f, g, w, h, b[d + 6], 23, 76029189), h = s(h, f, g, w, b[d + 9], 4, 3654602809), w = s(w, h, f, g, b[d + 12], 11, 3873151461), g = s(g, w, h, f, b[d + 15], 16, 530742520), h = r(h, f = s(f, g, w, h, b[d + 2], 23, 3299628645), g, w, b[d + 0], 6, 4096336452), w = r(w, h, f, g, b[d + 7], 10, 1126891415), g = r(g, w, h, f, b[d + 14], 15, 2878612391), f = r(f, g, w, h, b[d + 5], 21, 4237533241), h = r(h, f, g, w, b[d + 12], 6, 1700485571), w = r(w, h, f, g, b[d + 3], 10, 2399980690), g = r(g, w, h, f, b[d + 10], 15, 4293915773), f = r(f, g, w, h, b[d + 1], 21, 2240044497), h = r(h, f, g, w, b[d + 8], 6, 1873313359), w = r(w, h, f, g, b[d + 15], 10, 4264355552), g = r(g, w, h, f, b[d + 6], 15, 2734768916), f = r(f, g, w, h, b[d + 13], 21, 1309151649), h = r(h, f, g, w, b[d + 4], 6, 4149444226), w = r(w, h, f, g, b[d + 11], 10, 3174756917), g = r(g, w, h, f, b[d + 2], 15, 718787259), f = r(f, g, w, h, b[d + 9], 21, 3951481745), h = a(h, u), f = a(f, c), g = a(g, p), w = a(w, m);
+            return 32 == t ? (l(h) + l(f) + l(g) + l(w)).toLowerCase() : (l(f) + l(g)).toLowerCase()
+        }
+        a.hex_md5_16 = function(e) {
+            return o(e, 16)
+        }, a.hex_md5_16Upper = function(e) {
+            return o(e, 16).toUpperCase()
+        }, a.hex_md5_32 = function(e) {
+            return o(e, 32)
+        }, a.hex_md5_32Upper = function(e) {
+            return o(e, 32).toUpperCase()
+        };
+        var i = a;
+        t.default = i
+    },
+    function(e, t, n) {
+        "use strict";
+        (function(e) {
+            Object.defineProperty(t, "__esModule", {
+                value: !0
+            }), t.myAjax = function(t, n, a, i) {
+                var s = !0,
+                    r = "加载中…",
+                    l = !0;
+                i && (l = i.show, s = i.mask, r = i.title);
+                o.default[t].showLoading && (l = o.default[t].showLoading.show, s = o.default[t].showLoading.mask, r = o.default[t].showLoading.title);
+                l && uni.showLoading({
+                    title: r,
+                    mask: s
+                });
+                var d = {
+                    "content-type": "application/json"
+                };
+                o.default[t].token && (d.Authorization = "Bearer " + uni.getStorageSync("token"));
+                d.mobileUniqe = plus.device.uuid;
+                if (o.default[t].type) {
+                    if ("socket" == o.default[t].type) var u = o.default.websocketservice + o.default[t].url;
+                    else if ("confession" == o.default[t].type) u = o.default.confessionService + o.default[t].url
+                } else if (uni.getStorageSync("serverUrl")) u = uni.getStorageSync("serverUrl") + o.default[t].url;
+                else u = o.default.service + o.default[t].url;
+                var c = o.default[t].method;
+                a = a ? o.default[t].name + "===============>" + a : o.default[t].name;
+                return new Promise((function(t, o) {
+                    uni.request({
+                        url: u,
+                        data: n,
+                        method: c,
+                        header: d,
+                        success: function(o) {
+                            switch (o.data.code) {
+                                case 0:
+                                    e("warn", "%c 备注：", "color:green;font-size:15px", a, "\n 提交方式：", c, "\n 提交地址：", u, "\n 提交data：", n, "\n 请求返回", o.data, " at request/request.js:70");
+                                    break;
+                                default:
+                                    e("error", "%c 备注：", "color:yellow;font-size:15px", a, "\n 提交方式：", c, "\n 提交地址：", u, "\n 提交data：", n, "\n 请求返回", o.data, " at request/request.js:78")
+                            }
+                            if (t(o.data), 600 == o.data.code) return e("log", getApp().globalData.sixHundred, 600, " at request/request.js:88"), void(0 == getApp().globalData.sixHundred && (getApp().globalData.sixHundred++, e("log", getApp().globalData.sixHundred, 1e3, " at request/request.js:91"), uni.showModal({
+                                title: "下线提示!",
+                                content: o.data.msg,
+                                cancelText: "退出",
+                                confirmText: "确认",
+                                success: function(e) {
+                                    getApp().globalData.sixHundred = 0, uni.removeStorageSync("userInfo"), uni.removeStorageSync("token"), uni.reLaunch({
+                                        url: "/pages/circle/login/login"
+                                    })
+                                }
+                            })));
+                            200 != o.data.code && o.data.msg && (3 == o.data.code && (uni.removeStorageSync("userInfo"), uni.removeStorageSync("token"), uni.reLaunch({
+                                url: "/pages/circle/login/login"
+                            })), setTimeout((function() {
+                                return uni.showToast({
+                                    title: o.data.msg,
+                                    icon: "none",
+                                    mask: !0,
+                                    duration: 1800
+                                })
+                            }), 1e3))
+                        },
+                        fail: function(o) {
+                            t(o), e("error", "%c 备注：", "color:red;font-size:15px", a, "\n 提交方式：", c, "\n 提交地址：", u, "\n 提交data：", n, "\n 请求返回", o, " at request/request.js:129"), uni.hideLoading()
+                        },
+                        complete: function(e) {
+                            uni.hideLoading()
+                        }
+                    })
+                }))
+            }, Object.defineProperty(t, "apiUrlList", {
+                enumerable: !0,
+                get: function() {
+                    return o.default
+                }
+            });
+            var a, o = (a = n(27)) && a.__esModule ? a : {
+                default: a
+            }
+        }).call(this, n(15).default)
+    },
+    function(e, t, n) {
+        "use strict";
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.default = void 0;
+        var a = {
+            service: "https://v3.yungao-tech.com/",
+            confessionService: "http://106.55.190.205:8099/",
+            websocketservice: "https://admin.v3.yungao-tech.com/",
+            socketService: "106.55.190.205:8099/notification",
+            shareUrl: "https://apply.yungao-tech.cn/",
+            picUrl: "api/uploadImgages",
+            sendNote: {
+                url: "api/send",
+                method: "POST",
+                token: !1,
+                name: "获取验证码",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "发送中…"
+                }
+            },
+            smsLogin: {
+                url: "api/smsLogin",
+                method: "POST",
+                token: !1,
+                name: "验证码登录",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "登录中…"
+                }
+            },
+            login: {
+                url: "api/login",
+                method: "POST",
+                token: !1,
+                name: "密码登录",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "登录中…"
+                }
+            },
+            editUser: {
+                url: "api/editUser",
+                method: "POST",
+                token: !0,
+                name: "更新用户信息",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            retrieve: {
+                url: "api/retrieve",
+                method: "POST",
+                token: !1,
+                name: "修改密码",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            logout: {
+                url: "api/logout",
+                method: "POST",
+                token: !0,
+                name: "退出登录",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "退出中…"
+                }
+            },
+            indexApi: {
+                url: "api/indexApi",
+                method: "GET",
+                token: !0,
+                name: "首页信息",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "退出中…"
+                }
+            },
+            subQuestion: {
+                url: "api/subQuestion",
+                method: "POST",
+                token: !1,
+                name: "报告问题||问题反馈",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            goods: {
+                url: "api/Internet/goods",
+                method: "GET",
+                token: !0,
+                name: "套餐列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            create: {
+                url: "api/Internet/create",
+                method: "POST",
+                token: !0,
+                name: "生成订单",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            info: {
+                url: "api/Internet/info",
+                method: "GET",
+                token: !0,
+                name: "订单详情",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            cancel: {
+                url: "api/Internet/cancel",
+                method: "POST",
+                token: !0,
+                name: "退款||取消订单",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            cancelRefund: {
+                url: "api/Internet/cancelRefund",
+                method: "POST",
+                token: !0,
+                name: "取消退款申请",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "取消中…"
+                }
+            },
+            getList: {
+                url: "api/getList",
+                method: "GET",
+                token: !0,
+                name: "订单列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            loginApp: {
+                url: "api/Internet/loginApp",
+                method: "POST",
+                token: !0,
+                name: "手机网络认证",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "认证中…"
+                }
+            },
+            loginQrCode: {
+                url: "api/Internet/loginQrCode",
+                method: "POST",
+                token: !0,
+                name: "电脑网络认证",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "认证中…"
+                }
+            },
+            troubleshooting: {
+                url: "api/Internet/troubleshooting",
+                method: "POST",
+                token: !0,
+                name: "手机网络认证",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            ReleaseArticle: {
+                type: "socket",
+                url: "api/Community/ReleaseArticle",
+                method: "POST",
+                token: !0,
+                name: "发布动态",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "发布中…"
+                }
+            },
+            follow: {
+                url: "api/Community/follow",
+                method: "POST",
+                token: !0,
+                name: "关注的动态||首页动态",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            find: {
+                url: "api/Community/find",
+                method: "POST",
+                token: !0,
+                name: "发现动态",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            searchfind: {
+                url: "api/Community/find",
+                method: "POST",
+                token: !0,
+                name: "搜索动态",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            user: {
+                url: "api/Community/user",
+                method: "POST",
+                token: !0,
+                name: "个人信息",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            dynamic: {
+                url: "api/Community/dynamic",
+                method: "POST",
+                token: !0,
+                name: "个人资料动态",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            operation: {
+                type: "socket",
+                url: "api/Community/operation",
+                method: "POST",
+                token: !0,
+                name: "关注他人||添加好友",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "关注中…"
+                }
+            },
+            fans: {
+                url: "api/Community/fans",
+                method: "POST",
+                token: !0,
+                name: "关注列表||粉丝列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            like: {
+                type: "socket",
+                url: "api/Community/like",
+                method: "POST",
+                token: !0,
+                name: "点赞动态||收藏动态",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            footprintList: {
+                url: "api/user/footprintList",
+                method: "GET",
+                token: !0,
+                name: "足迹",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            content: {
+                url: "api/Community/content",
+                method: "POST",
+                token: !0,
+                name: "动态详情",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            wordTopic: {
+                url: "api/Community/wordTopic",
+                method: "POST",
+                token: !0,
+                name: "热门话题",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            comment: {
+                url: "api/Community/comment",
+                method: "POST",
+                token: !0,
+                name: "评论列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            getFavoritesList: {
+                url: "api/user/getFavoritesList",
+                method: "GET",
+                token: !0,
+                name: "收藏列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            report: {
+                url: "api/report",
+                method: "POST",
+                token: !0,
+                name: "举报",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "举报中…"
+                }
+            },
+            pullBlack: {
+                url: "api/user/pullBlack",
+                method: "POST",
+                token: !0,
+                name: "拉黑用户",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "拉黑中…"
+                }
+            },
+            delDy: {
+                url: "api/Community/delDy",
+                method: "POST",
+                token: !0,
+                name: "删除动态",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "删除中…"
+                }
+            },
+            likeComment: {
+                url: "api/likeComment",
+                method: "POST",
+                token: !0,
+                name: "点赞评论",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            ReleaseComment: {
+                type: "socket",
+                url: "api/Community/ReleaseComment",
+                method: "POST",
+                token: !0,
+                name: "评论",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "评论中…"
+                }
+            },
+            delComment: {
+                url: "api/Community/delComment",
+                method: "POST",
+                token: !0,
+                name: "删除评论",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "删除中…"
+                }
+            },
+            examinedList: {
+                url: "api/Friend/examinedList",
+                method: "POST",
+                token: !0,
+                name: "好友申请列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            Friendstatu: {
+                url: "api/Friend/status",
+                method: "POST",
+                token: !0,
+                name: "好友申请通过||拒绝",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            Friendlist: {
+                url: "api/Friend/list",
+                method: "POST",
+                token: !0,
+                name: "好友列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            Grouplist: {
+                url: "api/Group/list",
+                method: "POST",
+                token: !0,
+                name: "群聊列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            Friendsearch: {
+                url: "api/Friend/search",
+                method: "POST",
+                token: !0,
+                name: "搜索添加好友列表",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            establish: {
+                url: "api/Group/establish",
+                method: "POST",
+                token: !0,
+                name: "新建群聊",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "建群中…"
+                }
+            },
+            remarks: {
+                url: "api/Friend/remarks",
+                method: "POST",
+                token: !0,
+                name: "修改好友备注",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "修改中…"
+                }
+            },
+            judge: {
+                url: "api/Friend/judge",
+                method: "POST",
+                token: !0,
+                name: "查询好友详细信息",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            block: {
+                url: "api/Friend/block",
+                method: "POST",
+                token: !0,
+                name: "拉黑好友",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            delete: {
+                url: "api/Friend/delete",
+                method: "POST",
+                token: !0,
+                name: "删除好友",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "删除中…"
+                }
+            },
+            detailed: {
+                url: "api/Group/detailed",
+                method: "POST",
+                token: !0,
+                name: "群聊信息",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            headSculpture: {
+                url: "api/Group/headSculpture",
+                method: "POST",
+                token: !0,
+                name: "修改群头像",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            notice: {
+                url: "api/Group/notice",
+                method: "POST",
+                token: !0,
+                name: "修改群公告",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            flocknickname: {
+                url: "api/Group/nickname",
+                method: "POST",
+                token: !0,
+                name: "修改群名",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            flockremarks: {
+                url: "api/Group/remarks",
+                method: "POST",
+                token: !0,
+                name: "修改群昵称",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            Grouptop: {
+                url: "api/Group/top",
+                method: "POST",
+                token: !0,
+                name: "群置顶",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            doNotDisturb: {
+                url: "api/Group/doNotDisturb",
+                method: "POST",
+                token: !0,
+                name: "群消息免打扰",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            listUser: {
+                url: "api/Group/listUser",
+                method: "POST",
+                token: !0,
+                name: "群成员列表||群聊我的好友列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            personnel: {
+                url: "api/Group/personnel",
+                method: "POST",
+                token: !0,
+                name: "添加群成员||删除群成员",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            quit: {
+                url: "api/Group/quit",
+                method: "POST",
+                token: !0,
+                name: "退出群聊||解散群聊",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "退出中…"
+                }
+            },
+            bindUid: {
+                type: "socket",
+                url: "api/worker/bindUid",
+                method: "POST",
+                token: !0,
+                name: "用户绑定",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "绑定中…"
+                }
+            },
+            userSend: {
+                type: "socket",
+                url: "api/worker/send",
+                method: "POST",
+                token: !0,
+                name: "发送消息",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "发送中…"
+                }
+            },
+            getChatRecordList: {
+                url: "api/worker/getChatRecordList",
+                method: "GET",
+                token: !0,
+                name: "onebattleone聊天记录",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            saveAskMsg: {
+                url: "api/worker/saveAskMsg",
+                method: "POST",
+                token: !0,
+                name: "记录最后一条信息",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            bindGroup: {
+                type: "socket",
+                url: "api/worker/bindGroup",
+                method: "POST",
+                token: !0,
+                name: "加入群聊(绑定)",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            getChatRecordGroup: {
+                url: "api/worker/getChatRecordGroup",
+                method: "GET",
+                token: !0,
+                name: "onebattlemore聊天记录",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            getChatList: {
+                type: "socket",
+                url: "api/worker/getChatList",
+                method: "GET",
+                token: !0,
+                name: "聊天列表",
+                showLoading: {
+                    show: !1,
+                    mask: !1,
+                    title: "加载中…"
+                }
+            },
+            fabulous: {
+                url: "api/worker/fabulous",
+                method: "POST",
+                token: !0,
+                name: "赞我的列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            reply: {
+                url: "api/worker/reply",
+                method: "POST",
+                token: !0,
+                name: "评论我的列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            aiteme: {
+                url: "api/worker/comment",
+                method: "POST",
+                token: !0,
+                name: "艾特我的列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            workerInfo: {
+                url: "api/worker/workerInfo",
+                method: "GET",
+                token: !0,
+                name: "消息页金刚区",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            versionUp: {
+                url: "api/versionUp",
+                method: "GET",
+                token: !0,
+                name: "版本更新",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            getBlackList: {
+                url: "api/user/getBlackList",
+                method: "GET",
+                token: !0,
+                name: "拉黑列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            getNotifyList: {
+                url: "api/worker/getNotifyList",
+                method: "POST",
+                token: !0,
+                name: "通知列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            nofityDetail: {
+                url: "api/worker/nofityDetails",
+                method: "POST",
+                token: !0,
+                name: "通知详情",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            MyComboController: {
+                url: "api/Internet/MyComboController",
+                method: "get",
+                token: !0,
+                name: "我的套餐",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            bindingShare: {
+                url: "api/Community/bindingShare",
+                method: "POST",
+                token: !0,
+                name: "我的认证",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            bindingShareInfo: {
+                url: "api/Community/bindingShareInfo",
+                method: "POST",
+                token: !0,
+                name: "邀请列表",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            network: {
+                url: "api/Internet/equipment",
+                method: "POST",
+                token: !0,
+                name: "设备管理在线",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            networkBreak: {
+                url: "api/Internet/kick",
+                method: "POST",
+                token: !0,
+                name: "踢出设备",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            networkQuery: {
+                url: "api/Internet/is_login",
+                method: "POST",
+                token: !0,
+                name: "查询是否在线",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            schoolList: {
+                url: "api/user/school_list",
+                method: "POST",
+                token: !0,
+                name: "学校列表",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            certification: {
+                url: "api/certification",
+                method: "POST",
+                token: !0,
+                name: "认证身份证",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "认证中…"
+                }
+            },
+            addsite: {
+                url: "api/install/add",
+                method: "POST",
+                token: !0,
+                name: "填写有线报装地址",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "提交中…"
+                }
+            },
+            newSpaperList: {
+                url: "api/install/newSpaperList",
+                method: "GET",
+                token: !0,
+                name: "有线报装地址列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            newSpaperSchoolList: {
+                url: "api/install/newSpaperSchoolList",
+                method: "GET",
+                token: !0,
+                name: "安装人员负责的学校列表",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            newSpaperEdit: {
+                url: "api/install/edit",
+                method: "POST",
+                token: !0,
+                name: "处理报装订单",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            getThisOrder: {
+                url: "api/conversion/getThisOrder",
+                method: "GET",
+                token: !0,
+                name: "查询用户可更换套餐",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            canConverted: {
+                url: "api/conversion/canConverted",
+                method: "GET",
+                token: !0,
+                name: "查询当前套餐可更换套餐",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            createNewOrder: {
+                url: "api/conversion/createNewOrder",
+                method: "POST",
+                token: !0,
+                name: "生成转换套餐订单",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            sureOrder: {
+                url: "api/conversion/sureOrder",
+                method: "POST",
+                token: !0,
+                name: "转换套餐",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            bindMobile: {
+                url: "api/bindMobile",
+                method: "POST",
+                token: !0,
+                name: "更换手机号",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "操作中…"
+                }
+            },
+            loginTrigger: {
+                url: "api/loginTrigger",
+                method: "GET",
+                token: !0,
+                name: "查询账号状态",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "操作中…"
+                }
+            },
+            gaogaoIndex: {
+                url: "api/gaogao/index",
+                method: "GET",
+                token: !0,
+                name: "查询管理员",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "操作中…"
+                }
+            },
+            income: {
+                url: "api/market/fission/income",
+                method: "POST",
+                token: !0,
+                name: "查询佣金",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "操作中…"
+                }
+            },
+            activityIllus: {
+                url: "api/activity_illus",
+                method: "GET",
+                token: !0,
+                name: "查询用户当前学校活动",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "操作中…"
+                }
+            },
+            getActivityRulesv: {
+                url: "api/getActivityRulesv",
+                method: "GET",
+                token: !0,
+                name: "查询活动规则||活动攻略",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            checkPayGoods: {
+                url: "api/Internet/checkPayGoods",
+                method: "GET",
+                token: !0,
+                name: "提醒用户重复购买套餐",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            unsetUser: {
+                url: "api/unsetUser",
+                method: "POST",
+                token: !0,
+                name: "账户注销",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            receive: {
+                url: "api/activity/receive",
+                method: "POST",
+                token: !0,
+                name: "新老用户领取两小时试用",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "领取中…"
+                }
+            },
+            open: {
+                type: "confession",
+                url: "confession/open",
+                method: "POST",
+                token: !0,
+                name: "表白墙是否开通",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionList: {
+                type: "confession",
+                url: "confession/list",
+                method: "POST",
+                token: !0,
+                name: "表白墙列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            publish: {
+                type: "confession",
+                url: "confession/publish",
+                method: "POST",
+                token: !0,
+                name: "发布表白墙",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionLike: {
+                type: "confession",
+                url: "confession/like",
+                method: "POST",
+                token: !0,
+                name: "喜欢/取消喜欢",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionInfo: {
+                type: "confession",
+                url: "confession/info",
+                method: "POST",
+                token: !0,
+                name: "表白墙内容详情",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionComment: {
+                type: "confession",
+                url: "confession/comment",
+                method: "POST",
+                token: !0,
+                name: "留言",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            conLike: {
+                type: "confession",
+                url: "confession/comment/like",
+                method: "POST",
+                token: !0,
+                name: "点赞留言",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            commentList: {
+                type: "confession",
+                url: "confession/comment/list",
+                method: "POST",
+                token: !0,
+                name: "留言列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionCollect: {
+                type: "confession",
+                url: "confession/collect",
+                method: "POST",
+                token: !0,
+                name: "收藏",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            collectList: {
+                type: "confession",
+                url: "confession/collect/list",
+                method: "POST",
+                token: !0,
+                name: "收藏列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            conDel: {
+                type: "confession",
+                url: "confession/collect/del",
+                method: "POST",
+                token: !0,
+                name: "删除收藏",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionForward: {
+                type: "confession",
+                url: "confession/forward",
+                method: "POST",
+                token: !0,
+                name: "转发",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionDel: {
+                type: "confession",
+                url: "confession/del",
+                method: "POST",
+                token: !0,
+                name: "删除我的表白墙",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            confessionMyself: {
+                type: "confession",
+                url: "confession/myself",
+                method: "POST",
+                token: !0,
+                name: "我发布的表白墙",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            treeopen: {
+                type: "confession",
+                url: "tree_hole/open",
+                method: "POST",
+                token: !0,
+                name: "树洞是否开通",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holePublish: {
+                type: "confession",
+                url: "tree_hole/publish",
+                method: "POST",
+                token: !0,
+                name: "发布树洞",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeList: {
+                type: "confession",
+                url: "tree_hole/list",
+                method: "POST",
+                token: !0,
+                name: "树洞列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeLike: {
+                type: "confession",
+                url: "tree_hole/like",
+                method: "POST",
+                token: !0,
+                name: "树洞喜欢/取消喜欢",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeInfo: {
+                type: "confession",
+                url: "tree_hole/info",
+                method: "POST",
+                token: !0,
+                name: "树洞内容详情",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeComment: {
+                type: "confession",
+                url: "tree_hole/comment",
+                method: "POST",
+                token: !0,
+                name: "树洞留言",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            treeLike: {
+                type: "confession",
+                url: "tree_hole/comment/like",
+                method: "POST",
+                token: !0,
+                name: "点赞树洞留言",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            treeList: {
+                type: "confession",
+                url: "tree_hole/comment/list",
+                method: "POST",
+                token: !0,
+                name: "树洞留言列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeCollect: {
+                type: "confession",
+                url: "tree_hole/collect",
+                method: "POST",
+                token: !0,
+                name: "树洞收藏",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            holeList: {
+                type: "confession",
+                url: "tree_hole/collect/list",
+                method: "POST",
+                token: !0,
+                name: "树洞收藏列表",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeDel: {
+                type: "confession",
+                url: "tree_hole/collect/del",
+                method: "POST",
+                token: !0,
+                name: "树洞删除收藏",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeForward: {
+                type: "confession",
+                url: "tree_hole/forward",
+                method: "POST",
+                token: !0,
+                name: "树洞转发",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            treeDel: {
+                type: "confession",
+                url: "tree_hole/del",
+                method: "POST",
+                token: !0,
+                name: "删除我的树洞",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            tree_holeMyself: {
+                type: "confession",
+                url: "tree_hole/myself",
+                method: "POST",
+                token: !0,
+                name: "我发布的树洞",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            myselfNums: {
+                type: "confession",
+                url: "myself/nums",
+                method: "POST",
+                token: !0,
+                name: "个人中心点赞和动态数量 ",
+                showLoading: {
+                    show: !1,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            },
+            notify: {
+                type: "confession",
+                url: "notify",
+                method: "POST",
+                token: !0,
+                name: "点赞/评论 ",
+                showLoading: {
+                    show: !0,
+                    mask: !0,
+                    title: "加载中…"
+                }
+            }
+        };
+        t.default = a
+    }
+]);
