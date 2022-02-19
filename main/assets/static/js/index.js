@@ -538,7 +538,7 @@ function myip() { // 获取自身ip
     return res.responseJSON.ip;
 };
 
-function loginTrigger(success = function () { }) {
+function loginTrigger(success = function () { }) { // 查询账号状态
     let res = request({
         name: "loginTrigger",
         success: function (data, status, xhr) {
@@ -550,9 +550,17 @@ function loginTrigger(success = function () { }) {
     return res;
 }
 
-
-
-
+function logout(success = function () { }) { // 退出登录
+    let res = request({
+        name: "logout",
+        success: function(data, status, xhr) {
+            let status_code = data.code;
+            let msg = data.msg;
+            success(status_code, msg);
+        }
+    });
+    return res;
+}
 
 
 

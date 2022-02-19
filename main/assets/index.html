@@ -28,13 +28,34 @@
             padding: 20px 0 30px 0;
             width: 100%
         }
-        #loginApp {
+
+        #loginApp,
+        #logout {
             margin-top: 20px;
+        }
+        #logout {
+            background-color: #df3a3a;
+        }
+        #logout:hover {
+            background-color: #ec3e4d;
         }
     </style>
 
     <script>
         $(document).ready(function () {
+            $('#logout').click(function () {
+                logout(function (code, msg) {
+                    if (code == 200) {
+                        let result = $.removeCookie("token", { path: '/' });
+                        console.log(result);
+                        Dreamer.success(msg, 2000, true, function() {
+                            window.location.href = "./login.html";
+                        });
+                    } else {
+                        Dreamer.error(msg, 2000, true);
+                    };
+                });
+            });
             $('#loginApp').click(function () {
                 networkQuery(
                     str = null,
@@ -105,6 +126,7 @@
             </svg>
             <div>
                 <button id="loginApp" class="btn">连接网络</button>
+                <button id="logout" class="btn">退出登录</button>
             </div>
         </section>
         <article>
