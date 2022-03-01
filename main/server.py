@@ -32,3 +32,7 @@ def server_dir(host, port):
     server.serve_forever()
 def server_api(host, port):
     app.run(host=host, port=port)
+
+
+if __name__ == '__main__':
+    server_api("127.0.0.1", 55582)
