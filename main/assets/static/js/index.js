@@ -1,9 +1,8 @@
-document.write('<script language=javascript src="./static/js/md5-min.js"></script>'); // 载入md5.js
-
-document.write('<script language=javascript src="./static/js/config-min.js"></script>'); // 载入config-min.js
+document.write('<script language=javascript src="./static/js/md5.min.js"></script>'); // 载入md5.js
+document.write('<script src="./static/js/dream-msg.min.js"></script>');
+// document.write('<script language=javascript src="./static/js/config.min.js"></script>'); // 载入config-min.js
 
 // ------------------------------------------------------------------------------------------------------------
-
 if_login();
 function if_login() { //判断是否已登录
     loginTrigger(false, function (code, msg) {
@@ -281,6 +280,21 @@ function loginApp(ip, success = function (code, msg) { }) { // 手机网络认�
     return res
 }
 
+function networkBreak(ip, success = function(code, msg) {}) { // 踢出设备
+    let res = request({
+        name: "networkBreak",
+        data: {
+            str: hex_md5(ip)
+        },
+        success: function (data, status, xhr) {
+            let status_code = data.code;
+            let msg = data.msg;
+            success(status_code, msg);
+        }
+    });
+    return res;
+}
+
 function networkQuery(str, success = function (code, msg) { }) { // 设备是否在线
     if (typeof str != "string") { str = myip() };
     let res = request({
@@ -319,7 +333,7 @@ function loginTrigger(async = true, success = function () { }) { // 查询账号
 function logout(success = function () { }) { // 退出登录
     let res = request({
         name: "logout",
-        success: function(data, status, xhr) {
+        success: function (data, status, xhr) {
             let status_code = data.code;
             let msg = data.msg;
             success(status_code, msg);

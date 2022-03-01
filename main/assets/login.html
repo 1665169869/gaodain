@@ -13,7 +13,8 @@
     <script src="./static/js/jquery.cookie.js"></script> -->
     <script src="./static/js/jquery.min.js"></script>
     <script src="./static/js/jquery.cookie-1.4.1.min.js"></script>
-    <script src="./static/js/dream-msg.min.js"></script>
+    <script language=javascript src="./static/js/config.min.js"></script>
+    <!-- <script src="./static/js/dream-msg.min.js"></script> -->
     <script src="./static/js/index.js"></script>
     <script>
         $(document).ready(function() {
@@ -23,8 +24,8 @@
                         mobile = $("#mobile").val(),
                         _type = 1,
                         success = function(code, msg) {
-                            Dreamer.success(msg, true, 2000);
                             if (code == 200) {
+                                Dreamer.success(msg, true, 2000);
                                 let time = 60;
                                 let s = setInterval(function() {
                                     if (time == 10) {
@@ -45,6 +46,8 @@
                                     $("#send").css("cursor", "wait")
                                     $(".active2").css("left", "1px")
                                 }, 1000);
+                            } else {
+                                Dreamer.error(msg, true, 2000);
                             };
                         }
                     );

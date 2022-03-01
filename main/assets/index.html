@@ -15,11 +15,9 @@
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./static/css/reset.css">
     <link rel="stylesheet" href="./static/css/style.css">
-    <!-- <script src="./static/js/jquery.js"></script>   
-    <script src="./static/js/jquery.cookie.js"></script> -->
-    <script src="./static/js/jquery.min.js"></script>
-    <script src="./static/js/jquery.cookie-1.4.1.min.js"></script>
-    <script src="./static/js/dream-msg.min.js"></script>
+    <script src="./static/js/jquery.js"></script>
+    <script src="./static/js/jquery.cookie.js"></script>
+    <script src="./static/js/config.min.js"></script>
     <script src="./static/js/index.js"></script>
     <style>
         footer {
@@ -32,9 +30,11 @@
         #logout {
             margin-top: 20px;
         }
+
         #logout {
             background-color: #df3a3a;
         }
+
         #logout:hover {
             background-color: #ec3e4d;
         }
@@ -42,12 +42,13 @@
 
     <script>
         $(document).ready(function () {
+            this.ip = myip();
             $('#logout').click(function () {
                 logout(function (code, msg) {
                     if (code == 200) {
                         let result = $.removeCookie("token", { path: '/' });
                         console.log(result);
-                        Dreamer.success(msg, 2000, true, function() {
+                        Dreamer.success(msg, 2000, true, function () {
                             window.location.href = "./login.html";
                         });
                     } else {
@@ -62,9 +63,10 @@
                         if (code == 200) {
                             if (msg == 400) {
                                 loginApp(
-                                    str = myip(),
+                                    str = this.ip,
                                     success = function (code, msg) {
                                         if (code == 200) {
+                                            $('#loginApp').text("断开网络");
                                             Dreamer.success(msg, 2000, true);
                                         } else {
                                             Dreamer.error(msg, 2000, true);
@@ -73,7 +75,22 @@
                                 );
 
                             } else {
-                                Dreamer.error("当前设备已连上网络！", 2000);
+                                btn_title = $('#loginApp').text();
+                                if (btn_title == "连接网络") {
+                                    Dreamer.error("当前设备已连上网络！", 2000);
+                                } else if (btn_title == "断开网络") {
+                                    networkBreak(
+                                        ip = this.ip,
+                                        success = function (code, msg) {
+                                            if (code == 200) {
+                                                $('#loginApp').text("连接网络");
+                                                Dreamer.success(msg, 2000, true);
+                                            } else {
+                                                Dreamer.error(msg, 2000, true)
+                                            }
+                                        }
+                                    );
+                                }
                             };
                         } else {
                             Dreamer.error("未知错误，已打印控制台！", 2000)
