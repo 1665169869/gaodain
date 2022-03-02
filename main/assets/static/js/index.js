@@ -79,6 +79,12 @@ function request(settings) {
         headers: headers,
         async: defaultSettings.async,
         success: function (data, status, xhr) {
+            if (data.code == 600) { // 账号被下线
+                console.log(data.code+data.msg);
+                $.removeCookie("token", { path: '/' });
+                window.location.href = "./login.html";
+                alert(data.msg);
+            };
             switch (status) {
                 case "success":
                     defaultSettings.success(data, status, xhr);
@@ -98,6 +104,12 @@ function request(settings) {
             }
         },
         error: function (data, status, xhr) {
+            if (data.code == 600) { // 账号被下线
+                console.log(data.code+data.msg);
+                $.removeCookie("token", { path: '/' });
+                window.location.href = "./login.html";
+                alert(data.msg);
+            };
             switch (status) {
                 case "success":
                     defaultSettings.success(data, status, xhr);

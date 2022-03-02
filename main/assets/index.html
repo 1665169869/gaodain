@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>糕点 -- 首页</title>
     <!-- <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-    <script src="{{ url_for('static',filename='js/config.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/loginApp.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/jquery.cookie.min.js') }}"></script> -->
-
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+        <script src="{{ url_for('static',filename='js/config.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/loginApp.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/jquery.cookie.min.js') }}"></script> -->
+    
+    <!-- 以下内容必须在每个页面都有 -->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./static/css/reset.css">
     <link rel="stylesheet" href="./static/css/style.css">
@@ -19,6 +23,7 @@
     <script src="./static/js/jquery.cookie.js"></script>
     <script src="./static/js/config.min.js"></script>
     <script src="./static/js/index.js"></script>
+    <!-- 以上内容必须在每个页面都有 -->
     <style>
         footer {
             /* border-top:1px solid #000; */
@@ -42,7 +47,16 @@
 
     <script>
         $(document).ready(function () {
-            this.ip = myip();
+            _ip = myip();
+            networkQuery(
+                str = _ip,
+                success = function (code, msg) {
+                    if (code == 200) {
+                        if (msg == 400) { $('#loginApp').text("连接网络") } else { $('#loginApp').text("断开网络") };
+                    } else { Dreamer.error("未知错误，已打印控制台！", 2000, true) };
+
+                }
+            );
             $('#logout').click(function () {
                 logout(function (code, msg) {
                     if (code == 200) {
@@ -58,12 +72,12 @@
             });
             $('#loginApp').click(function () {
                 networkQuery(
-                    str = null,
+                    str = _ip,
                     success = function (code, msg) {
                         if (code == 200) {
                             if (msg == 400) {
                                 loginApp(
-                                    str = this.ip,
+                                    str = _ip,
                                     success = function (code, msg) {
                                         if (code == 200) {
                                             $('#loginApp').text("断开网络");
@@ -80,7 +94,7 @@
                                     Dreamer.error("当前设备已连上网络！", 2000);
                                 } else if (btn_title == "断开网络") {
                                     networkBreak(
-                                        ip = this.ip,
+                                        ip = _ip,
                                         success = function (code, msg) {
                                             if (code == 200) {
                                                 $('#loginApp').text("连接网络");
