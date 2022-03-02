@@ -39698,7 +39698,7 @@
                     title: r,
                     mask: s
                 });
-                var d = {
+                var      = {
                     "content-type": "application/json"
                 };
                 o.default[t].token && (d.Authorization = "Bearer " + uni.getStorageSync("token"));

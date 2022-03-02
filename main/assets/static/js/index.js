@@ -1,5 +1,6 @@
 document.write('<script language=javascript src="./static/js/md5.min.js"></script>'); // 载入md5.js
 document.write('<script src="./static/js/dream-msg.min.js"></script>');
+document.write('<link rel="stylesheet" href="./static/css/reset.css"><link rel="stylesheet" href="./static/css/style.css"> ')
 // document.write('<script language=javascript src="./static/js/config.min.js"></script>'); // 载入config-min.js
 
 // ------------------------------------------------------------------------------------------------------------
