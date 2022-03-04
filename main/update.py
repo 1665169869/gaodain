@@ -1,6 +1,9 @@
 # 更新程序，待定
 import requests
 import sys, getopt
+import time
+import logging
+from os import system as os_system
 from tqdm import tqdm
 
 
@@ -73,6 +76,9 @@ def site(argv = []):
                 """
             )
             return None
+    
+    if len(argv) <= 1:
+        return
         
 
     try:
@@ -88,13 +94,36 @@ def site(argv = []):
     return None
 if __name__ == "__main__":
     result = site(sys.argv[1:])
+    # result = site(["-v", "2.0.0"])
     if result is not None:
-        u = update()
-        u.version = result
         print(
             """
+            请勿关闭该窗口！！！
+            请勿关闭该窗口！！！
+            请勿关闭该窗口！！！
+            \n
             更新程序中,请稍后……
             由于不想写可视化窗口,所以更新程序会简陋些,见谅.
+            两秒后开始下载更新程序...
             """
         )
-        u.download()
+        u = update()
+        u.version = result
+        time.sleep(2)
+        try:
+            u.download()
+        except requests.exceptions as e:
+            logging.error(e)
+        except Exception as e:
+            logging.error(e)
+        
+        else:
+            print(
+                """
+                下载完毕，打开更新程序中
+                请勿关闭该窗口！！！
+                请勿关闭该窗口！！！
+                请勿关闭该窗口！！！
+                """
+            )
+            os_system(u.exeName)

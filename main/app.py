@@ -1,19 +1,34 @@
-import logging
+# import logging
+# import json
+# from flask import Flask, render_template, redirect, request, url_for, Response
+# from API import GaoDian, is_keys, ip_md5_32, get_host_ip
+# from flask_cors import cross_origin
+
 import json
-from flask import Flask, render_template, redirect, request, url_for, Response
-from API import GaoDian, is_keys, ip_md5_32, get_host_ip
+import requests
+from flask import Flask, request, Response
 from flask_cors import cross_origin
+import socket
+import os
 
 app = Flask(__name__)
-gao = GaoDian()
+# gao = GaoDian()
 
-# # 预先处理
-# _POST = None
 
-# @app.before_request
-# def before():
-#     _GET = request.args
-#     _POST = request.form
+def get_host_ip():
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        s.connect(('8.8.8.8', 80))
+        return s.getsockname()[0]
+
+# 预先处理
+_GET = None
+_POST = None
+@app.before_request
+def before():
+    global _GET
+    global _POST
+    _GET = request.args
+    _POST = request.form
 #     token = is_keys(request.form, "token")
 #     authorization = request.authorization
 #     if token is not None:
@@ -205,6 +220,12 @@ def api_getIP():
     }
     return is_json(json.dumps(data), True)
 
+@app.route('/api/update', methods=["GET"])
+@cross_origin()
+def api_update():
+    api = "https://bilibili.ffstu.cn/baiyu/gaogao/update.php?version={0}".format(_GET.get("version"))
+    r = requests.get(api)
+    return r.json()
 
 # #  用户信息
 # @app.route('/api/Community/user', methods=['POST'])
