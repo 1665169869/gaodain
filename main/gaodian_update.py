@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 class update:
     def __init__(self, version=None) -> None:
-        self.updateUrl = "https://bilibili.ffstu.cn/baiyu/gaogao/update.php"
+        self.updateUrl = "http://v5.yungao-tech.com/baiyu/gaogao/update.php"
         self.downUrl = None
         self.isUpdate = False
         self.forceUpdate = False
@@ -23,6 +23,15 @@ class update:
         self.exeName = None
         self.chunk_size = 1024
         self.u(self.version)
+
+    def if_update(self, version):
+        if self.version != version:
+            self.version = version
+
+        if self.version != self.newVersion:
+            return True
+        else:
+            False
 
     def u(self, version=None):
         if self.version != version:
@@ -48,7 +57,7 @@ class update:
         return False
 
     def download(self,  func=None):
-        r = requests.get(self.downUrl, stream=True)
+        r = requests.get(self.downUrl.replace("bilibili.ffstu.cn", "v5.yungao-tech.com"), stream=True)
         length = int(r.headers.get('content-length', 0))
         with open(self.exeName, 'wb') as file, tqdm(
             desc=self.exeName, total=length, unit='iB', unit_scale=True, unit_divisor=self.chunk_size) as bar:
@@ -92,8 +101,8 @@ def site(argv = []):
             version = arg
             return version
     return None
-if __name__ == "__main__":
-    result = site(sys.argv[1:])
+def run(argv):
+    result = site(argv)
     # result = site(["-v", "2.0.0"])
     if result is not None:
         print(

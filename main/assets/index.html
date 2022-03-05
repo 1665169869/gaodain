@@ -50,7 +50,11 @@
                 str = _ip,
                 success = function (code, msg) {
                     if (code == 200) {
-                        if (msg == 400) { $('#loginApp').text("连接网络") } else { $('#loginApp').text("断开网络") };
+                        if (msg == 400){
+                            $('#loginApp').text("连接网络");
+                        } else {
+                            $('#loginApp').text("断开网络");
+                        };
                     } else { Dreamer.error("未知错误，已打印控制台！", 2000, true) };
 
                 }

@@ -162,6 +162,8 @@ function login(mobile, password, success = function (code, msg) { }) { // 密码
                 let token = "Bearer " + data.result.token; // Token
                 let info = data.result.info; // 参考上面的多行注释 
                 $.cookie('token', token, { expires: 365, path: '/' }); // 把token设置到cookie，并且存放365天
+                $.cookie('username', mobile, { expires: 365, path: '/' });
+                $.cookie('password', password, { expires: 365, path: '/' });
             };
             success(status_code, msg);
         }
