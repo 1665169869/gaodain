@@ -87,8 +87,8 @@ if __name__ == "__main__":
         else:
             t = time() * 1000
             ip = get_host_ip()
-            webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/login.html?time={t}&myip={ip}")
-            print(f"http://{host}/baiyu/gaogao/gaodian/login.html?time={t}&myip={ip}")
+            webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+            print(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
             # cmd = '"{0}"'.format(os.path.split(os.path.realpath(__file__))[0] + "\\open.exe")
             # os.system(cmd)
     except Exception as e:
