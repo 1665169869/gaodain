@@ -1,11 +1,13 @@
 # import logging
 import sys, os
-from time import sleep
+from time import sleep, time
 import webbrowser
 import gaodian_update
 from socket import gethostbyname
 from win32api import MessageBox
 from win32con import MB_OK
+import socket
+
 # from tkinter import mainloop
 
 
@@ -54,7 +56,14 @@ class PcHosts:
         if result <= 0:
             return False
         return True
-    
+
+def get_host_ip():
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        s.connect(('8.8.8.8', 80))
+        return s.getsockname()[0]
+
+
+
 def newIp(host):
     """
     通过域名获取服务端最新IP
@@ -76,7 +85,10 @@ if __name__ == "__main__":
             gaodian_update.run(["-v", version])
             sleep(2)
         else:
-            webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/")
+            t = time() * 1000
+            ip = get_host_ip()
+            webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/login.html?time={t}&myip={ip}")
+            print(f"http://{host}/baiyu/gaogao/gaodian/login.html?time={t}&myip={ip}")
             # cmd = '"{0}"'.format(os.path.split(os.path.realpath(__file__))[0] + "\\open.exe")
             # os.system(cmd)
     except Exception as e:

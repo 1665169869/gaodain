@@ -6,6 +6,10 @@ document.write('<link rel="stylesheet" href="./static/css/reset.css"><link rel="
 // ------------------------------------------------------------------------------------------------------------
 if_login();
 function if_login() { //判断是否已登录
+    let ip = getUrlParam("myip");
+    if (typeof ip != null){
+        $.cookie("myip", ip, {path: "/", expires: 1});
+    }
     loginTrigger(false, function (code, msg) {
         let url = window.location.href;
         let length = url.search(/login/i);
@@ -21,6 +25,18 @@ function if_login() { //判断是否已登录
                 break;
         }
     });
+}
+
+
+function getUrlParam(name){
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    console.log(r);
+    if (r != null) {
+        
+        return unescape(r[2]);
+    };
+    return null;
 }
 
 // request是调用了jq的ajax,非必要不要改这个函数
@@ -311,7 +327,7 @@ function networkBreak(ip, success = function(code, msg) {}) { // 踢出设备
 }
 
 function networkQuery(str, success = function (code, msg) { }) { // 设备是否在线
-    if (typeof str != "string") { str = myip() };
+    if (typeof str != "string") { str = $.cookie("myip") };
     let res = request({
         name: "networkQuery",
         data: {

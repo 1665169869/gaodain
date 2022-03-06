@@ -45,7 +45,8 @@
 
     <script>
         $(document).ready(function () {
-            _ip = myip();
+            // _ip = myip();
+            _ip = $.cookie("myip");
             networkQuery(
                 str = _ip,
                 success = function (code, msg) {
