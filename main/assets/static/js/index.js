@@ -7,8 +7,8 @@ document.write('<link rel="stylesheet" href="./static/css/reset.css"><link rel="
 if_login();
 function if_login() { //判断是否已登录
     let ip = getUrlParam("myip");
-    if (typeof ip != null){
-        $.cookie("myip", ip, {path: "/", expires: 1});
+    if (ip != null) {
+        $.cookie("myip", ip, { path: "/" });
     }
     loginTrigger(false, function (code, msg) {
         let url = window.location.href;
@@ -28,15 +28,14 @@ function if_login() { //判断是否已登录
 }
 
 
-function getUrlParam(name){
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    console.log(r);
-    if (r != null) {
-        
-        return unescape(r[2]);
-    };
-    return null;
+function getUrlParam(name) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    let url = window.location.href;
+    if (reg.exec(url) != null) {
+        return reg.exec(url)[2];
+    } else {
+        return null;
+    }
 }
 
 // request是调用了jq的ajax,非必要不要改这个函数
@@ -97,7 +96,7 @@ function request(settings) {
         async: defaultSettings.async,
         success: function (data, status, xhr) {
             if (data.code == 600) { // 账号被下线
-                console.log(data.code+data.msg);
+                console.log(data.code + data.msg);
                 $.removeCookie("token", { path: '/' });
                 window.location.href = "./login.html";
                 alert(data.msg);
@@ -122,7 +121,7 @@ function request(settings) {
         },
         error: function (data, status, xhr) {
             if (data.code == 600) { // 账号被下线
-                console.log(data.code+data.msg);
+                console.log(data.code + data.msg);
                 $.removeCookie("token", { path: '/' });
                 window.location.href = "./login.html";
                 alert(data.msg);
@@ -311,7 +310,7 @@ function loginApp(ip, success = function (code, msg) { }) { // 手机网络认�
     return res
 }
 
-function networkBreak(ip, success = function(code, msg) {}) { // 踢出设备
+function networkBreak(ip, success = function (code, msg) { }) { // 踢出设备
     let res = request({
         name: "networkBreak",
         data: {
