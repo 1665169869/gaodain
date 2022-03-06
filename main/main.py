@@ -11,7 +11,7 @@ import socket
 # from tkinter import mainloop
 
 
-version = "3.1.1"
+version = "3.1.2"
 
 class PcHosts:
     def __init__(self) -> None:
