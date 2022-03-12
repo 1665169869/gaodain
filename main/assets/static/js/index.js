@@ -6,7 +6,7 @@ document.write('<link rel="stylesheet" href="./static/css/reset.css"><link rel="
 // ------------------------------------------------------------------------------------------------------------
 if_login();
 function if_login() { //判断是否已登录
-    let ip = getUrlParam("myip");
+    let ip = getIp();
     if (ip != null) {
         $.cookie("myip", ip, { path: "/" });
     }
@@ -28,11 +28,17 @@ function if_login() { //判断是否已登录
 }
 
 
-function getUrlParam(name) {
-    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+function getIp() {
     let url = window.location.href;
-    if (reg.exec(url) != null) {
-        return reg.exec(url)[2];
+    let result = url.match(/[^/|myip=]((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}/g);
+    if (result != null) {
+        let ip = null;
+        for (let index = 0; index < result.length; index++) {
+            ip = result[index];
+            if (ip != "127.0.0.1") { break }
+        }
+        console.log(ip);
+        return ip;
     } else {
         return null;
     }
@@ -176,7 +182,9 @@ function login(mobile, password, success = function (code, msg) { }) { // 密码
             if (status_code == 200) {
                 let token = "Bearer " + data.result.token; // Token
                 let info = data.result.info; // 参考上面的多行注释 
+                let userid = data.result.info.unique_number;
                 $.cookie('token', token, { expires: 365, path: '/' }); // 把token设置到cookie，并且存放365天
+                $.cookie('userid', userid, { expires: 365, path: '/' });
                 $.cookie('username', mobile, { expires: 365, path: '/' });
                 $.cookie('password', password, { expires: 365, path: '/' });
             };
@@ -214,7 +222,9 @@ function smsLogin(mobile, code, success = function (code, msg) { }) { // 验证�
             if (status_code == 200) {
                 let token = "Bearer " + data.result.token; // Token
                 let info = data.result.info; // 参考上面的多行注释 
+                let userid = data.result.info.unique_number;
                 $.cookie('token', token, { expires: 365, path: '/' }); // 把token设置到cookie，并且存放365天
+                $.cookie('userid', userid, { expires: 365, path: '/' });
             };
             success(status_code, msg);
         }
@@ -259,12 +269,7 @@ function user(unique_number, success = function (code, msg) { }) { // 用户信�
             unique_number: unique_number
         },
         success: function (data, status, xhr) {
-            let status_code = data.code;
-            let msg = data.msg;
-            if (status_code == 200) {
-                let info = data.result // 具体请看接口文档
-            };
-            success(status_code, msg);
+            success(data.code, data.msg, data.result);
         }
     });
     return res;

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo.png" width="128" height="128">
+    <img src="./main/img/logo.png" width="128" height="128">
 </p>
 <h1 align="center">糕点</h1>
 <p align="center">
@@ -58,4 +58,4 @@ Python环境必须>=3.10
 
 感谢 <a href="https://gitee.com/huang999">寂寞如斯</a> 
 
-感谢 [iGaoWei](https://github.com/iGaoWei)开源的Dream-Msg.js
+感谢 [iGaoWei](https://github.com/iGaoWei)开源的[Dream-Msg.js](https://github.com/iGaoWei/Dream-Msg)
