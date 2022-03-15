@@ -27,7 +27,8 @@
         }
 
         #loginApp,
-        #logout {
+        #logout,
+        #networkQuitAll {
             margin-top: 20px;
         }
 
@@ -37,6 +38,14 @@
 
         #logout:hover {
             background-color: #ec3e4d;
+        }
+
+        #networkQuitAll {
+            background-color: #0ec5e6;
+        }
+
+        #networkQuitAll:hover {
+            background-color: #0cb8d6;
         }
 
         #avatar {
@@ -49,20 +58,10 @@
     </style>
 
     <script>
-        user(
-            unique_number = $.cookie('userid'),
-            success = function (code, msg, result) {
-                // let avatar = "./static/svg/logo.svg";
-                if (code == 200) {
-                    let avatar = result.avatar;
-                    document.getElementById("avatar").setAttribute("src", avatar);
-                    Dreamer.info("欢迎回来，" + result.nickname);
-                };
-            }
-        );
         $(document).ready(function () {
             // _ip = myip();
             _ip = $.cookie("myip");
+            closeMsg = Dreamer.loading("载入中……");
             networkQuery(
                 str = _ip,
                 success = function (code, msg) {
@@ -74,6 +73,18 @@
                         };
                     } else { Dreamer.error("未知错误，已打印控制台！", 2000, true) };
 
+                }
+            );
+            user(
+                unique_number = $.cookie('userid'),
+                success = function (code, msg, result) {
+                    // let avatar = "./static/svg/logo.svg";
+                    if (code == 200) {
+                        let avatar = result.avatar;
+                        document.getElementById("avatar").setAttribute("src", avatar);
+                        Dreamer.info("欢迎回来，" + result.nickname);
+                    };
+                    closeMsg();
                 }
             );
             $('#logout').click(function () {
@@ -139,6 +150,25 @@
                     }
                 );
             });
+            $("#networkQuitAll").click(function () {
+                let closeMsg = Dreamer.loading("获取在线设备中……");
+                network(
+                    success = function (code, msg, result) {
+                        
+                        if (200 == code && result.length > 0) {
+                            // 如果code == 200 and result.length > 0则有设备在线
+                            // result是一个数组 [{"str": string, "type": number}]
+                            for (let i = 0; i < result.length; i++) {
+                                networkBreak(result[i].str, function(code, msg){ }, false);
+                            }
+                            Dreamer.info("已经断开全部设备！", 2000 ,true);
+                        } else {
+                            Dreamer.info("没有在线设备。", 2000);
+                        }
+                        closeMsg();
+                    }
+                );
+            });
         });
 
     </script>
@@ -156,6 +186,7 @@
             <div>
                 <button id="loginApp" class="btn">连接网络</button>
                 <button id="logout" class="btn">退出登录</button>
+                <button id="networkQuitAll" class="btn">断开所有设备</button>
             </div>
         </section>
         <article>

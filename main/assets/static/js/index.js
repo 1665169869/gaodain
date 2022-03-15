@@ -315,11 +315,14 @@ function loginApp(ip, success = function (code, msg) { }) { // 手机网络认�
     return res
 }
 
-function networkBreak(ip, success = function (code, msg) { }) { // 踢出设备
+function networkBreak(ip, success = function (code, msg) { }, if_hexmd5 = true) { // 踢出设备
+    if (if_hexmd5) {
+        ip = hex_md5(ip);
+    }
     let res = request({
         name: "networkBreak",
         data: {
-            str: hex_md5(ip)
+            str: ip
         },
         success: function (data, status, xhr) {
             let status_code = data.code;
@@ -406,3 +409,7 @@ function network(success = function() {}) {
         }
     });
 }
+
+// function code(str = "16a2cf85a36029eed89f311c9e83717d", success = function () {}) {
+
+// };
