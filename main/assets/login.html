@@ -15,17 +15,17 @@
     <!-- <script src="./static/js/dream-msg.min.js"></script> -->
     <script src="./static/js/index.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#send').click(function() {
+        $(document).ready(function () {
+            $('#send').click(function () {
                 if ($('#send').text() == "获取验证码") {
                     sendNote(
                         mobile = $("#mobile").val(),
                         _type = 1,
-                        success = function(code, msg) {
+                        success = function (code, msg) {
                             if (code == 200) {
                                 Dreamer.success(msg, true, 2000);
                                 let time = 60;
-                                let s = setInterval(function() {
+                                let s = setInterval(function () {
                                     if (time == 10) {
                                         $(".active2").css("margin-left", "-9px")
                                     }
@@ -51,7 +51,7 @@
                     );
                 }
             });
-            $('#active').click(function() {
+            $('#active').click(function () {
                 let active = $('#active').text();
                 if (active == "验证码登录") {
                     $(".sendLogin").removeClass("active"); // 删除active class,取消display:none效果
@@ -69,22 +69,22 @@
                 };
 
             });
-            $('#btnLogin').click(function() {
+            $('#btnLogin').click(function () {
                 $('btnLogin').attr("disabled", "disabled"); // 设置登录按钮为禁止点击
                 let active = $('#active').text();
                 if (!(active == "验证码登录")) {
                     smsLogin(
                         $("#mobile").val(),
                         $("#sendCode").val(),
-                        function(code, msg) {
+                        function (code, msg) {
                             $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
                             if (code == 200) {
-                                Dreamer.success(msg, true, 2000, function() {
+                                Dreamer.success(msg, true, 2000, function () {
                                     // console.log(msg);
                                     window.location.href = "./index.html";
                                 });
                             } else {
-                                Dreamer.error(msg, true, 2000, function() {
+                                Dreamer.error(msg, true, 2000, function () {
                                     console.log(msg);
                                 });
                             }
@@ -94,15 +94,15 @@
                     login(
                         $("#mobile").val(),
                         $("#password").val(),
-                        function(code, msg) {
+                        function (code, msg) {
                             $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
                             if (code == 200) {
-                                Dreamer.success(msg, 2000, function() {
+                                Dreamer.success(msg, 2000, function () {
                                     // console.log(msg);
                                     window.location.href = "./index.html";
                                 });
                             } else {
-                                Dreamer.error(msg, true, 2000, function() {
+                                Dreamer.error(msg, true, 2000, function () {
                                     console.log(msg);
                                 });
                             }
@@ -143,6 +143,12 @@
                     <input type="button" value="登录" id="btnLogin" class="btn">
                 </p>
             </form>
+            <script>
+                let username = $.cookie('username');
+                let password = $.cookie('password');
+                $("#mobile").val(username);
+                $("#password").val(password);
+            </script>
         </section>
         <article>
             <!-- 其余补分 -->
