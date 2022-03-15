@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>糕点 -- 在线设备</title>
-    <!-- <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}"> -->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <script src="./static/js/jquery.js"></script>
     <script src="./static/js/jquery.cookie.js"></script>
     <script src="./static/js/config.min.js"></script>
     <script src="./static/js/index.js"></script>
-    <style>
-    </style>
+    <script>
+        cloneMsg = Dreamer.loading("加载在线设备中……");
+        network(
+            success = function (code, msg, result) {
+                if (200 == code && result.length > 0) {
+                    // 如果code == 200 and result.length > 0则有设备在线
+                    
+                }
+            }
+        );
+
+    </script>
 </head>
+
 <body>
     <div class="bgdiv">
         <header>
@@ -20,13 +32,7 @@
         </header>
         <section>
             <!-- 主体内容 -->
-            <ul>
-                <li>Lorem, ipsum.</li>
-                <li>Ipsam, perferendis!</li>
-                <li>Labore, maiores.</li>
-                <li>Fuga, placeat.</li>
-                <li>Consequuntur, laborum?</li>
-            </ul>
+            <ul id="onlineEquipment"></ul>
         </section>
         <article>
             <!-- 其余补分 -->
@@ -36,9 +42,10 @@
             <address>
                 贡献者:
                 <a href="https://gitee.com/baiyu16">白羽 </a>
-                <a href="https://gitee.com/huang999">寂寞如斯</a> 
+                <a href="https://gitee.com/huang999">寂寞如斯</a>
             </address>
         </footer>
     </div>
 </body>
+
 </html>

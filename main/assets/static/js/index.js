@@ -352,7 +352,7 @@ function myip() { // 获取自身ip
     return res.responseJSON.ip;
 };
 
-function loginTrigger(async = true, success = function () { }) { // 查询账号状态
+function loginTrigger(async = true, success = function (code, msg) { }) { // 查询账号状态
     let res = request({
         name: "loginTrigger",
         async: async,
@@ -365,15 +365,44 @@ function loginTrigger(async = true, success = function () { }) { // 查询账号
     return res;
 }
 
-function logout(success = function () { }) { // 退出登录
+function logout(success = function (code, msg, result) { }) { // 退出登录
     let res = request({
         name: "logout",
         success: function (data, status, xhr) {
             let status_code = data.code;
             let msg = data.msg;
-            success(status_code, msg);
+            let result = data.result;
+            success(status_code, msg, result);
         }
     });
     return res;
 }
 
+function retrieve(mobile = "", password = "", pass = "", code = "", _type = 2, success = function (code, msg, result) {}){ // 重置密码
+    let res = request({
+        name: "retrieve",
+        data: {
+            mobile: mobile,
+            password: password,
+            pass: pass,
+            code: code,
+            type: _type
+        },
+        success: function(data, status, xhr) {
+            let status_code = data.code;
+            let msg = data.msg;
+            let result = data.result;
+            success(status_code, msg, result);
+        }
+    });
+}
+
+function network(success = function() {}) {
+    let res = request({
+        name: "network",
+        data: {},
+        success: function(data, status, xhr) {
+            success(data.code, data.msg, data.result);
+        }
+    });
+}

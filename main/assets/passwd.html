@@ -7,10 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>糕点 -- 重置密码</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <!-- <script src="./static/js/jquery.js"></script>   
-    <script src="./static/js/jquery.cookie.js"></script> -->
-    <script src="./static/js/jquery.min.js"></script>
-    <script src="./static/js/jquery.cookie-1.4.1.min.js"></script>
+    <script src="./static/js/jquery.js"></script>
+    <script src="./static/js/jquery.cookie.js"></script>
     <script src="./static/js/config.min.js"></script>
     <script src="./static/js/index.js"></script>
     <style>
@@ -28,8 +26,71 @@
     </style>
     <script>
         $(document).ready(function() {
+            $('#reset_passwd').click(function () {
+                let password = $('#password').val();
+                let verifyCode = $('#verifyCode').val();
+                let mobile = $('#mobile').val();
+                if (mobile.length == 0) {
+                    Dreamer.error("手机号不能为空哦！");
+                } else if (password.length == 0) {
+                    Dreamer.error("密码不能为空哦！");
+                } else if (verifyCode.length == 0) {
+                    Dreamer.error("验证码不能为空哦！");
+                } else {
+                    cloneMsg = Dreamer.loading("重置密码中……");
+                    retrieve(
+                        mobile = mobile,
+                        password = password,
+                        pass = password,
+                        code = verifyCode,
+                        _type = 2,
+                        success = function(code, msg, result) {
+                            if (code == 200) {
+                                Dreamer.success(msg);
+                            } else {
+                                Dreamer.error(msg);
+                            }
+                            cloneMsg();
+                        }
+                    );
+                }
+            });
             $('#send').click(function() {
-
+                if ($('#send').text() == "获取验证码") {
+                    cloneMsg = Dreamer.loading("发送验证码中……");
+                    sendNote(
+                        mobile = $("#mobile").val(),
+                        _type = 2,
+                        success = function(code, msg) {
+                            if (code == 200) {
+                                Dreamer.success(msg, true, 2000);
+                                let time = 60;
+                                let s = setInterval(function() {
+                                    if (time == 10) {
+                                        $(".active2").css("margin-left", "-9px")
+                                    }
+                                    if (time == 1) {
+                                        $('#send').text('获取验证码');
+                                        $('#send').css('color', 'cornflowerblue');
+                                        $("#send").css("cursor", "pointer")
+                                        $(".active2").css("margin-left", "0px")
+                                        $(".active2").css("left", "8px")
+                                        clearInterval(s);
+                                        return;
+                                    };
+                                    time--;
+                                    $("#send").text(`剩余${time}秒`)
+                                    $("#send").css("color", "#5b5b5b")
+                                    $("#send").css("cursor", "wait")
+                                    $(".active2").css("left", "1px")
+                                }, 1000);
+                            } else {
+                                Dreamer.error(msg, true, 2000);
+                            };
+                            cloneMsg();
+                        }
+                    );
+                }
             });
         });
         
@@ -61,7 +122,7 @@
                 </p>
                 <p class="p_">
                     验证码:
-                    <input type="text" name="code" id="code" class="input">
+                    <input type="text" name="verifyCode" id="verifyCode" class="input">
                     <a href="JavaScript:;" id="send" class="btn_a">获取验证码</a>
                 </p>
                 <p>
