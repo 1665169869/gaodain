@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">糕点</h1>
 <p align="center">
-    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
+    <a href="./LICENSE" style="text-decoration:none" >
         <img src="https://img.shields.io/badge/License-GPL--3.0-lightgrey)" alt="Gitee license"/>
     </a>
 </p>
