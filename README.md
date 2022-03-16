@@ -19,21 +19,18 @@ jQuery HTML CSS Python3
 ## 软件架构
 软件架构说明
 
-## 安装教程
+## 使用说明
 
 由于项目使用了新特性联合类型
+
+并且html,css,js的文件是存储在服务端的
+
+**main.py** 仅供参考,主要代码为前端那边，py脚本仅用于修改hosts和打开网址
 
 Python环境必须>=3.10 
 
 1.  `pip install -r requirements.txt`
-2.  `python app.py`
-3.  `python main.py`
-
-## 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+2.  `python main.py`
 
 ## 参与贡献
 
