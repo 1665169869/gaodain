@@ -32,6 +32,10 @@ Python环境必须>=3.10
 1.  `pip install -r requirements.txt`
 2.  `python main.py`
 
+## 友情链接
+
+广东天翼校园网手机登录器-maybe_xyw[https://gitee.com/dpwgc/maybe_xyw](http://https://gitee.com/dpwgc/maybe_xyw)
+
 ## 参与贡献
 
 1.  Fork 本仓库
