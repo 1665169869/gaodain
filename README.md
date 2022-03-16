@@ -14,17 +14,7 @@
 
 在阅读该项目时你需要入门以下知识：
 
-Flask PyQt5 jQuery HTML CSS
-
-## 目前BUG
-
-无法及时更新缓存
-
-并且http.server和webbrowser其实是有冲突的
-
-漏洞百出，下一步计划可能会往客户端内嵌一个nginx程序来启动web服务
-
-或者可能网页放服务器把防火墙白名单的域名直接改host到服务器效果也一样
+jQuery HTML CSS Python3
 
 ## 软件架构
 软件架构说明
