@@ -34,7 +34,7 @@ Python环境必须>=3.10
 
 ## 友情链接
 
-广东天翼校园网手机登录器-maybe_xyw[https://gitee.com/dpwgc/maybe_xyw](http://https://gitee.com/dpwgc/maybe_xyw)
+广东天翼校园网手机登录器-maybe_xyw：[https://gitee.com/dpwgc/maybe_xyw](http://https://gitee.com/dpwgc/maybe_xyw)
 
 ## 参与贡献
 
