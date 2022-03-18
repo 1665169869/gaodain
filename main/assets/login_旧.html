@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>糕点 -- 密码登录</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <script src="./static/js/jquery.min.js"></script>
+    <script src="./static/js/jquery.cookie-1.4.1.min.js"></script>
+    <script language=javascript src="./static/js/config.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#send').click(function () {
+                if ($('#send').text() == "获取验证码") {
+                    sendNote(
+                        mobile = $("#mobile").val(),
+                        _type = 1,
+                        success = function (code, msg) {
+                            if (code == 200) {
+                                Dreamer.success(msg, true, 2000);
+                                let time = 60;
+                                let s = setInterval(function () {
+                                    if (time == 10) {
+                                        $(".active2").css("margin-left", "-9px")
+                                    }
+                                    if (time == 1) {
+                                        $('#send').text('获取验证码');
+                                        $('#send').css('color', 'cornflowerblue');
+                                        $("#send").css("cursor", "pointer")
+                                        $(".active2").css("margin-left", "0px")
+                                        $(".active2").css("left", "8px")
+                                        clearInterval(s);
+                                        return;
+                                    };
+                                    time--;
+                                    $("#send").text(`剩余${time}秒`)
+                                    $("#send").css("color", "#5b5b5b")
+                                    $("#send").css("cursor", "wait")
+                                    $(".active2").css("left", "1px")
+                                }, 1000);
+                            } else {
+                                Dreamer.error(msg, true, 2000);
+                            };
+                        }
+                    );
+                }
+            });
+            $('#active').click(function () {
+                let active = $('#active').text();
+                if (active == "验证码登录") {
+                    $(".sendLogin").removeClass("active"); // 删除active class,取消display:none效果
+                    $(".login").addClass("active"); // 添加active class,附加display:none效果
+                    $("#active").text("密码登录");
+                    $("h1").text("登录糕点 -- 验证码登录");
+                    $(".sendLogin").addClass("active2"); // 添加active2 class,实现对齐
+                    $(".login").removeClass("active2"); // 删除active2 class,取消实现对齐
+                } else if (active == "密码登录") {
+                    $(".sendLogin").addClass("active"); // 添加active class,附加display:none效果
+                    $(".login").removeClass("active"); // 删除active class,取消display:none效果
+                    $("#active").text("验证码登录");
+                    $("h1").text("登录糕点 -- 密码登录");
+                    $(".sendLogin").removeClass("active2"); // 删除active2 class,取消实现对齐
+                };
+
+            });
+            $('#btnLogin').click(function () {
+                $('btnLogin').attr("disabled", "disabled"); // 设置登录按钮为禁止点击
+                let active = $('#active').text();
+                if (!(active == "验证码登录")) {
+                    smsLogin(
+                        $("#mobile").val(),
+                        $("#sendCode").val(),
+                        function (code, msg) {
+                            $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
+                            if (code == 200) {
+                                Dreamer.success(msg, true, 2000, function () {
+                                    // console.log(msg);
+                                    window.location.href = "./index.html";
+                                });
+                            } else {
+                                Dreamer.error(msg, true, 2000, function () {
+                                    console.log(msg);
+                                });
+                            }
+                        }
+                    );
+                } else if (!(active == "密码登录")) {
+                    login(
+                        $("#mobile").val(),
+                        $("#password").val(),
+                        function (code, msg) {
+                            $('btnLogin').attr("disabled", ""); // 设置登录按钮为允许点击
+                            if (code == 200) {
+                                Dreamer.success(msg, 2000, function () {
+                                    // console.log(msg);
+                                    window.location.href = "./index.html";
+                                });
+                            } else {
+                                Dreamer.error(msg, true, 2000, function () {
+                                    console.log(msg);
+                                });
+                            }
+                        }
+                    );
+                };
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="bgdiv">
+        <header>
+            <!-- 头部 -->
+            <img src="./static/svg/logo.svg">
+            <h1>登录糕点 -- 密码登录</h1>
+        </header>
+        <section>
+            <!-- 主体内容 -->
+            <form action="">
+                <p>
+                    手机号:
+                    <input type="text" name="mobile" id="mobile" class="input">
+                    <a href="javascript:void(0)" class="btn_a" id="active">验证码登录</a>
+                </p>
+                <p class="login">
+                    密码:
+                    <input type="password" name="password" id="password" class="input">
+                    <a href="./passwd.html" class="btn_a">忘记密码</a>
+                </p>
+                <p class="sendLogin active">
+                    验证码:
+                    <input type="text" name="sendCode" , id="sendCode" class="input">
+                    <a href="javascript:void(0)" class="btn_a" id="send">获取验证码</a>
+                </p>
+                <p>
+                    <input type="button" value="登录" id="btnLogin" class="btn">
+                </p>
+            </form>
+            <script>
+                let username = $.cookie('username');
+                let password = $.cookie('password');
+                $("#mobile").val(username);
+                $("#password").val(password);
+            </script>
+        </section>
+        <article>
+            <!-- 其余补分 -->
+        </article>
+    </div>
+    <footer>
+        <!-- 尾部 -->
+        <address>
+            贡献者:
+            <a href="https://gitee.com/baiyu16">白羽 </a>
+            <a href="https://gitee.com/huang999">寂寞如斯</a>
+        </address>
+    </footer>
+</body>
+
+</html>

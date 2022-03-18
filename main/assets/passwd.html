@@ -31,11 +31,11 @@
                 let verifyCode = $('#verifyCode').val();
                 let mobile = $('#mobile').val();
                 if (mobile.length == 0) {
-                    Dreamer.error("手机号不能为空哦！");
+                    Dreamer.warning("手机号不能为空哦！");
                 } else if (password.length == 0) {
-                    Dreamer.error("密码不能为空哦！");
+                    Dreamer.warning("密码不能为空哦！");
                 } else if (verifyCode.length == 0) {
-                    Dreamer.error("验证码不能为空哦！");
+                    Dreamer.warning("验证码不能为空哦！");
                 } else {
                     cloneMsg = Dreamer.loading("重置密码中……");
                     retrieve(
