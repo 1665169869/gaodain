@@ -16,8 +16,14 @@
 
 jQuery HTML CSS Python3
 
-## 软件架构
-软件架构说明
+## 破解原理
+
+其实并不算是破解
+
+只是反编译获取到糕糕的所有接口之后进行接口调用
+
+并且为了颜值选择了web进行开发
+
 
 ## 使用说明
 
@@ -25,9 +31,11 @@ jQuery HTML CSS Python3
 
 并且html,css,js的文件是存储在服务端的
 
+真正重要的文件其实是在index.js还有接口文档，接口文档我就不放出来了。
+
 **main.py** 仅供参考,主要代码为前端那边，py脚本仅用于修改hosts和打开网址
 
-Python环境必须>=3.10 
+Python >= 3.10 
 
 1.  `pip install -r requirements.txt`
 2.  `python main.py`
