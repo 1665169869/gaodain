@@ -132,3 +132,87 @@ address {
     color: #ccc;
     margin-bottom: 10px;
 }
+
+.btn_{
+    /* 相对定位 */
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    /* 渐变背景 */
+    background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4);
+    /* 背景渐变色大小 */
+    background-size: 400%;
+    /* 圆角 */
+    z-index: 1;
+}
+/* 发光效果 */
+.btn_::before{
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    bottom: -5px;
+    right: -5px;
+    /* 渐变背景 */
+    background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4);
+    /* 背景渐变色大小 */
+    background-size: 400%;
+    /* 圆角 */
+    border-radius: 50px;
+    /* 位于按钮之下 */
+    z-index: -1;
+    /* 设置模糊度 显示发光效果 */
+    filter: blur(20px);
+}
+/* 鼠标移入执行动画 */
+.btn_:hover{
+    /* 动画：名称 时间 infinite是无限次播放 */
+    animation: streamer 8s infinite;
+}
+.btn_:hover::before{
+    animation: streamer 8s infinite;
+}
+/* 接下来定义动画 */
+@keyframes streamer{
+    100%{
+        /* 背景位置 */
+        background-position: -400% 0;
+    }
+}
+
+.container {
+    /* 投影效果 */
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+}
+
+h3 {
+    color: #fff;
+    /* font-size: 96px; */
+    /* 字间距 */
+    letter-spacing: 5px;
+    /* 转大写 */
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 76px;
+    outline: none;
+    /* 自定义属性--c，可通过var函数对其调用 */
+    --c: lightseagreen;
+    /* 调用自定义属性--c，设置文字阴影（发光效果） */
+    text-shadow: 0 0 10px var(--c),
+        0 0 20px var(--c),
+        0 0 40px var(--c),
+        0 0 80px var(--c),
+        0 0 160px var(--c);
+    /* 执行动画：动画名 时长 线性的 无限次播放 */
+    animation: animate 5s linear infinite;
+}
+
+/* 定义动画 */
+@keyframes animate {
+    to {
+        /* 色相旋转滤镜（设置度数可改变颜色） */
+        filter: hue-rotate(360deg);
+    }
+}
