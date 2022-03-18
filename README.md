@@ -6,6 +6,7 @@
     <a href="./LICENSE" style="text-decoration:none" >
         <img src="https://img.shields.io/badge/License-GPL--3.0-lightgrey)" alt="Gitee license"/>
     </a>
+<a href='https://gitee.com/baiyu16/gaogao/stargazers'><img src='https://gitee.com/baiyu16/gaogao/badge/star.svg?theme=dark' alt='star'></img></a>
 </p>
 
 ## 介绍
