@@ -11,7 +11,7 @@ import socket
 # from tkinter import mainloop
 
 
-version = "3.1.2"
+version = "3.1.3"
 
 class PcHosts:
     def __init__(self) -> None:
@@ -48,14 +48,28 @@ class PcHosts:
         else:
             hosts_file = self.file_hosts()
 
+        hosts = ""
+        with open(hosts_file, "r+", encoding="utf-8") as f:
+            hosts_list = f.readlines()
+            f.close()
+
         with open(hosts_file, "w+", encoding="utf-8") as f:
-            content = f"{ip} {host}"
-            result = f.write(content)
+            index = 0
+            for l in range(len(hosts_list)):
+                if hosts_list[l].find("v5.yungao-tech.com") != -1:
+                    index = index + 1
+            for i in range(len(hosts_list)):
+                if index == 0:
+                    hosts_list.append(f"{ip} {host}")
+                else:
+                    if hosts_list[i].find("v5.yungao-tech.com") != -1:
+                        hosts_list[i] = f"{ip} {host}"
+                hosts += hosts_list[i] + "\n"
+            if len(hosts_list) == 0:
+                hosts = f"{ip} {host}"
+            f.write(hosts)
             f.flush()
             f.close()
-        if result <= 0:
-            return False
-        return True
 
 def get_host_ip():
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:

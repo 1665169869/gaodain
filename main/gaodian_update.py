@@ -27,7 +27,8 @@ class update:
     def if_update(self, version):
         if self.version != version:
             self.version = version
-
+        if self.status_code != 200:
+            return True
         if self.version != self.newVersion:
             return True
         else:

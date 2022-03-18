@@ -2,7 +2,7 @@
 ; 有关创建 Inno Setup 脚本文件的详细资料请查阅帮助文档！
 
 #define MyAppName "糕点"
-#define MyAppVersion "3.1.2"
+#define MyAppVersion "3.1.3"
 #define MyAppPublisher "白羽"
 #define MyAppURL "https://gitee.com/baiyu16/gaogao"
 #define MyAppExeName "gaodian.exe"
@@ -27,24 +27,24 @@ UsedUserAreasWarning=no
 ; 以下行取消注释，以在非管理安装模式下运行（仅为当前用户安装）。
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=C:\Users\86136\python\gaogao\dist
+OutputDir=D:\gaodian\gaogao\dist
 OutputBaseFilename=gaodian_setup.{#MyAppVersion}
-SetupIconFile=C:\Users\86136\python\gaogao\main\img\favicon.ico
+SetupIconFile=D:\gaodian\gaogao\main\img\favicon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 PrivilegesRequired=admin 
 
 [Languages]
-Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
+Name: "cn"; MessagesFile: "compiler:Languages\ChineseSimplified.isl";
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: checkablealone
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: "C:\Users\86136\python\gaogao\dist\gaodian\gaodian.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\86136\python\gaogao\dist\gaodian\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\gaodian\gaogao\dist\gaodian\gaodian.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\gaodian\gaogao\dist\gaodian\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; Source: "C:\Users\86136\python\gaogao\main\open.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; 注意: 不要在任何共享系统文件上使用“Flags: ignoreversion”
 
