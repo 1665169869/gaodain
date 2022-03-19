@@ -16,7 +16,7 @@ body {
     text-align: center;
     /* display: flex; */
     line-height: 15px;
-    background-color: linear-gradient(200deg,#ccbec0,#acb4be);
+    background: linear-gradient(200deg,#f3e7e9,#e3eeff);
     margin: 20px auto auto;
     width: 410px;
     height: auto;
@@ -122,6 +122,7 @@ a {
     border-radius: 5%;
     padding-bottom: 50px;
     margin-top: 20%;
+    box-shadow: 5px 5px 5px rgb(0 0 0 / 10%);
     /* z-index: 1; */
 }
 
