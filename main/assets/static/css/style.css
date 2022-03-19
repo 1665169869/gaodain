@@ -16,7 +16,7 @@ body {
     text-align: center;
     /* display: flex; */
     line-height: 15px;
-    background-color: #181a1b;
+    background-color: linear-gradient(200deg,#ccbec0,#acb4be);
     margin: 20px auto auto;
     width: 410px;
     height: auto;
@@ -118,8 +118,11 @@ a {
 }
 
 .bgdiv {
-    background-color: #1e2122;
+    background-color: #73c7e0;
+    border-radius: 5%;
     padding-bottom: 50px;
+    margin-top: 20%;
+    /* z-index: 1; */
 }
 
 address {
@@ -141,7 +144,7 @@ address {
     text-transform: uppercase;
     color: #fff;
     /* 渐变背景 */
-    background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4);
+    background: linear-gradient(to right,#0094f7,#09a8f4);
     /* 背景渐变色大小 */
     background-size: 400%;
     /* 圆角 */
@@ -149,22 +152,22 @@ address {
 }
 /* 发光效果 */
 .btn_::before{
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    bottom: -5px;
-    right: -5px;
+    /* content: ""; */
+    /* position: absolute; */
+    /* top: -5px; */
+    /* left: -5px; */
+    /* bottom: -5px; */
+    /* right: -5px; */
     /* 渐变背景 */
-    background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4);
+    /* background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4); */
     /* 背景渐变色大小 */
-    background-size: 400%;
+    /* background-size: 400%; */
     /* 圆角 */
-    border-radius: 50px;
+    /* border-radius: 50px; */
     /* 位于按钮之下 */
-    z-index: -1;
+    /* z-index: -1; */
     /* 设置模糊度 显示发光效果 */
-    filter: blur(20px);
+    /* filter: blur(20px); */
 }
 /* 鼠标移入执行动画 */
 .btn_:hover{
@@ -182,37 +185,7 @@ address {
     }
 }
 
-.container {
-    /* 投影效果 */
-    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
-}
 
 h3 {
-    color: #fff;
-    /* font-size: 96px; */
-    /* 字间距 */
-    letter-spacing: 5px;
-    /* 转大写 */
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 76px;
-    outline: none;
-    /* 自定义属性--c，可通过var函数对其调用 */
-    --c: lightseagreen;
-    /* 调用自定义属性--c，设置文字阴影（发光效果） */
-    text-shadow: 0 0 10px var(--c),
-        0 0 20px var(--c),
-        0 0 40px var(--c),
-        0 0 80px var(--c),
-        0 0 160px var(--c);
-    /* 执行动画：动画名 时长 线性的 无限次播放 */
-    animation: animate 5s linear infinite;
-}
-
-/* 定义动画 */
-@keyframes animate {
-    to {
-        /* 色相旋转滤镜（设置度数可改变颜色） */
-        filter: hue-rotate(360deg);
-    }
+    color:#525252
 }
