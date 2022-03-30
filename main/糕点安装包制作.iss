@@ -2,7 +2,7 @@
 ; 有关创建 Inno Setup 脚本文件的详细资料请查阅帮助文档！
 
 #define MyAppName "糕点"
-#define MyAppVersion "3.1.3"
+#define MyAppVersion "3.1.4"
 #define MyAppPublisher "白羽"
 #define MyAppURL "https://gitee.com/baiyu16/gaogao"
 #define MyAppExeName "gaodian.exe"

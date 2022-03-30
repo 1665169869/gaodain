@@ -99,6 +99,7 @@ function request(settings) {
         data: defaultSettings.data,
         type: method,
         headers: headers,
+        timeout: 3000,
         async: defaultSettings.async,
         success: function (data, status, xhr) {
             if (data.code == 600) { // 账号被下线

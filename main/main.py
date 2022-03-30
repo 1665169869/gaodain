@@ -5,13 +5,13 @@ import webbrowser
 import gaodian_update
 from socket import gethostbyname
 from win32api import MessageBox
-from win32con import MB_OK
+from win32con import MB_OK, MB_ICONERROR
 import socket
+import getreg
 
 # from tkinter import mainloop
-
-
-version = "3.1.3"
+# 打包命令：pyinstaller .\main\main.py -D --NAME=gaodian -i .\main\img\favicon.ico --uac-admin
+version = "3.1.4"
 
 class PcHosts:
     def __init__(self) -> None:
@@ -88,22 +88,32 @@ def newIp(host):
 if __name__ == "__main__":
 
     try:
+        ProxyEnable = getreg.getRegKey("ProxyEnable")
         pc = PcHosts()
         # h.debug = True
         host = "v5.yungao-tech.com"
         pc.set_host(host, newIp("bilibili.ffstu.cn"))
-        up = gaodian_update.update()
         
-        if up.if_update(version):
-            MessageBox(0, "有新版本,请立刻更新!", "发现新版!", MB_OK)
-            gaodian_update.run(["-v", version])
-            sleep(2)
+        if ProxyEnable == 1:
+            MessageBox(0, "请先关掉代理或加速器后再重新打开该软件！", "请关闭代理！",MB_ICONERROR)
         else:
-            t = time() * 1000
-            ip = get_host_ip()
-            webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
-            print(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
-            # cmd = '"{0}"'.format(os.path.split(os.path.realpath(__file__))[0] + "\\open.exe")
-            # os.system(cmd)
+            up = gaodian_update.update()
+
+            if up.if_update(version):
+                MessageBox(0, "有新版本,请立刻更新!", "发现新版!", MB_OK)
+                gaodian_update.run(["-v", version])
+                sleep(2)
+            else:
+                t = time() * 1000
+                ip = get_host_ip()
+                webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+                print(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+                # cmd = '"{0}"'.format(os.path.split(os.path.realpath(__file__))[0] + "\\open.exe")
+                # os.system(cmd)
     except Exception as e:
-        print(e)
+        print(f"""
+            程序报错了， 报错信息：
+            {e}
+            按回车关闭该窗口。
+        """)
+        input()

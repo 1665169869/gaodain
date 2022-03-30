@@ -25,6 +25,7 @@ class update:
         self.u(self.version)
 
     def if_update(self, version):
+        print(self.version, version)
         if self.version != version:
             self.version = version
         if self.status_code != 200:
@@ -32,7 +33,7 @@ class update:
         if self.version != self.newVersion:
             return True
         else:
-            False
+            return False
 
     def u(self, version=None):
         if self.version != version:
