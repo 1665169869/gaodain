@@ -1,75 +1,130 @@
-# import logging
-import sys, os
 from time import sleep, time
 import webbrowser
-import gaodian_update
 from socket import gethostbyname
 from win32api import MessageBox
-from win32con import MB_OK, MB_ICONERROR
+from win32con import MB_OK, MB_ICONERROR, MB_ICONWARNING
 import socket
+from tqdm import tqdm
 import getreg
-
+import requests
+import logging
+import re, os, sys
 # from tkinter import mainloop
-# 打包命令：pyinstaller .\main\main.py -D --NAME=gaodian -i .\main\img\favicon.ico --uac-admin
-version = "3.1.4"
+# 打包命令：pyinstaller .\main\main.py -D -n gaodian -i .\main\img\favicon.ico --uac-admin
+version = "3.1.5"
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
+def line_of_text(text: str, of_text: str):
+    """
+    获取某段文本所在行 存在返回所在行数(0开始算) 失败或不存在返回-1
+    """
+    split_text = text.split("\n")
+    for index in range(len(split_text)):
+        if split_text[index].find(of_text) != -1:
+            return index
+    return -1
 
-class PcHosts:
+def x(t):
+    """
+    删除文本空行
+    """
+    if t[:2] == "\n":
+        t = t[2:]
+    if t[2:] == "\n":
+        t = t[:2]
+    return re.sub("(?:^\r|\n$)", "", t)
+
+
+class Host:
     def __init__(self) -> None:
-        self.Windows = r'C:\Windows\System32\drivers\etc\hosts'
-        self.Mac = r'/etc/hosts'
-        self.Linux = r'/etc/hosts'
-        self.os = sys.platform # 获取当前操作系统
-        self.debug = False
+        self.HOSTS_FILE = r'C:\Windows\System32\drivers\etc\hosts' #windows Hosts文件路径
+    def replace_Host(self, host: str, ip: str) -> bool:
+        """
+        更新hosts 或者说修改hosts 返回bool
+        """
+        hosts_text: str = x(self.read())
+        text_line: int = line_of_text(hosts_text, host)
+        split_text = hosts_text.split("\n")
+        hosts_text = ""
+        if text_line != -1:
+            split_text.remove(split_text[text_line])
+        split_text.append(f"{ip} {host}")
+        for index in range(len(split_text)):
+            if index == len(split_text):
+                hosts_text += split_text[index]
+            else:
+                hosts_text += split_text[index] + "\n"
+        return self.write(hosts_text)
+        
+    def read(self) -> str:
+        """
+        读hosts文件内容 返回文件内容 如果读取失败返回空文本
+        """
+        try:
+            with open(self.HOSTS_FILE, "r+",encoding="utf-8") as f:
+                result = f.read()
+                f.close()
+            return result
+        except Exception as e:
+            # 报错异常处理  
+            logging.error(f"读hosts文件的时候报错 {e}")
+        return "" 
+    def write(self, text: str) -> bool:
+        """
+        写hosts文件内容 返回Bool类型 如果读取失败返回False
+        """
+        try:
+            with open(self.HOSTS_FILE, "w+", encoding="utf-8") as f:
+                if f.write(text) > 0:
+                    f.flush()
+                f.close()
+                return True
+        except Exception as e:
+            # 报错异常处理
+            logging.error(f"写入HOSTS的时候报错 {e}")
+        return False
 
-    
-    def file_hosts(self):
-        """
-        当前系统的hosts文件路径
-        :return: 返回当前系统的hosts文件路径
-        """
-        if self.os == "win32":
-            result = self.Windows
-        elif self.os == "linux" or self.os == "linux2" or self.os == "linux3":
-            result = self.Linux
-        elif self.os == "darwin":
-            result = self.Mac
-        else:
-            raise ValueError("未知操作系统", self.os)
-        return result
-    def set_host(self, host, ip):
-        """
-        修改hosts文件
-        :param host:  域名
-        :param ip:  IP
-        :return: 返回bool 成功返回true
-        """
-        if self.debug == True:
-            hosts_file = os.path.split(os.path.realpath(__file__))[0] + r"\test.txt"
-        else:
-            hosts_file = self.file_hosts()
-
-        hosts = ""
-        with open(hosts_file, "r+", encoding="utf-8") as f:
-            hosts_list = f.readlines()
-            f.close()
-
-        with open(hosts_file, "w+", encoding="utf-8") as f:
-            index = 0
-            for l in range(len(hosts_list)):
-                if hosts_list[l].find("v5.yungao-tech.com") != -1:
-                    index = index + 1
-            for i in range(len(hosts_list)):
-                if index == 0:
-                    hosts_list.append(f"{ip} {host}")
+class Update:
+    def __init__(self) -> None:
+        self.updateUrl = "http://v5.yungao-tech.com/api/update?version=" + version
+        self.chunk_size = 1024
+    def needUpdate(self) -> bool:
+        with requests.get(self.updateUrl) as self.r:
+            if self.r.status_code == 200:
+                result: dict = self.r.json()
+                self.newExeUrl: str = result.get("url")
+                self.note: str = result.get('note')
+                logging.info(result)
+                if result.get('status') == 1:
+                    return True
                 else:
-                    if hosts_list[i].find("v5.yungao-tech.com") != -1:
-                        hosts_list[i] = f"{ip} {host}"
-                hosts += hosts_list[i] + "\n"
-            if len(hosts_list) == 0:
-                hosts = f"{ip} {host}"
-            f.write(hosts)
-            f.flush()
-            f.close()
+                    return False
+            else:
+                self.r.close()
+                logging.error(f"status.code: {self.r.status_code} 无法更新")
+                return False
+                # raise RuntimeError(f"status.code: {self.r.status_code} 无法更新")
+        
+    def download(self) -> bool:
+        self.exeName = self.newExeUrl[self.newExeUrl.rfind("/")+1:]
+        self.r = requests.get(self.newExeUrl, stream=True)
+        content_length = int(self.r.headers.get('Content-Length'))
+
+        data_count = 0
+        with open(self.exeName, 'wb') as file:
+            bar = tqdm(
+            desc=self.exeName, total=content_length, unit='iB', unit_scale=True, unit_divisor=self.chunk_size)
+            for data in self.r.iter_content(chunk_size=self.chunk_size):
+                size = file.write(data)
+                bar.update(size)
+            file.close()
+            return True
+
+
+        
+
+
+
+        
 
 def get_host_ip():
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
@@ -84,36 +139,49 @@ def newIp(host):
     """
     return gethostbyname(host)
 
-
-if __name__ == "__main__":
-
+def main():
     try:
         ProxyEnable = getreg.getRegKey("ProxyEnable")
-        pc = PcHosts()
+        pc = Host()
+        update = Update()
         # h.debug = True
         host = "v5.yungao-tech.com"
-        pc.set_host(host, newIp("bilibili.ffstu.cn"))
-        
-        if ProxyEnable == 1:
-            MessageBox(0, "请先关掉代理或加速器后再重新打开该软件！", "请关闭代理！",MB_ICONERROR)
-        else:
-            up = gaodian_update.update()
-
-            if up.if_update(version):
-                MessageBox(0, "有新版本,请立刻更新!", "发现新版!", MB_OK)
-                gaodian_update.run(["-v", version])
-                sleep(2)
+        if pc.replace_Host(host, newIp("bilibili.ffstu.cn")):
+            if ProxyEnable == 1:
+                logging.warning("开启了http代理 无法检查更新")
+                MessageBox(0, "无法开启更新程序 建议先关闭代理\n不然可能遗漏重要更新", MB_ICONWARNING)
             else:
-                t = time() * 1000
-                ip = get_host_ip()
-                webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
-                print(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
-                # cmd = '"{0}"'.format(os.path.split(os.path.realpath(__file__))[0] + "\\open.exe")
-                # os.system(cmd)
+                if update.needUpdate():
+                    MessageBox(0, "有新版本,请立刻更新!", "发现新版!", MB_OK)
+                    print(f"""
+                        更新地址: {update.newExeUrl}
+                        更新公告: {update.note}
+                        如果更新失败请通过上面的更新地址进行手动更新
+                        """)
+                    if update.download():
+                        print("""
+                                打开更新程序中 请勿关闭该窗口！！！
+                                如需关闭请通过更新程序的提示来关闭
+                                切记切记
+                            """)
+                    sleep(1)
+                    os.system(update.exeName)
+        else:
+            logging.warning("更新程序无法启动 原因是无法修改hosts")
+            MessageBox(0, "无法修改hosts文件\n建议使用右键管理员模式重新打开程序", MB_ICONWARNING)
+
+        t = int(time())
+        ip = get_host_ip()
+        webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+        logging.info(f"Url:http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+
     except Exception as e:
-        print(f"""
-            程序报错了， 报错信息：
-            {e}
-            按回车关闭该窗口。
+        logging.error(f"""
+            程序报错了， 报错信息：{e.__traceback__.tb_frame.f_globals["__file__"]} [line:{e.__traceback__.tb_lineno}] error: {e}
         """)
-        input()
+        return
+    for i in range(5):
+        sleep(1)
+        print("\r{0}秒后自动关闭程序……".format(5-(i+1)), end="")
+if __name__ == "__main__":
+    main()
