@@ -108,23 +108,24 @@ function request(settings) {
                 window.location.href = "./login.html";
                 alert(data.msg);
             };
-            switch (status) {
-                case "success":
-                    defaultSettings.success(data, status, xhr);
-                    break;
-                case "notmodified":
-                    defaultSettings.notmodified(data, status, xhr);
-                    break;
-                case "error":
-                    defaultSettings.error(data, status, xhr);
-                    break;
-                case "timeout":
-                    defaultSettings.timeout(data, status, xhr);
-                    break;
-                case "parsererror":
-                    defaultSettings.parsererror(data, status, xhr);
-                    break;
-            }
+            defaultSettings.success(data, status, xhr)
+            // switch (status) {
+            //     case "success":
+            //         defaultSettings.success(data, status, xhr);
+            //         break;
+            //     case "notmodified":
+            //         defaultSettings.notmodified(data, status, xhr);
+            //         break;
+            //     case "error":
+            //         defaultSettings.error(data, status, xhr);
+            //         break;
+            //     case "timeout":
+            //         defaultSettings.timeout(data, status, xhr);
+            //         break;
+            //     case "parsererror":
+            //         defaultSettings.parsererror(data, status, xhr);
+            //         break;
+            // }
         },
         error: function (data, status, xhr) {
             if (data.code == 600) { // 账号被下线
@@ -133,24 +134,26 @@ function request(settings) {
                 window.location.href = "./login.html";
                 alert(data.msg);
             };
-            switch (status) {
-                case "success":
-                    defaultSettings.success(data, status, xhr);
-                    break;
-                case "notmodified":
-                    defaultSettings.notmodified(data, status, xhr);
-                    break;
-                case "error":
-                    defaultSettings.error(data, status, xhr);
-                    break;
-                case "timeout":
-                    defaultSettings.timeout(data, status, xhr);
-                    break;
-                case "parsererror":
-                    defaultSettings.parsererror(data, status, xhr);
-                    break;
-            }
+            defaultSettings.success(data, status, xhr);
+            // switch (status) {
+            //     case "success":
+            //         defaultSettings.success(data, status, xhr);
+            //         break;
+            //     case "notmodified":
+            //         defaultSettings.notmodified(data, status, xhr);
+            //         break;
+            //     case "error":
+            //         defaultSettings.error(data, status, xhr);
+            //         break;
+            //     case "timeout":
+            //         defaultSettings.timeout(data, status, xhr);
+            //         break;
+            //     case "parsererror":
+            //         defaultSettings.parsererror(data, status, xhr);
+            //         break;
+            // }
         }
+    
     });
     return res;
 };
@@ -263,14 +266,14 @@ function sendNote(mobile, _type, success = function (code, msg) { }) { // 获取
     return res;
 };
 
-function user(unique_number, success = function (code, msg) { }) { // 用户信息
+function user(unique_number, success = function (status, data) { }) { // 用户信息
     let res = request({
         name: "user",
         data: {
             unique_number: unique_number
         },
         success: function (data, status, xhr) {
-            success(data.code, data.msg, data.result);
+            success(status, data);
         }
     });
     return res;
@@ -296,27 +299,20 @@ function loginQrCode(str, success = function (code, msg) { }) { // 电脑网络�
     return res;
 };
 
-function loginApp(ip, success = function (code, msg) { }) { // 手机网络认证
+function loginApp(ip, success = function (status, data) { }) { // 手机网络认证
     let res = request({
         name: "loginApp",
         data: {
             ip: ip
         },
         success: function (data, status, xhr) {
-            let status_code = data.code;
-            let msg = data.msg;
-            if (status_code == 200) {
-                // 认证成功
-            } else {
-                // 认证失败
-            };
-            success(status_code, msg);
+            success(status, data);
         }
     });
     return res
 }
 
-function networkBreak(ip, success = function (code, msg) { }, if_hexmd5 = true) { // 踢出设备
+function networkBreak(ip, success = function (status, data) { }, if_hexmd5 = true) { // 踢出设备
     if (if_hexmd5) {
         ip = hex_md5(ip);
     }
@@ -328,13 +324,13 @@ function networkBreak(ip, success = function (code, msg) { }, if_hexmd5 = true) 
         success: function (data, status, xhr) {
             let status_code = data.code;
             let msg = data.msg;
-            success(status_code, msg);
+            success(status, data);
         }
     });
     return res;
 }
 
-function networkQuery(str, success = function (code, msg) { }) { // 设备是否在线
+function networkQuery(str, success = function (status, data) { }) { // 设备是否在线
     if (typeof str != "string") { str = $.cookie("myip") };
     let res = request({
         name: "networkQuery",
@@ -342,9 +338,7 @@ function networkQuery(str, success = function (code, msg) { }) { // 设备是否
             str: hex_md5(str)
         },
         success: function (data, status, xhr) {
-            let status_code = data.code;
-            let msg = data.msg;
-            success(status_code, msg);
+            success(status, data);
         }
     });
     return res;

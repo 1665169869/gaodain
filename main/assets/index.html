@@ -35,11 +35,11 @@
         }
 
         #logout {
-            background-color: #df3a3a;
+            background-color: #ec3e4d;
         }
 
         #logout:hover {
-            background-color: #ec3e4d;
+            background-color: #df3a3a;
         }
 
         #networkQuitAll {
@@ -73,27 +73,40 @@
             closeMsg = Dreamer.loading("载入中……");
             networkQuery(
                 str = _ip,
-                success = function (code, msg) {
-                    if (code == 200) {
-                        if (msg == 400) {
-                            $('#loginApp').text("连接网络");
-                        } else {
-                            $('#loginApp').text("断开网络");
-                        };
-                    } else { Dreamer.error("未知错误，已打印控制台！", 2000, true) };
-
+                success = function (status, data) {
+                    closeMsg();
+                    switch (status) {
+                        case "success":
+                            data.code == 400 ? ($('#loginApp').text("连接网络")) : $('#loginApp').text("断开网络");
+                            break;
+                        case "timeout":
+                            Dreamer.error("请求超时了。" + status, 2000, true);
+                            break;
+                        default:
+                            Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                            break;
+                    };
                 }
             );
             user(
                 unique_number = $.cookie('userid'),
-                success = function (code, msg, result) {
+                success =  (status, data) => {
                     // let avatar = "./static/svg/logo.svg";
-                    if (code == 200) {
-                        let avatar = result.avatar;
-                        document.getElementById("avatar").setAttribute("src", avatar);
-                        Dreamer.info("欢迎回来，" + result.nickname);
+                    switch (status) {
+                        case "success":
+                            if (data.code == 200) {
+                                let avatar = data.result.avatar;
+                                document.getElementById("avatar").setAttribute("src", avatar);
+                                Dreamer.info("欢迎回来，" + data.result.nickname);
+                            };
+                            break;
+                        case "timeout":
+                            Dreamer.error("请求超时了。" + status, 2000, true);
+                            break;
+                        default:
+                            Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                            break;
                     };
-                    closeMsg();
                 }
             );
             $('#logout').click(function () {
@@ -112,72 +125,65 @@
                 });
             });
             $('#loginApp').click(function () {
-                networkQuery(
-                    str = _ip,
-                    success = function (code, msg) {
-                        if (code == 200) {
-                            if (msg == 400) {
-                                let closeMsg = Dreamer.loading("认证网络中，请稍后。");
-                                loginApp(
-                                    str = _ip,
-                                    success = function (code, msg) {
-                                        closeMsg();
-                                        if (code == 200) {
-                                            $('#loginApp').text("断开网络");
-                                            Dreamer.success(msg, 2000, true);
-                                        } else {
-                                            Dreamer.error(msg, 2000, true);
-                                        };
-                                    }
-                                );
-
-                            } else {
-                                btn_title = $('#loginApp').text();
-                                if (btn_title == "连接网络") {
-                                    Dreamer.error("当前设备已连上网络！", 2000);
-                                } else if (btn_title == "断开网络") {
-                                    let closeMsg = Dreamer.loading("断开网络中，请稍后。");
-                                    networkBreak(
-                                        ip = _ip,
-                                        success = function (code, msg) {
-                                            if (code == 200) {
-                                                closeMsg();
-                                                $('#loginApp').text("连接网络");
-                                                Dreamer.success(msg, 2000, true);
-                                            } else {
-                                                Dreamer.error(msg, 2000, true)
-                                            }
-                                        }
-                                    );
-                                }
+                let closeMsg;
+                const btn_title = $("#loginApp").text()
+                btn_title == "连接网络" ? (
+                    closeMsg = Dreamer.loading("连接网络中，请稍后"),
+                    loginApp(
+                        ip = _ip,
+                        success = (status, data) => {
+                            closeMsg();
+                            switch (status) {
+                                case "success":
+                                    data.code == 200 ? (Dreamer.success(data.msg, 2000, true), $('#loginApp').text("断开网络")) : Dreamer.error(data.msg, 2000, true)
+                                    break;
+                                case "timeout":
+                                    Dreamer.error("请求超时了。" + status, 2000, true);
+                                    break;
+                                default:
+                                    Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                                    break;
                             };
-                        } else {
-                            Dreamer.error("未知错误，已打印控制台！", 2000)
-                            console.log("code: " + code + "msg: " + msg)
+                        })
+                ) : (
+                    closeMsg = Dreamer.loading("断开网络中，请稍后。"),
+                    networkBreak(
+                        ip = _ip,
+                        success = function (status, data) {
+                            closeMsg();
+                            switch (status) {
+                                case "success":
+                                    data.code == 200 ? ($('#loginApp').text("连接网络"), Dreamer.success(data.msg, 2000, true)) : Dreamer.error(data.msg, 2000, true);
+                                    break;
+                                case "timeout":
+                                    Dreamer.error("请求超时了。" + status, 2000, true);
+                                    break;
+                                default:
+                                    Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                                    break;
+                            };
                         }
-
-                    }
+                    )
                 );
             });
-            $("#networkQuitAll").click(function () {
-                let closeMsg = Dreamer.loading("获取在线设备中……");
-                network(
-                    success = function (code, msg, result) {
-
-                        if (200 == code && result.length > 0) {
-                            // 如果code == 200 and result.length > 0则有设备在线
-                            // result是一个数组 [{"str": string, "type": number}]
-                            for (let i = 0; i < result.length; i++) {
-                                networkBreak(result[i].str, function (code, msg) { }, false);
-                            }
-                            Dreamer.info("已经断开全部设备！", 2000, true);
-                        } else {
-                            Dreamer.info("没有在线设备。", 2000);
+        });
+        $("#networkQuitAll").click(function () {
+            let closeMsg = Dreamer.loading("获取在线设备中……");
+            network(
+                success = function (code, msg, result) {
+                    if (200 == code && result.length > 0) {
+                        // 如果code == 200 and result.length > 0则有设备在线
+                        // result是一个数组 [{"str": string, "type": number}]
+                        for (let i = 0; i < result.length; i++) {
+                            networkBreak(result[i].str, function (status, data) { }, false);
                         }
-                        closeMsg();
+                        Dreamer.info("已经断开全部设备！", 2000, true);
+                    } else {
+                        Dreamer.info("没有在线设备。", 2000);
                     }
-                );
-            });
+                    closeMsg();
+                }
+            );
         });
 
     </script>
