@@ -77,7 +77,7 @@
                     closeMsg();
                     switch (status) {
                         case "success":
-                            data.code == 400 ? ($('#loginApp').text("连接网络")) : $('#loginApp').text("断开网络");
+                            data.msg == 400 ? ($('#loginApp').text("连接网络")) : $('#loginApp').text("断开网络");
                             break;
                         case "timeout":
                             Dreamer.error("请求超时了。" + status, 2000, true);
@@ -90,7 +90,7 @@
             );
             user(
                 unique_number = $.cookie('userid'),
-                success =  (status, data) => {
+                success = (status, data) => {
                     // let avatar = "./static/svg/logo.svg";
                     switch (status) {
                         case "success":
@@ -109,6 +109,30 @@
                     };
                 }
             );
+            $("#networkQuitAll").click(() => {
+                closeMsg = Dreamer.loading("获取在线设备中 请稍后。")
+                network((status, data) => {
+                    switch (status) {
+                        case "success":
+                            if (data.code == 200 && data.result.length > 0) {
+                                for (let i = 0; i < data.result.length; i++) {
+                                    networkBreak(data.result[i].str, function (s, d) { }, false);
+                                };
+                                Dreamer.success("已经踢出全部设备啦！", 2000)
+                            } else {
+                                Dreamer.error(data.msg, 2000, true);
+                            }
+                            closeMsg();
+                            break;
+                        case "timeout":
+                            Dreamer.error("请求超时了。" + status, 2000, true);
+                            break;
+                        default:
+                            Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                            break;
+                    }
+                })
+            });
             $('#logout').click(function () {
                 let closeMsg = Dreamer.loading("退出登录中，请稍后。");
                 logout(function (code, msg) {
@@ -135,7 +159,7 @@
                             closeMsg();
                             switch (status) {
                                 case "success":
-                                    data.code == 200 ? (Dreamer.success(data.msg, 2000, true), $('#loginApp').text("断开网络")) : Dreamer.error(data.msg, 2000, true)
+                                    data.code == 200 ? (Dreamer.success(data.msg, 2000, true) && $('#loginApp').text("断开网络")) : Dreamer.error(data.msg, 2000, true)
                                     break;
                                 case "timeout":
                                     Dreamer.error("请求超时了。" + status, 2000, true);
@@ -153,7 +177,7 @@
                             closeMsg();
                             switch (status) {
                                 case "success":
-                                    data.code == 200 ? ($('#loginApp').text("连接网络"), Dreamer.success(data.msg, 2000, true)) : Dreamer.error(data.msg, 2000, true);
+                                    data.code == 200 ? ($('#loginApp').text("连接网络") && Dreamer.success(data.msg, 2000, true)) : Dreamer.error(data.msg, 2000, true);
                                     break;
                                 case "timeout":
                                     Dreamer.error("请求超时了。" + status, 2000, true);
@@ -165,26 +189,9 @@
                         }
                     )
                 );
-            });
+            })
         });
-        $("#networkQuitAll").click(function () {
-            let closeMsg = Dreamer.loading("获取在线设备中……");
-            network(
-                success = function (code, msg, result) {
-                    if (200 == code && result.length > 0) {
-                        // 如果code == 200 and result.length > 0则有设备在线
-                        // result是一个数组 [{"str": string, "type": number}]
-                        for (let i = 0; i < result.length; i++) {
-                            networkBreak(result[i].str, function (status, data) { }, false);
-                        }
-                        Dreamer.info("已经断开全部设备！", 2000, true);
-                    } else {
-                        Dreamer.info("没有在线设备。", 2000);
-                    }
-                    closeMsg();
-                }
-            );
-        });
+
 
     </script>
 </head>

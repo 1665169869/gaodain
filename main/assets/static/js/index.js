@@ -53,6 +53,7 @@ function request(settings) {
         data: {},
         Authorization: $.cookie("token"),
         async: true,
+        time: 8000,
         success: function (data, status, xhr) { },
         notmodified: function (data, status, xhr) { },
         error: function (data, status, xhr) { },
@@ -99,7 +100,7 @@ function request(settings) {
         data: defaultSettings.data,
         type: method,
         headers: headers,
-        timeout: 3000,
+        timeout: defaultSettings.time,
         async: defaultSettings.async,
         success: function (data, status, xhr) {
             if (data.code == 600) { // 账号被下线
@@ -395,12 +396,12 @@ function retrieve(mobile = "", password = "", pass = "", code = "", _type = 2, s
     });
 }
 
-function network(success = function() {}) {
+function network(success = function(status, data) {}) {
     let res = request({
         name: "network",
         data: {},
         success: function(data, status, xhr) {
-            success(data.code, data.msg, data.result);
+            success(status, data);
         }
     });
 }
