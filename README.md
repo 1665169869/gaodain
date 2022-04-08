@@ -13,7 +13,7 @@
 
 **糕点 -- 第三方糕糕客户端**
 
-在阅读该项目时你需要入门以下知识：
+在阅读该项目时你需要了解以下知识：
 
 jQuery HTML CSS Python3
 
@@ -28,18 +28,29 @@ jQuery HTML CSS Python3
 
 ## 使用说明
 
-由于项目使用了新特性联合类型
+项目分为两大部分：
 
-并且html,css,js的文件是存储在服务端的
+***服务端***：*html,css,js*的静态文件存放 **重点**
 
-真正重要的文件其实是在index.js还有接口文档，接口文档我就不放出来了。
+***客户端***：修改*hosts*访问服务端和更新器的用处
 
-**main.py** 仅供参考,主要代码为前端那边，py脚本仅用于修改hosts和打开网址
 
-Python >= 3.10 
+**main.py** 仅供参考,主要代码在**assets**目录
 
-1.  `pip install -r requirements.txt`
-2.  `python main.py`
+二次开发的话我建议最好还是把静态文件放服务器 避免客户端频繁更新
+
+***Python >= 3.10***
+
+1. >  `pip install -r requirements.txt`
+2. >  `python main.py`
+
+## 接口文档
+
+[***接口文档***](https://console-docs.apipost.cn/cover.html?url=128dd60c0d539c26&salt=e0f835d8cc530d18)
+
+接口文档实际并未完全做完 如需要补充可以提交一个issues
+
+接口文档一样遵从该源码相同的开放协议**GPL-3.0 License**
 
 ## 友情链接
 
