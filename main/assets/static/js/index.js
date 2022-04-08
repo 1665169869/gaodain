@@ -159,7 +159,7 @@ function request(settings) {
     return res;
 };
 
-function login(mobile, password, success = function (code, msg) { }) { // 密码登录
+function login(mobile, password, success = function (status, data) { }) { // 密码登录
     let res = request({
         name: "login",
         data: {
@@ -193,13 +193,13 @@ function login(mobile, password, success = function (code, msg) { }) { // 密码
                 $.cookie('username', mobile, { expires: 365, path: '/' });
                 $.cookie('password', password, { expires: 365, path: '/' });
             };
-            success(status_code, msg);
+            success(status, data);
         }
     });
     return res;
 };
 
-function smsLogin(mobile, code, success = function (code, msg) { }) { // 验证码登录
+function smsLogin(mobile, code, success = function (status, data) { }) { // 验证码登录
     let res = request({
         name: "smsLogin",
         data: {
@@ -224,20 +224,20 @@ function smsLogin(mobile, code, success = function (code, msg) { }) { // 验证�
             */
             let status_code = data.code; // 登录接口被请求后的json.code响应码,不是ajax请求的status
             let msg = data.msg; // 提示信息
-            if (status_code == 200) {
+            if (status == "success" && status_code == 200) {
                 let token = "Bearer " + data.result.token; // Token
                 let info = data.result.info; // 参考上面的多行注释 
                 let userid = data.result.info.unique_number;
                 $.cookie('token', token, { expires: 365, path: '/' }); // 把token设置到cookie，并且存放365天
                 $.cookie('userid', userid, { expires: 365, path: '/' });
             };
-            success(status_code, msg);
+            success(status, data);
         }
     });
     return res;
 };
 
-function sendNote(mobile, _type, success = function (code, msg) { }) { // 获取验证码
+function sendNote(mobile, _type, success = function (status, data) { }) { // 获取验证码
     let res = request({
         name: "sendNote",
         data: {
@@ -261,7 +261,7 @@ function sendNote(mobile, _type, success = function (code, msg) { }) { // 获取
             if (status_code == 200) {
                 let limit = data.result.limit // 该号码请求次数
             };
-            success(status_code, msg);
+            success(status, data);
         }
     });
     return res;

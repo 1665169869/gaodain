@@ -12,8 +12,104 @@
     <script language=javascript src="./static/js/config.min.js"></script>
     <script src="./static/js/index.js"></script>
     <link rel="stylesheet" href="./static/css/login.css">
+    <style>
+        .sms {
+            display: flex;
+            justify-content: center;
+            /* 子元素水平居中 */
+            align-items: center;
+            /* 子元素垂直居中 */
+            margin-left: auto;
+        }
+
+        .sms label {
+            margin: 0;
+            height: 20px;
+            width: 120px;
+            font-size: 14px;
+            color: #fff;
+
+        }
+
+        .sms #if_smsLogin {
+            width: 24px;
+            margin: 0;
+        }
+
+        #getSmsCode {
+            margin: 0;
+            background: none;
+            height: auto;
+            width: auto;
+            color: #fff;
+            padding: 0;
+            position: absolute;
+            top: 260px;
+            right: 50px;
+            border: none;
+            outline: none;
+        }
+
+        #getSmsCode:hover {
+            background: none;
+            color: rgba(246, 246, 246, 0.726);
+        }
+    </style>
     <script>
         $(document).ready(function () {
+            $("#getSmsCode").click(() => {
+                let mobile = $("#mobile").val()
+                let closeMsg;
+                $('#getSmsCode').text() == "获取验证码" && (
+                    closeMsg = Dreamer.loading("获取验证码中"),
+                    mobile.length == 0 ? (Dreamer.error("手机号码不能为空", 2000), closeMsg()) : sendNote(mobile, 1, (status, data) => {
+                        closeMsg();
+                        switch (status) {
+                            case "success":
+                                if (data.code == 200) {
+                                    Dreamer.success(data.msg, 2000, true)
+                                    let time = 60;
+                                    const s = setInterval(() => {
+                                        if (time == 1) {
+                                            $("#getSmsCode").text("获取验证码")
+                                            $('#getSmsCode').css('color', '#fff');
+                                            clearInterval(s);
+                                            return;
+                                        };
+                                        time--;
+                                        $("#getSmsCode").text(`剩余${time}秒`);
+                                        $("#getSmsCode").css("color", "#5b5b5b");
+                                    }, 1000)
+
+                                } else { Dreamer.error(data.msg, 2000, true); }
+                                break;
+                            case "timeout":
+                                Dreamer.error("请求超时了。" + status, 2000, true);
+                                break;
+                            default:
+                                Dreamer.error("获取验证码失败", 2000, true);
+                                break;
+                        };
+                    })
+                )
+            });
+            $("#if_smsLogin").click(() => {
+                let if_smslogin = $('#if_smsLogin').is(":checked");
+                let input_pwd = $('#password');
+                let getSmsCode = $('#getSmsCode');
+                if (if_smslogin) {
+                    input_pwd.attr("type", "text");
+                    input_pwd.val("");
+                    input_pwd.attr("placeholder", "验证码");
+                    getSmsCode.attr("style", "display: flex;")
+
+                } else {
+                    input_pwd.attr("type", "password");
+                    input_pwd.val($("#password").val(password));
+                    getSmsCode.attr("style", "display: none;")
+                    input_pwd.attr("placeholder", "密码");
+                }
+            });
             $('#btn_reset').click(function () {
                 let password = $('#reset_passwd').val();
                 let psswd = $("#reset_pwd").val();
@@ -35,7 +131,7 @@
                         pass = psswd,
                         code = verifyCode,
                         _type = 2,
-                        success = function(code, msg, result) {
+                        success = function (code, msg, result) {
                             if (code == 200) {
                                 Dreamer.success(msg);
                             } else {
@@ -47,75 +143,46 @@
                 }
             });
             $('#sendCode').click(function () {
-                if ($('#sendCode').text() == "获取验证码") {
-                    let mobile = $("#re_mobile").val();
-                    if (mobile.length <= 0) {
-                        Dreamer.warning("手机号不能为空！");
-                        return;
-                    };
-                    sendNote(
-                        mobile = mobile,
-                        _type = 2,
-                        success = function (code, msg) {
-                            if (code == 200) {
-                                Dreamer.success(msg, true, 2000);
-                                let time = 60;
-                                let s = setInterval(function () {
-                                    if (time == 1) {
-                                        $('#sendCode').text('获取验证码');
-                                        $('#sendCode').css('color', '#5892d4');
-                                        clearInterval(s);
-                                        return;
-                                    };
-                                    time--;
-                                    $("#sendCode").text(`剩余${time}秒`)
-                                    $("#sendCode").css("color", "#5b5b5b")
-                                }, 1000);
-                            } else {
-                                Dreamer.error(msg, true, 2000);
-                            };
-                        }
-                    );
-                }
+                let mobile = $("#re_mobile").val()
+                let closeMsg;
+                $('#sendCode').text() == "获取验证码" && (
+                    closeMsg = Dreamer.loading("获取验证码中"),
+                    mobile.length == 0 ? (Dreamer.error("手机号码不能为空", 2000), closeMsg()) : sendNote(mobile, 2, (status, data) => {
+                        closeMsg();
+                        switch (status) {
+                            case "success":
+                                if (data.code == 200) {
+                                    Dreamer.success(data.msg, 2000, true)
+                                    let time = 60;
+                                    const s = setInterval(() => {
+                                        if (time == 1) {
+                                            $("#sendCode").text("获取验证码")
+                                            $('#sendCode').css('color', '#5892d4');
+                                            clearInterval(s);
+                                            return;
+                                        };
+                                        time--;
+                                        $("#sendCode").text(`剩余${time}秒`);
+                                        $("#sendCode").css("color", "#5b5b5b");
+                                    }, 1000)
+
+                                } else { Dreamer.error(data.msg, 2000, true); }
+                                break;
+                            case "timeout":
+                                Dreamer.error("请求超时了。" + status, 2000, true);
+                                break;
+                            default:
+                                Dreamer.error("获取验证码失败", 2000, true);
+                                break;
+                        };
+                    })
+                )
             });
 
             $('#btnLogin').click(function () {
+                cloneMsg = Dreamer.loading("登录中.....");
                 let if_smslogin = $('#if_smsLogin').is(":checked");
-                if (if_smslogin) {
-                    smsLogin(
-                        $("#mobile").val(),
-                        $("#sendCode").val(),
-                        function (code, msg) {
-                            if (code == 200) {
-                                Dreamer.success(msg, true, 2000, function () {
-                                    // console.log(msg);
-                                    window.location.href = "./index.html";
-                                });
-                            } else {
-                                Dreamer.error(msg, true, 2000, function () {
-                                    console.log(msg);
-                                });
-                            }
-                        }
-                    );
-                } else {
-                    login(
-                        $("#mobile").val(),
-                        $("#password").val(),
-                        function (code, msg) {
-                            if (code == 200) {
-                                Dreamer.success(msg, 2000, function () {
-                                    // console.log(msg);
-                                    window.location.href = "./index.html";
-                                });
-                            } else {
-                                Dreamer.error(msg, true, 2000, function () {
-                                    console.log(msg);
-                                });
-                            }
-                        }
-                    );
-                };
+                if_smslogin == true ? smsLogin(mobile = $("#mobile").val(), code = ("#sendCode").val(), success = (status, data) => { cloneMsg(); status == "success" && data.code == 200 ? Dreamer.success("登录成功", true, 2000, function () { window.location.href = "./index.html"; }) : Dreamer.error("登录失败 " + data.msg, true, 2000) }) : login(mobile = $("#mobile").val(), password = $("#password").val(), success = (status, data) => { cloneMsg(); status == "success" && data.code == 200 ? Dreamer.success("登录成功", true, 2000, function () { window.location.href = "./index.html"; }) : Dreamer.error("登录失败 " + data.msg, true, 2000) })
             });
         });
     </script>
@@ -141,7 +208,8 @@
                 <h1>LOGIN</h1>
                 <input type="text" placeholder="手机号" id="mobile">
                 <input type="password" placeholder="密码" id="password">
-                <input type="checkbox" id="if_smsLogin" style="display: none;">
+                <button id="getSmsCode" style="display: none;">获取验证码</button>
+                <span class="sms"><input type="checkbox" id="if_smsLogin"> <label for="if_smsLogin">验证码登录</label></span>
                 <button id="btnLogin">登录</button>
             </div>
         </div>
