@@ -90,7 +90,7 @@ $(document).ready(function () {
                     closeMsg();
                     switch (status) {
                         case "success":
-                            data.code == 200 ? (Dreamer.success(data.msg, 2000, true) && $('#loginApp').text("断开网络")) : Dreamer.error(data.msg, 2000, true)
+                            data.code == 200 ? (Dreamer.success(data.msg, 2000, true), $('#loginApp').text("断开网络")) : Dreamer.error(data.msg, 2000, true)
                             break;
                         case "timeout":
                             Dreamer.error("请求超时了。" + status, 2000, true);
@@ -108,7 +108,7 @@ $(document).ready(function () {
                     closeMsg();
                     switch (status) {
                         case "success":
-                            data.code == 200 ? ($('#loginApp').text("连接网络") && Dreamer.success(data.msg, 2000, true)) : Dreamer.error(data.msg, 2000, true);
+                            data.code == 200 ? ($('#loginApp').text("连接网络"), Dreamer.success(data.msg, 2000, true)) : Dreamer.error(data.msg, 2000, true);
                             break;
                         case "timeout":
                             Dreamer.error("请求超时了。" + status, 2000, true);
