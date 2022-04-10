@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'hytmr55';
+    /* 字体名自定义即可 */
+    src: url('../font/hytmr55.woff');
+    /* 字体文件路径 */
+    font-display: swap;
+}
 .active {
     display: none;
 }
@@ -22,6 +29,10 @@ body {
     height: auto;
     border-radius: 1%;
     /*border: 1px solid ;*/
+}
+
+* {
+    font-family: 'hytmr55', sans-serif !important;
 }
 
 #left {

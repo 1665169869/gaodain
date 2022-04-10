@@ -1,7 +1,15 @@
+@font-face {
+    font-family: 'hytmr55';
+    /* 字体名自定义即可 */
+    src: url('../font/hytmr55.woff');
+    /* 字体文件路径 */
+    font-display: swap;
+}
 *{
     /* 初始化 */
     margin: 0;
     padding: 0;
+    font-family: 'hytmr55', sans-serif;
 }
 body{
     /* 100%窗口高度 */
