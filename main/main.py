@@ -11,8 +11,9 @@ import logging
 import re, os, sys
 # from tkinter import mainloop
 # 打包命令：pyinstaller .\main\main.py -D -n gaodian -i .\main\img\favicon.ico --uac-admin
-version = "3.1.6"
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
+# 3.1.7（包括）以后的版本建议使用ipfs网盘的下载地址更新
+version = "3.1.7"
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s', datefmt="%a %b %d %H:%M:%S %Y")
 def line_of_text(text: str, of_text: str):
     """
     获取某段文本所在行 存在返回所在行数(0开始算) 失败或不存在返回-1
@@ -105,14 +106,15 @@ class Update:
                 # raise RuntimeError(f"status.code: {self.r.status_code} 无法更新")
         
     def download(self) -> bool:
-        self.exeName = self.newExeUrl[self.newExeUrl.rfind("/")+1:]
+        self.exeName = "gaodian_setup.exe"
+        # self.exeName = self.newExeUrl[self.newExeUrl.rfind("/")+1:]
         self.r = requests.get(self.newExeUrl, stream=True)
         content_length = int(self.r.headers.get('Content-Length'))
 
         data_count = 0
         with open(self.exeName, 'wb') as file:
             bar = tqdm(
-            desc=self.exeName, total=content_length, unit='iB', unit_scale=True, unit_divisor=self.chunk_size)
+            desc=self.exeName, total=content_length, unit='B', unit_scale=True, unit_divisor=self.chunk_size)
             for data in self.r.iter_content(chunk_size=self.chunk_size):
                 size = file.write(data)
                 bar.update(size)
