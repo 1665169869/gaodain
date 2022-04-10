@@ -11,7 +11,7 @@ import logging
 import re, os, sys
 # from tkinter import mainloop
 # 打包命令：pyinstaller .\main\main.py -D -n gaodian -i .\main\img\favicon.ico --uac-admin
-version = "3.1.5"
+version = "3.1.6"
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
 def line_of_text(text: str, of_text: str):
     """
@@ -85,7 +85,7 @@ class Host:
 
 class Update:
     def __init__(self) -> None:
-        self.updateUrl = "http://v5.yungao-tech.com/api/update?version=" + version
+        self.updateUrl = "http://v5.yungao-tech.com/api/update?version={0}&_={1}".format(version, time())
         self.chunk_size = 1024
     def needUpdate(self) -> bool:
         with requests.get(self.updateUrl) as self.r:
@@ -149,7 +149,7 @@ def main():
         if pc.replace_Host(host, newIp("bilibili.ffstu.cn")):
             if ProxyEnable == 1:
                 logging.warning("开启了http代理 无法检查更新")
-                MessageBox(0, "无法开启更新程序 建议先关闭代理\n不然可能遗漏重要更新", MB_ICONWARNING)
+                MessageBox(0, "无法开启更新程序 建议先关闭代理\n不然可能遗漏重要更新\n并且可能导致无法正常使用", "建议关掉代理",MB_ICONWARNING)
             else:
                 if update.needUpdate():
                     MessageBox(0, "有新版本,请立刻更新!", "发现新版!", MB_OK)
@@ -168,7 +168,7 @@ def main():
                     os.system(update.exeName)
         else:
             logging.warning("更新程序无法启动 原因是无法修改hosts")
-            MessageBox(0, "无法修改hosts文件\n建议使用右键管理员模式重新打开程序", MB_ICONWARNING)
+            MessageBox(0, "无法修改hosts文件\n建议使用右键管理员模式重新打开程序", "尝试管理员运行",MB_ICONWARNING)
 
         t = int(time())
         ip = get_host_ip()
@@ -179,7 +179,6 @@ def main():
         logging.error(f"""
             程序报错了， 报错信息：{e.__traceback__.tb_frame.f_globals["__file__"]} [line:{e.__traceback__.tb_lineno}] error: {e}
         """)
-        return
     for i in range(5):
         sleep(1)
         print("\r{0}秒后自动关闭程序……".format(5-(i+1)), end="")
