@@ -8,11 +8,12 @@ from tqdm import tqdm
 import getreg
 import requests
 import logging
-import re, os, sys
+from hashlib import md5
+import re, os
 # from tkinter import mainloop
 # 打包命令：pyinstaller .\main\main.py -D -n gaodian -i .\main\img\favicon.ico --uac-admin
 # 3.1.7（包括）以后的版本建议使用ipfs网盘的下载地址更新
-version = "3.1.7"
+version = "3.1.8"
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s', datefmt="%a %b %d %H:%M:%S %Y")
 def line_of_text(text: str, of_text: str):
     """
@@ -94,6 +95,8 @@ class Update:
                 result: dict = self.r.json()
                 self.newExeUrl: str = result.get("url")
                 self.note: str = result.get('note')
+                self.exeName: str = result.get('exeName')
+                self.md5: str = result.get('md5')
                 logging.info(result)
                 if result.get('status') == 1:
                     return True
@@ -106,7 +109,6 @@ class Update:
                 # raise RuntimeError(f"status.code: {self.r.status_code} 无法更新")
         
     def download(self) -> bool:
-        self.exeName = "gaodian_setup.exe"
         # self.exeName = self.newExeUrl[self.newExeUrl.rfind("/")+1:]
         self.r = requests.get(self.newExeUrl, stream=True)
         content_length = int(self.r.headers.get('Content-Length'))
@@ -119,7 +121,16 @@ class Update:
                 size = file.write(data)
                 bar.update(size)
             file.close()
-            return True
+            bar.close()
+
+        with open(self.exeName, "rb") as file:
+            data = file.read()
+            self.file_md5 = md5(data).hexdigest()
+            if self.file_md5 != self.md5:
+                return False
+            else:
+                return True
+        
 
 
         
@@ -158,6 +169,7 @@ def main():
                     print(f"""
                         更新地址: {update.newExeUrl}
                         更新公告: {update.note}
+                        md5哈希值: {update.md5}
                         如果更新失败请通过上面的更新地址进行手动更新
                         """)
                     if update.download():
@@ -166,8 +178,13 @@ def main():
                                 如需关闭请通过更新程序的提示来关闭
                                 切记切记
                             """)
-                    sleep(1)
-                    os.system(update.exeName)
+                        sleep(1)
+                        os.system(update.exeName)
+                        return
+                    else:
+                        logging.error("新安装包md5哈希值不一致: \n已下载的文件md5:{0} 服务端上的md5:{1}".format(update.file_md5, update.md5))
+                        MessageBox(0, "新安装包出现哈希值md5错误\n文件受损建议手动更新.", "安装包出问题了", MB_ICONERROR)
+
         else:
             logging.warning("更新程序无法启动 原因是无法修改hosts")
             MessageBox(0, "无法修改hosts文件\n建议使用右键管理员模式重新打开程序", "尝试管理员运行",MB_ICONWARNING)
@@ -180,6 +197,12 @@ def main():
     except Exception as e:
         logging.error(f"""
             程序报错了， 报错信息：{e.__traceback__.tb_frame.f_globals["__file__"]} [line:{e.__traceback__.tb_lineno}] error: {e}
+            如遇报错请检查以下原因：
+            是否连接校园网
+            是否开启了代理
+            是否允许管理员模式运行
+            hosts文件是否存在
+            防火墙和杀毒是否拦截此软件
         """)
     for i in range(5):
         sleep(1)
