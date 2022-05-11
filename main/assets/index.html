@@ -20,6 +20,8 @@
     <script src="./static/js/index.js"></script>
     <link rel="stylesheet" href="./static/css/reset.css">
     <link rel="stylesheet" href="./static/css/style.css">
+    <script src="./static/js/iconfont.js"></script>
+    <link rel="stylesheet" href="./static/css/iconfont.css">
     <!-- 以上内容必须在每个页面都有 -->
     <style>
         footer {
@@ -51,11 +53,13 @@
         }
 
         #avatar {
-            height: 128px;
-            width: 128px;
-            margin-top: 30px;
+            height: 100px;
+            width: 100px;
+            /* margin-top: 30px;
+            margin-left: 30px; */
             border-radius: 50%;
             -webkit-user-drag: none;
+            float: left;
         }
 
         .bgdiv {
@@ -63,6 +67,55 @@
             background: linear-gradient(145deg, #68b3ca, #7bd5f0);
             box-shadow: 6px 6px 12px #4b8192,
                 -6px -6px 12px #9bffff;
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .userInfo {
+            margin: auto;
+            line-height: 30px;
+            color: #fff;
+            float: right;
+            margin: 25px auto;
+            display: flex;
+        }
+        .userInfo #nickName {
+            display: block;
+            font-size: 20px;
+            float: none;
+        }
+        .userInfo #gender img{
+            margin-top: 1px;
+            width: 20px;
+            height: 20px;
+            font-size: 16px;
+            
+        }
+        .userInfo #subscribe {
+            background-color: rgb(251, 114, 153);
+            
+        }
+        .userInfo #expiration {
+            background-color: rgb(180, 156, 163);
+        }
+        .userInfo .user span{
+            height: 30px;
+            text-align: center;
+            margin: auto;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            float: left;
+
+        }
+        .userInfo .user {
+            margin-left: 30px;
+        }
+        .userInfo #school_name {
+            display: block;
+            background-color: rgb(108, 143, 230);
+            font-size: 16px;
+            width: 100%;
         }
     </style>
 
@@ -77,11 +130,35 @@
         </header>
         <section>
             <!-- 主体内容 -->
-            <img src="./static/svg/logo.svg" id="avatar">
-            <div>
-                <button id="loginApp" class="btn btn_">连接网络</button>
-                <button id="logout" class="btn">退出登录</button>
-                <button id="networkQuitAll" class="btn">断开所有设备</button>
+            <div class="main">
+                <div class="userInfo">
+                    <div><img src="./static/svg/logo.svg" id="avatar"></div>
+                    <div class="user">
+                        <span id="nickName">
+                            <!-- 昵称 -->
+                            卢本伟牛逼
+                        </span>
+                        <span id="school_name">
+                            <!-- 学校 -->
+                        </span>
+                        <br>
+                        <span id="gender" class="iconfont icon-xingbienan">
+                            <!-- 性别 -->
+                        </span>
+                        <span id="subscribe">
+                            <!-- 套餐订阅 -->
+                        </span>          
+                        <span id="expiration">
+                            <!-- 到期时间 -->
+                        </span>
+                    </div>
+    
+                </div>
+                <div>
+                    <button id="loginApp" class="btn btn_">连接网络</button>
+                    <button id="logout" class="btn">退出登录</button>
+                    <button id="networkQuitAll" class="btn">断开所有设备</button>
+                </div>
             </div>
         </section>
         <article>

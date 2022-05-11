@@ -2,33 +2,53 @@ $(document).ready(function () {
     // _ip = myip();
     _ip = $.cookie("myip");
     closeMsg = Dreamer.loading("载入中……");
-    networkQuery(
-        str = _ip,
-        success = function (status, data) {
-            closeMsg();
-            switch (status) {
-                case "success":
-                    data.msg == 400 ? ($('#loginApp').text("连接网络")) : $('#loginApp').text("断开网络");
-                    break;
-                case "timeout":
-                    Dreamer.error("请求超时了。" + status, 2000, true);
-                    break;
-                default:
-                    Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
-                    break;
-            };
-        }
-    );
+    MyComboController((status, data) => {
+        networkQuery(
+            str = _ip,
+            success = function (status, data) {
+                closeMsg();
+                switch (status) {
+                    case "success":
+                        data.msg == 400 ? ($('#loginApp').text("连接网络")) : $('#loginApp').text("断开网络");
+                        break;
+                    case "timeout":
+                        Dreamer.error("请求超时了。" + status, 2000, true);
+                        break;
+                    default:
+                        Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                        break;
+                };
+            }
+        );
+        switch (status) {
+            case "success":
+                let subscribe = undefined;
+                subscribe = data.result.length > 0 ? (data.result[0].type == 1 ? "手机套餐" : "电脑套餐") : "没有套餐";
+                $("#subscribe").text(subscribe);
+                $("#expiration").text(data.result[0].expired_time);
+                
+                break;
+            case "timeout":
+                Dreamer.error("请求超时了。" + status, 2000, true);
+                break;
+            default:
+                Dreamer.error("未知错误 可能是糕糕又炸了.状态码：" + status, 2000, true);
+                break;
+        };
+    })
+
     user(
         unique_number = $.cookie('userid'),
         success = (status, data) => {
             // let avatar = "./static/svg/logo.svg";
+            console.log(data)
             switch (status) {
                 case "success":
                     if (data.code == 200) {
                         let avatar = data.result.avatar;
                         document.getElementById("avatar").setAttribute("src", avatar);
                         Dreamer.info("欢迎回来，" + data.result.nickname);
+                        $('#school_name').text(data.result.school.school_name)
                     };
                     break;
                 case "timeout":

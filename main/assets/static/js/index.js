@@ -405,3 +405,21 @@ function network(success = function(status, data) {}) {
         }
     });
 }
+
+
+function Jump_404(){
+    let url = location.href;
+    if (url.search(":\/\/v5.yungao-tech.com\/.*") != -1) {
+        location.href = "/404.html"
+    }
+}
+
+function MyComboController(success = (status, data) => {}) {
+    let res = request({
+        name: "MyComboController",
+        data: {},
+        success: (data, status, xhr) => {
+            success(status, data);
+        }
+    })
+}

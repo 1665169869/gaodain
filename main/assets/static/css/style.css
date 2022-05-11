@@ -5,6 +5,7 @@
     /* 字体文件路径 */
     font-display: swap;
 }
+
 .active {
     display: none;
 }

