@@ -49,6 +49,7 @@ $(document).ready(function () {
                         document.getElementById("avatar").setAttribute("src", avatar);
                         Dreamer.info("欢迎回来，" + data.result.nickname);
                         $('#school_name').text(data.result.school.school_name)
+                        $('#nickname').text(data.result.nickname)
                     };
                     break;
                 case "timeout":
