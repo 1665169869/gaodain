@@ -124,6 +124,6 @@ $(document).ready(function () {
     $('#btnLogin').click(function () {
         cloneMsg = Dreamer.loading("登录中.....");
         let if_smslogin = $('#if_smsLogin').is(":checked");
-        if_smslogin == true ? smsLogin(mobile = $("#mobile").val(), code = ("#sendCode").val(), success = (status, data) => { cloneMsg(); status == "success" && data.code == 200 ? Dreamer.success("登录成功", true, 2000, function () { window.location.href = "./index.html"; }) : Dreamer.error("登录失败 " + data.msg, true, 2000) }) : login(mobile = $("#mobile").val(), password = $("#password").val(), success = (status, data) => { cloneMsg(); status == "success" && data.code == 200 ? Dreamer.success("登录成功", true, 2000, function () { window.location.href = "./index.html"; }) : Dreamer.error("登录失败 " + data.msg, true, 2000) })
+        if_smslogin == true ? smsLogin(mobile = $("#mobile").val(), code = $("#password").val(), success = (status, data) => { cloneMsg(); status == "success" && data.code == 200 ? Dreamer.success("登录成功", true, 2000, function () { window.location.href = "./index.html"; }) : Dreamer.error("登录失败 " + data.msg, true, 2000) }) : login(mobile = $("#mobile").val(), password = $("#password").val(), success = (status, data) => { cloneMsg(); status == "success" && data.code == 200 ? Dreamer.success("登录成功", true, 2000, function () { window.location.href = "./index.html"; }) : Dreamer.error("登录失败 " + data.msg, true, 2000) })
     });
 });
