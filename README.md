@@ -55,6 +55,7 @@ jQuery HTML CSS Python3
 ## 友情链接
 
 [广东天翼校园网手机登录器-maybe_xyw](https://gitee.com/dpwgc/maybe_xyw)
+[校园网认证](https://gitee.com/qmdq/campus-network-authentication)
 
 ## 参与贡献
 
