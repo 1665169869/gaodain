@@ -103,6 +103,13 @@ function request(settings) {
         timeout: defaultSettings.time,
         async: defaultSettings.async,
         success: function (data, status, xhr) {
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?17c595db3d7b80b1c033c18e5a86f089";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
             if (data.code == 600) { // 账号被下线
                 console.log(data.code + data.msg);
                 $.removeCookie("token", { path: '/' });
